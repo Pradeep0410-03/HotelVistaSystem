@@ -1,0 +1,675 @@
+/* ================= GLOBAL RESET ================= */
+/* Removes default browser spacing and sets base font */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
+.hero-content h1,
+.rooms h2,
+.gallery h2,
+.amenities h2,
+.contact h2 {
+  font-family: 'Playfair Display', serif;
+}
+
+
+/* ================= HEADER / NAVBAR ================= */
+/* Fixed top navigation bar */
+
+.header {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  background: white;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  z-index: 1000;
+}
+
+/* Navbar container */
+
+.navbar {
+  max-width: 1300px;
+  margin: auto;
+  padding: 14px 32px; /* more left/right space */
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.nav-links a {
+  font-size: 15px;
+  opacity: 0.9;
+}
+
+
+/* Logo styling */
+
+/* ================= LOGO ================= */
+
+/* ================= LOGO ================= */
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  font-size: 26px;          /* slightly bigger */
+  font-weight: 600;
+  letter-spacing: 0.4px;
+}
+
+.logo-icon {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: linear-gradient(
+    135deg,
+    #1e3a8a,
+    #3b82f6
+  );
+}
+
+/* horizon line */
+.logo-icon::after {
+  content: "";
+  position: absolute;
+  bottom: 8px;   /* moved up */
+  left: 5px;
+  right: 5px;
+  height: 2px;
+  background: rgba(255,255,255,0.85);
+  border-radius: 2px;
+}
+
+
+/* Text */
+.logo {
+  font-size: 26px;
+  font-weight: 500; /* slightly lighter */
+  letter-spacing: 0.6px;
+}
+
+.logo-hotel {
+  font-family: 'Poppins', sans-serif;
+  color: #e5e7eb;
+}
+
+.logo-vista {
+  font-family: 'Playfair Display', serif;
+  color: #3b82f6;
+  margin-left: 3px;
+}
+
+
+/* ================= NAV LINKS ================= */
+/* Center navigation menu */
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 25px;
+}
+
+.nav-links a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  padding: 8px 14px;
+  border-radius: 999px;
+
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  color: #374151;
+
+  position: relative;
+  transition: color 0.3s ease;
+}
+.nav-links a::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #eef2ff;
+  border-radius: 999px;
+  opacity: 0;
+  transform: scale(0.9);
+  transition: all 0.25s ease;
+  z-index: -1;
+}
+
+.nav-links a:hover::before {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.nav-links a:hover {
+  color: #1e3a8a;
+}
+
+
+/* ================= NAV ACTIONS ================= */
+/* Login + Book Now buttons */
+
+.nav-actions {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.nav-actions a {
+  text-decoration: none;
+  font-weight: 500;
+  color: #1e3a8a;
+}
+
+/* Book Now button */
+
+.btn-book {
+  background: #1e3a8a;
+  color: white !important;
+  padding: 8px 16px;
+  border-radius: 4px;
+}
+
+.btn-book:hover {
+  background: #162d6b;
+}
+
+/* ================= HERO SECTION ================= */
+/* Full-screen landing section with background image */
+
+.hero {
+  height: 100vh;
+  background: linear-gradient(
+      rgba(0,0,0,0.55),
+      rgba(0,0,0,0.55)
+    ),
+    url("https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1600&q=80")
+    center/cover no-repeat;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 120px;
+}
+
+/* Hero text container */
+
+.hero-content {
+  text-align: center;
+  color: white;
+  max-width: 800px;
+}
+
+/* Hero heading */
+
+.hero-content h1 {
+  font-size: 52px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 15px;
+}
+
+/* Hero subtext */
+
+.hero-content p {
+  font-size: 20px;
+  margin-bottom: 35px;
+  opacity: 0.9;
+}
+
+/* ================= BOOKING FORM ================= */
+/* Booking card inside hero section */
+
+.booking-form {
+  display: flex;
+  gap: 12px;
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+}
+
+/* Booking inputs */
+
+.booking-form input,
+.booking-form select {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  min-width: 140px;
+}
+
+/* Booking input focus state */
+
+.booking-form input:focus,
+.booking-form select:focus {
+  outline: none;
+  border-color: #1e3a8a;
+}
+
+/* Booking submit button */
+
+.booking-form button {
+  background: #1e3a8a;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.booking-form button:hover {
+  background: #162d6b;
+}
+
+/* ================= DESTINATIONS SECTION ================= */
+
+.destinations {
+  padding: 140px 20px;
+
+  background:
+    radial-gradient(
+      circle at top center,
+      rgba(255,255,255,0.08),
+      rgba(0,0,0,0) 60%
+    ),
+    linear-gradient(
+      180deg,
+      #0f1114 0%,
+      #151a20 45%,
+      #0f1114 100%
+    );
+}
+
+
+/* Section heading */
+/* Section header wrapper */
+.destinations .section-header {
+  max-width: 720px;
+  margin: 0 auto 70px;
+  text-align: center;
+}
+
+/* Main heading */
+.destinations h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 44px;
+  font-weight: 600;
+  color: #f5f5f5;
+  letter-spacing: 0.5px;
+  margin-bottom: 14px;
+}
+
+/* Subtitle */
+.destinations p {
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  color: #cfcfcf;
+  line-height: 1.6;
+}
+.destinations .section-header::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 2px;
+  background: #1e3a8a;
+  margin: 22px auto 0;
+  opacity: 0.7;
+}
+
+/* Grid layout */
+.destinations-grid {
+  max-width: 1200px;
+  margin: auto;
+
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-auto-rows: 260px;
+  gap: 24px;
+}
+
+
+/* Large cards (top row) */
+/* ================= DESTINATION CARD LAYOUT (BOOKING STYLE) ================= */
+
+/* Top row – 2 large cards */
+.destination-card.large {
+  grid-column: span 3; /* 3 + 3 = full row */
+}
+
+/* Bottom row – 3 equal cards */
+.destination-card {
+  grid-column: span 2; /* 2 + 2 + 2 = full row */
+
+  position: relative;
+  overflow: hidden;
+  border-radius: 1.25rem; /* closer to Booking.com */
+  cursor: pointer;
+
+  background: #111; /* fallback if image fails */
+
+  box-shadow:
+    0 20px 40px rgba(0,0,0,0.25),
+    inset 0 1px 0 rgba(255,255,255,0.05);
+
+  transition: transform 0.35s ease;
+}
+
+/* Image handling */
+.destination-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+/* Overlay */
+.destination-overlay {
+  position: absolute;
+  inset: 0;
+
+  background: linear-gradient(
+    180deg,
+    rgba(0,0,0,0.15),
+    rgba(0,0,0,0.6)
+  );
+
+  display: flex;
+  align-items: flex-end;
+  padding: 20px;
+
+  transition: background 0.3s ease;
+}
+
+.destination-overlay h3 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  color: #fff;
+
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.country-flag {
+  font-size: 16px;
+  line-height: 1;
+}
+
+/* Hover effects */
+.destination-card:hover {
+  transform: translateY(-6px);
+}
+
+.destination-card:hover img {
+  transform: scale(1.05);
+}
+
+.destination-card:hover .destination-overlay {
+  background: linear-gradient(
+    180deg,
+    rgba(0,0,0,0.05),
+    rgba(0,0,0,0.75)
+  );
+}
+
+
+
+/* ================= ROOMS SECTION ================= */
+
+.rooms {
+  background:
+    radial-gradient(
+      circle at top,
+      rgba(255,255,255,0.06),
+      rgba(0,0,0,0) 60%
+    ),
+    linear-gradient(
+      180deg,
+      #0e1013 0%,
+      #151a20 50%,
+      #0e1013 100%
+    );
+
+  padding: 120px 20px 140px;
+  text-align: center;
+}
+
+
+
+
+/* Rooms section header wrapper */
+.rooms-header {
+  max-width: 900px;
+  margin: 0 auto 70px;
+  padding: 40px 20px;
+  text-align: center;
+
+  background: linear-gradient(
+    180deg,
+    rgba(0,0,0,0.55),
+    rgba(0,0,0,0.25)
+  );
+
+  border-radius: 2rem;
+}
+
+/* Rooms heading typography */
+.rooms h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 44px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: #f5f5f5;
+}
+
+.section-subtitle {
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  color: #cfcfcf;
+}
+
+
+/* Horizontal slider */
+.rooms-container {
+  max-width: 1200px;
+  margin: auto;
+
+  display: flex;
+  gap: 30px;
+
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 20px;
+}
+
+.rooms-container::-webkit-scrollbar {
+  height: 8px;
+}
+
+.rooms-container::-webkit-scrollbar-thumb {
+  background: #1e3a8a;
+  border-radius: 10px;
+}
+
+/* Room Card */
+.room-card {
+  min-width: 320px;
+  background: white;
+  border-radius: 2.5rem;
+  overflow: hidden;
+
+  box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+  scroll-snap-align: start;
+  transition: transform 0.3s ease;
+}
+
+.room-card:hover {
+  transform: translateY(-6px);
+}
+
+/* Image */
+.room-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+}
+
+/* Card content */
+.room-content {
+  padding: 20px;
+  text-align: left;
+}
+
+.room-content h3 {
+  font-size: 22px;
+  margin-bottom: 8px;
+}
+
+.room-content p {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 12px;
+  line-height: 1.6;
+}
+
+.room-content span {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 15px;
+}
+
+/* Button */
+.room-content button {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  background: #1e3a8a;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.room-content button:hover {
+  background: #162d6b;
+}
+
+
+/* ================= GALLERY SECTION ================= */
+/* Image grid */
+
+.gallery {
+  padding: 80px 20px;
+  background: #ffffff;
+}
+
+.gallery h2 {
+  text-align: center;
+  font-size: 36px;
+  margin-bottom: 40px;
+}
+
+.gallery-grid {
+  max-width: 1200px;
+  margin: auto;
+
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.gallery-grid img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 6px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+/* ================= AMENITIES SECTION ================= */
+/* Services / features grid */
+
+.amenities {
+  padding: 80px 20px;
+  background-color: #f2f4f8;
+}
+
+.amenities h2 {
+  text-align: center;
+  font-size: 36px;
+  margin-bottom: 40px;
+  color: #1e3a8a;
+}
+
+.amenities-list {
+  list-style: none;
+  max-width: 1000px;
+  margin: auto;
+
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 25px;
+}
+
+.amenities-list li {
+  background: white;
+  padding: 25px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 8px;
+
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+  transition: transform 0.3s ease;
+}
+
+.amenities-list li:hover {
+  transform: translateY(-5px);
+}
+
+/* ================= CONTACT SECTION ================= */
+/* Hotel contact details */
+
+.contact {
+  padding: 80px 20px;
+  background-color: #ffffff;
+}
+
+.contact h2 {
+  text-align: center;
+  font-size: 36px;
+  margin-bottom: 30px;
+  color: #1e3a8a;
+}
+
+.contact address {
+  max-width: 600px;
+  margin: auto;
+  text-align: center;
+  font-style: normal;
+  font-size: 16px;
+  line-height: 2;
+  color: #333;
+}
+
+/* ================= FOOTER ================= */
+/* Bottom copyright bar */
+
+.footer {
+  background-color: #0f1f4b;
+  color: white;
+  text-align: center;
+  padding: 25px 15px;
+  font-size: 14px;
+}
