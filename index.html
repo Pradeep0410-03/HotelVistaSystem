@@ -75,27 +75,135 @@
 
   <!-- ================= MAIN ================= -->
   <main>
+<!-- HERO SECTION -->
+<section class="hero" id="home">
+  <div class="hero-content">
+    <h1>Experience Luxury & Comfort</h1>
+    <p>Search deals on hotels, homes, and much more...</p>
 
-    <!-- HERO SECTION -->
-    <section class="hero" id="home">
-      <div class="hero-content">
-        <h1>Experience Luxury & Comfort</h1>
-        <p>Your perfect stay begins here</p>
+    <form class="booking-form">
 
-        <form class="booking-form">
-          <input type="date" name="checkin">
-          <input type="date" name="checkout">
+      <!-- LOCATION -->
+      <div class="input-box">
+  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5c-1.4 0-2.5-1.1-2.5-2.5S10.6 6.5 12 6.5s2.5 1.1 2.5 2.5S13.4 11.5 12 11.5z"/>
+  </svg>
 
-          <select name="guests">
-            <option>1 Guest</option>
-            <option>2 Guests</option>
-            <option>3 Guests</option>
-          </select>
+  <input
+    type="text"
+    name="location"
+    placeholder="Where are you going?"
+  >
+</div>
 
-          <button type="submit">Check Availability</button>
-        </form>
+     <!-- DATE RANGE (SINGLE BOX) -->
+<div class="input-box">
+  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M7 2v2H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2V2h-2v2H9V2H7zm12 8H5v8h14v-8z"/>
+  </svg>
+
+  <input
+    type="text"
+    name="dates"
+    placeholder="Check-in date — Check-out date"
+    readonly
+  >
+</div>
+
+<!-- DATE PANEL (UNCHANGED) -->
+<div class="date-panel" hidden>
+  <input type="date" class="date-start">
+  <input type="date" class="date-end">
+  <button type="button" class="date-done">Done</button>
+</div>
+
+
+
+      <!-- GUESTS SUMMARY -->
+      <div class="input-box">
+  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M12 12a5 5 0 1 0-5-5 5 5 0 0 0 5 5zm0 2c-4 0-8 2-8 5v1h16v-1c0-3-4-5-8-5z"/>
+  </svg>
+
+  <input
+    type="text"
+    name="guests"
+    value="2 adults · 0 children · 1 room"
+    readonly
+  >
+</div>
+
+      <!-- GUEST PANEL -->
+      <div class="guest-panel" hidden>
+
+        <div class="guest-row">
+          <label>Adults</label>
+          <button type="button" data-type="adults" data-action="minus">−</button>
+          <strong data-value="adults">2</strong>
+          <button type="button" data-type="adults" data-action="plus">+</button>
+        </div>
+
+        <div class="guest-row">
+          <label>Children</label>
+          <button type="button" data-type="children" data-action="minus">−</button>
+          <strong data-value="children">0</strong>
+          <button type="button" data-type="children" data-action="plus">+</button>
+        </div>
+
+        <div class="guest-row">
+          <label>Rooms</label>
+          <button type="button" data-type="rooms" data-action="minus">−</button>
+          <strong data-value="rooms">1</strong>
+          <button type="button" data-type="rooms" data-action="plus">+</button>
+        </div>
+
+        <button type="button" class="guest-done">Done</button>
       </div>
-    </section>
+
+      <!-- ACTION -->
+      <button type="submit">Check Availability</button>
+
+    </form>
+  </div>
+</section> 
+
+<!-- WHY CHOOSE US SECTION -->
+<section class="why-us">
+  <div class="why-container">
+
+    <h2>Why choose HotelVista?</h2>
+
+    <div class="why-grid">
+
+      <div class="why-card">
+        <div class="why-icon">🏨</div>
+        <h3>Book now, pay at the property</h3>
+        <p>Free cancellation available on most rooms.</p>
+      </div>
+
+      <div class="why-card">
+        <div class="why-icon">⭐</div>
+        <h3>Trusted guest reviews</h3>
+        <p>Real feedback from verified travelers.</p>
+      </div>
+
+      <div class="why-card">
+        <div class="why-icon">🌍</div>
+        <h3>Wide range of stays</h3>
+        <p>Hotels, resorts, apartments, and more.</p>
+      </div>
+
+      <div class="why-card">
+        <div class="why-icon">🕒</div>
+        <h3>24/7 customer support</h3>
+        <p>We’re always here whenever you need help.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
       <!-- POPULAR DESTINATIONS (NEW) -->
 
    <section class="destinations" id="destinations">
@@ -274,6 +382,7 @@
   <footer class="footer">
     <p>© 2026 HotelVista. All rights reserved.</p>
   </footer>
+<script src="script.js"></script>
 
 </body>
 </html>
