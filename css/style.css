@@ -28,17 +28,24 @@ body {
   width: 100%;
   position: fixed;
   top: 0;
-  background: white;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  background: #0f1114; /* solid dark */
+  box-shadow: 0 6px 24px rgba(0,0,0,0.35);
   z-index: 1000;
+  transition: transform 0.35s ease;
 }
+
+.header.hide {
+  transform: translateY(-100%);
+}
+
+
 
 /* Navbar container */
 
 .navbar {
   max-width: 1300px;
   margin: auto;
-  padding: 14px 32px; /* more left/right space */
+  padding: 18px 32px; /* more left/right space */
 
   display: flex;
   align-items: center;
@@ -54,7 +61,6 @@ body {
 
 /* ================= LOGO ================= */
 
-/* ================= LOGO ================= */
 
 .logo {
   display: flex;
@@ -154,6 +160,14 @@ body {
 .nav-links a:hover {
   color: #1e3a8a;
 }
+/* REMOVE underline from ALL navbar buttons & links */
+.nav-actions a,
+.nav-actions a:hover,
+.nav-actions a:focus,
+.nav-actions a:visited {
+  text-decoration: none;
+}
+
 
 
 /* ================= NAV ACTIONS ================= */
@@ -164,25 +178,95 @@ body {
   gap: 15px;
   align-items: center;
 }
-
-.nav-actions a {
-  text-decoration: none;
+.nav-links a {
+  font-size: 15.5px;   /* was 14 */
+  padding: 10px 16px; /* bigger click area */
   font-weight: 500;
-  color: #1e3a8a;
 }
 
-/* Book Now button */
 
-.btn-book {
+/* LOGIN — secondary */
+.btn-login {
+  padding: 9px 22px;
+  border-radius: 6px;
+
   background: #1e3a8a;
-  color: white !important;
-  padding: 8px 16px;
-  border-radius: 4px;
+  color: #ffffff;
+
+  font-weight: 600;
+  transition: all 0.25s ease;
+}
+
+
+.btn-login:hover {
+   background: #162d6b;
+  transform: translateY(-1px);
+}
+
+/* BOOK NOW — primary */
+.btn-book {
+  padding: 9px 22px;
+  border-radius: 6px;
+
+  background: #1e3a8a;
+  color: #ffffff;
+
+  font-weight: 600;
+  transition: all 0.25s ease;
 }
 
 .btn-book:hover {
   background: #162d6b;
+  transform: translateY(-1px);
 }
+/* ================= MOBILE NAVBAR ================= */
+
+/* Hamburger button */
+.nav-toggle {
+  display: none;              /* hidden on desktop */
+  background: none;
+  border: none;
+  font-size: 22px;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+
+  /* Hide desktop items */
+  .nav-links,
+  .nav-actions a {
+    display: none;
+  }
+
+  /* Show hamburger */
+  .nav-toggle {
+    display: block;
+  }
+
+  /* Mobile menu when active */
+  .navbar.active {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .navbar.active .nav-links {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 16px;
+    gap: 14px;
+  }
+
+  .navbar.active .nav-actions {
+    width: 100%;
+    margin-top: 12px;
+    display: flex;
+    gap: 12px;
+  }
+}
+
 
 /* ================= HERO SECTION ================= */
 /* Full-screen landing section with background image */
@@ -190,8 +274,8 @@ body {
 .hero {
   height: 100vh;
   background: linear-gradient(
-      rgba(0,0,0,0.55),
-      rgba(0,0,0,0.55)
+      rgba(0,0,0,0.65),
+      rgba(0,0,0,0.65)
     ),
     url("https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1600&q=80")
     center/cover no-repeat;
@@ -244,11 +328,13 @@ body {
   display: flex;
   align-items: center;
   gap: 6px;
-  background: #1c1f1f;
+  background: rgba(28,31,31,0.92);
   padding: 6px;
   border-radius: 10px;
   max-width: 1150px;
   position: relative;
+  backdrop-filter: blur(10px);
+  margin-top: 26px;
 }
 
 .booking-form input,
@@ -411,9 +497,9 @@ body {
 }
 
 .why-card {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.12); /* more visible */
-  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1); /* more visible */
+  border-radius: 16px;
 
   padding: 32px 28px;   /* 🔑 increased padding */
   min-height: 200px;    /* 🔑 taller cards */
@@ -424,9 +510,7 @@ body {
     border-color 0.25s ease,
     background 0.25s ease;
 }
-.why-card {
-  border: 1px solid rgba(255, 255, 255, 0.15);
-}
+
 
 
 .why-card:hover {
@@ -451,7 +535,70 @@ body {
   font-size: 14px;
   line-height: 1.65;
 }
+.why-us {
+  background: linear-gradient(
+    180deg,
+    #0f1114 0%,
+    #151a20 100%
+  );
+  padding: 100px 20px;
+}
 
+.why-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.why-us h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 42px;
+  color: #ffffff;
+  margin-bottom: 60px;
+}
+
+/* ================= WHY CHOOSE US ================= */
+
+.why-us {
+  background: linear-gradient(
+    180deg,
+    #0f1114 0%,
+    #151a20 100%
+  );
+  padding: 100px 20px;
+}
+
+.why-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.why-us h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 42px;
+  color: #ffffff;
+  margin-bottom: 60px;
+}
+
+/* GRID (THIS WAS MISSING LOGICALLY) */
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 28px;
+}
+
+/* Tablet */
+@media (max-width: 992px) {
+  .why-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobile */
+@media (max-width: 576px) {
+  .why-grid {
+    grid-template-columns: 1fr;
+  }
+}
 
 
 /* ================= DESTINATIONS SECTION ================= */
@@ -779,82 +926,340 @@ body {
   box-shadow: 0 8px 20px rgba(0,0,0,0.15);
 }
 
-/* ================= AMENITIES SECTION ================= */
-/* Services / features grid */
+/* ================= INSPIRATION SECTION ================= */
+
+.inspiration {
+  background: #111417;
+  padding: 96px 24px 88px;
+}
+
+.inspiration-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  margin-right: auto;
+  margin-left: auto;
+
+}
+
+/* Heading */
+.inspiration h2 {
+  font-size: 24px;
+  font-weight: 500;
+  color: #f9fafb;
+  margin-bottom: 18px;
+}
+
+/* Tabs */
+.inspiration-tabs {
+  display: flex;
+  gap: 22px;
+  list-style: none;
+  padding: 0;
+  margin: 0 0 18px;
+}
+
+.inspiration-tabs li {
+  font-size: 15px;
+  font-weight: 500;
+  color: #9ca3af;
+  cursor: pointer;
+}
+
+.inspiration-tabs li.active {
+  color: #ffffff;
+}
+
+/* Divider */
+.inspiration-divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.08);
+  margin-bottom: 32px;
+}
+
+/* Grid */
+.inspiration-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 80px;
+  row-gap: 28px;
+}
+.inspiration-title {
+  font-size: 26px;        /* was ~22–24 */
+  font-weight: 500;
+  letter-spacing: -0.2px;
+  margin-bottom: 20px;
+}
+
+/* Items */
+.inspiration-item {
+  padding: 6px 0;
+  cursor: pointer;
+  transition: opacity 0.25s ease;
+}
+
+.inspiration-item strong {
+  display: block;
+  font-size: 16px;
+  font-weight: 500;
+  color: #f9fafb;
+  margin-bottom: 6px;
+    letter-spacing: -0.1px;
+}
+
+.inspiration-item span {
+    font-size: 14.5px;      /* subtle bump */
+  font-weight: 400;
+  color: #b0b3b8;         /* slightly brighter than gray */
+  line-height: 1.55;
+}
+
+/* Hover */
+.inspiration-item:hover strong {
+  text-decoration: underline;
+}
+
+/* Show more */
+.inspiration-item.show-more {
+  margin-top: 16px;
+}
+
+.inspiration-item.show-more strong {
+  color: #3b82f6;
+  font-weight: 500;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 768px) {
+  .inspiration-grid {
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 32px;
+  }
+}
+
+@media (max-width: 480px) {
+  .inspiration h2 {
+    font-size: 20px;
+  }
+
+  .inspiration-grid {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 480px) {
+  .inspiration-title {
+    font-size: 22px;
+  }
+
+  .inspiration-item strong {
+    font-size: 15px;
+  }
+}
+
+
+/* ================= AMENITIES ================= */
 
 .amenities {
-  padding: 80px 20px;
-  background-color: #f2f4f8;
+  background: #111417;
+  padding: 60px 20px;
+}
+
+.amenities-container {
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .amenities h2 {
-  text-align: center;
-  font-size: 36px;
-  margin-bottom: 40px;
-  color: #1e3a8a;
+  font-family: 'Playfair Display', serif;
+  font-size: 30px;
+  font-weight: 500;
+
+  text-align: left;
+  margin-bottom: 50px;
+  color: #e5e7eb;
+  cursor: pointer;
+
+  transition: color 0.25s ease;
+}
+.section-title i {
+  font-size: 16px;
+  opacity: 0.8;
+  transition: transform 0.25s ease;
 }
 
-.amenities-list {
-  list-style: none;
-  max-width: 1000px;
-  margin: auto;
+/* Hover effect (very subtle) */
+.section-title:hover {
+  color: #ffffff;
+}
 
+.section-title:hover i {
+  transform: translateX(4px);
+}
+.amenities-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 25px;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 24px;
 }
 
-.amenities-list li {
-  background: white;
-  padding: 25px;
+/* AMENITY ITEM */
+.amenity {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 14px;
+
+  padding: 26px 18px;
   text-align: center;
-  font-size: 16px;
-  font-weight: 600;
-  border-radius: 8px;
 
-  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
-  transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+
+  transition: 
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    background 0.25s ease;
 }
 
-.amenities-list li:hover {
-  transform: translateY(-5px);
+/* ICON */
+.amenity i {
+  font-size: 30px;              /* 🔑 bigger icon */
+  color: #3b82f6;               /* brand accent */
 }
 
-/* ================= CONTACT SECTION ================= */
-/* Hotel contact details */
-
-.contact {
-  padding: 80px 20px;
-  background-color: #ffffff;
+/* TEXT */
+.amenity span {
+  font-size: 15px;
+  font-weight: 500;
+  color: #e5e7eb;
 }
 
-.contact h2 {
-  text-align: center;
-  font-size: 36px;
-  margin-bottom: 30px;
-  color: #1e3a8a;
+/* HOVER (desktop only feel) */
+.amenity:hover {
+  background: rgba(255,255,255,0.07);
+  border-color: rgba(255,255,255,0.3);
+  transform: translateY(-4px);
 }
 
-.contact address {
-  max-width: 600px;
-  margin: auto;
-  text-align: center;
-  font-style: normal;
-  font-size: 16px;
-  line-height: 2;
-  color: #333;
+/* Tablet */
+@media (max-width: 992px) {
+  .amenities-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
+
+/* Mobile */
+@media (max-width: 576px) {
+  .amenities-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .amenity {
+    padding: 40px 16px;
+  }
+
+  .amenity i {
+    font-size: 24px;
+  }
+}
+
+
 
 /* ================= FOOTER ================= */
-/* Bottom copyright bar */
 
 .footer {
-  background-color: #0f1f4b;
-  color: white;
-  text-align: center;
-  padding: 25px 15px;
-  font-size: 14px;
+  background: #0f1114;
+  padding: 90px 20px 28px;
 }
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+  margin-bottom: 40px;
+}
+
+/* COLUMN */
+.footer-col h4 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 16px;
+}
+
+.footer-col p {
+  font-size: 15px;
+  color: #9ca3af;
+  margin-bottom: 10px;
+   line-height: 1.7;
+}
+
+.footer-col a {
+  display: block;
+  font-size: 15px;
+  color: #9ca3af;
+  text-decoration: none;
+  margin-bottom: 10px;
+   line-height: 1.7;
+}
+
+.footer-col a:hover {
+  color: #ffffff;
+}
+
+/* BOTTOM BAR */
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.08);
+  padding-top: 20px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  font-size: 13px;
+  color: #9ca3af;
+   gap: 20px;
+}
+
+.footer-meta {
+  display: flex;
+  gap: 16px;
+}
+.footer-social {
+  display: flex;
+  gap: 14px;
+  font-size: 23px;
+}
+
+
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+     margin-bottom: 40px;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    gap: 14px;
+    text-align: center;
+  }
+  .footer-social {
+    justify-content: center;
+  }
+}
+
+
+
 /* =========================
    MOBILE HERO & BOOKING
    ========================= */
@@ -903,37 +1308,5 @@ body {
   /* HERO SPACING */
   .hero-content {
     padding-top: 100px;
-  }
-}
-/* =========================
-   GLOBAL MOBILE BASELINE
-   ========================= */
-@media (max-width: 768px) {
-
-  /* Prevent horizontal scroll everywhere */
-  html, body {
-    overflow-x: hidden;
-  }
-
-  /* Make everything box-safe */
-  *, *::before, *::after {
-    box-sizing: border-box;
-  }
-
-  /* Normalize section spacing */
-  section {
-    padding-left: 16px;
-    padding-right: 16px;
-  }
-
-  /* Images never overflow */
-  img {
-    max-width: 100%;
-    height: auto;
-  }
-
-  /* Text never overflows */
-  h1, h2, h3, p {
-    word-wrap: break-word;
   }
 }

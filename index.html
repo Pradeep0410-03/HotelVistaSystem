@@ -66,8 +66,14 @@
 
       <!-- Actions -->
       <div class="nav-actions">
-        <a href="login.html">Login</a>
-        <a href="#" class="btn-book">Book Now</a>
+       <a href="login.html" class="btn-login">Login</a>
+       <a href="#" class="btn-book">Book Now</a>
+      
+
+        <!-- HAMBURGER (MOBILE ONLY) -->
+      <button class="nav-toggle" aria-label="Toggle menu">
+        ☰
+      </button>
       </div>
 
     </nav>
@@ -352,35 +358,195 @@
       </div>
     </section>
 
+    <!--inspiration-->
+<section class="inspiration">
+  <div class="inspiration-container">
+
+    <h2 class="inspiration-title">
+      Inspiration for future getaways
+    </h2>
+
+    <!-- Tabs -->
+   <ul class="inspiration-tabs">
+  <li class="active" data-category="all">Popular</li>
+  <li data-category="culture">Arts & culture</li>
+  <li data-category="beach">Beach</li>
+  <li data-category="mountains">Mountains</li>
+  <li data-category="things">Things to do</li>
+</ul>
+
+
+    <hr class="inspiration-divider" />
+
+    <!-- Destination lists -->
+    <div class="inspiration-grid">
+
+  <div class="inspiration-item" data-category="culture">
+    <strong>New Delhi</strong>
+    <span>City stays</span>
+  </div>
+
+  <div class="inspiration-item" data-category="things">
+    <strong>Mumbai</strong>
+    <span>Apartment rentals</span>
+  </div>
+
+  <div class="inspiration-item" data-category="things">
+    <strong>Bengaluru</strong>
+    <span>Business stays</span>
+  </div>
+
+  <div class="inspiration-item" data-category="beach">
+    <strong>Goa</strong>
+    <span>Beach resorts</span>
+  </div>
+
+  <div class="inspiration-item" data-category="culture">
+    <strong>Jaipur</strong>
+    <span>Heritage hotels</span>
+  </div>
+
+  <div class="inspiration-item" data-category="mountains">
+    <strong>Manali</strong>
+    <span>Mountain retreats</span>
+  </div>
+
+  <div class="inspiration-item" data-category="culture">
+    <strong>Udaipur</strong>
+    <span>Luxury stays</span>
+  </div>
+
+  <div class="inspiration-item" data-category="mountains">
+    <strong>Rishikesh</strong>
+    <span>Wellness retreats</span>
+  </div>
+
+  <div class="inspiration-item show-more">
+    <strong>Show more</strong>
+    <span>→</span>
+  </div>
+
+</div>
+
+</section>
+
+
+
+
+
     <!-- AMENITIES SECTION -->
-    <section class="amenities" id="amenities">
-      <h2>Why Choose Us</h2>
+    <section class="amenities">
+  <div class="amenities-container">
+    <h2>Our Amenities
+      <i class="fa-solid fa-arrow-right"></i>
+    </h2>
 
-      <ul class="amenities-list">
-        <li>Free Wi-Fi</li>
-        <li>Swimming Pool</li>
-        <li>24/7 Room Service</li>
-        <li>Restaurant & Cafe</li>
-        <li>Airport Pickup</li>
-      </ul>
-    </section>
+    <div class="amenities-grid">
 
-    <!-- CONTACT SECTION -->
-    <section class="contact" id="contact">
-      <h2>Contact Us</h2>
+      <div class="amenity">
+        <i class="fa-solid fa-wifi"></i>
+        <span>Free Wi-Fi</span>
+      </div>
 
-      <address>
-        <p>Email: support@hotelvista.com</p>
-        <p>Phone: +91 98765 43210</p>
-        <p>Location: Delhi, India</p>
-      </address>
-    </section>
+      <div class="amenity">
+        <i class="fa-solid fa-person-swimming"></i>
+        <span>Swimming Pool</span>
+      </div>
 
+      <div class="amenity">
+        <i class="fa-solid fa-bell-concierge"></i>
+        <span>24/7 Room Service</span>
+      </div>
+
+      <div class="amenity">
+        <i class="fa-solid fa-utensils"></i>
+        <span>Restaurant & Café</span>
+      </div>
+
+      <div class="amenity">
+        <i class="fa-solid fa-plane-departure"></i>
+        <span>Airport Pickup</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+  
   </main>
 
   <!-- ================= FOOTER ================= -->
   <footer class="footer">
-    <p>© 2026 HotelVista. All rights reserved.</p>
+
+  <div class="footer-container">
+
+    <div class="footer-grid">
+
+      <!-- COLUMN 1: YOURS -->
+      <div class="footer-col">
+        <h4>HotelVista</h4>
+        <p>Email: support@hotelvista.com</p>
+        <p>Phone: +91 98765 43210</p>
+        <p>Delhi, India</p>
+      </div>
+
+      <!-- COLUMN 2 -->
+      <div class="footer-col">
+        <h4>Support</h4>
+        <a href="#">Help Centre</a>
+        <a href="#">Safety information</a>
+        <a href="#">Cancellation options</a>
+        <a href="#">Report a concern</a>
+      </div>
+
+      <!-- COLUMN 3 -->
+      <div class="footer-col">
+        <h4>Hosting</h4>
+        <a href="#">List your property</a>
+        <a href="#">Partner with us</a>
+        <a href="#">Hosting resources</a>
+        <a href="#">Community forum</a>
+      </div>
+
+      <!-- COLUMN 4 -->
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="#">About us</a>
+        <a href="#">Careers</a>
+        <a href="#">Newsroom</a>
+        <a href="#">Investors</a>
+      </div>
+
+    </div>
+
+    <!-- BOTTOM BAR -->
+    <div class="footer-bottom">
+      <span>© 2026 HotelVista. All rights reserved.</span>
+      <div class="footer-meta">
+        <span>English (IN)</span>
+        <span>₹ INR</span>
+      </div>
+        <!-- SOCIAL ICONS -->
+  <div class="footer-social">
+    <a href="#" aria-label="Instagram">
+      <i class="fa-brands fa-instagram"></i>
+    </a>
+    <a href="#" aria-label="Facebook">
+      <i class="fa-brands fa-facebook-f"></i>
+    </a>
+    <a href="#" aria-label="X">
+      <i class="fa-brands fa-x-twitter"></i>
+    </a>
+    <a href="#" aria-label="Discord">
+      <i class="fa-brands fa-discord"></i>
+    </a>
+  </div>
+    </div>
+
+  </div>
+
+
   </footer>
 <script src="script.js"></script>
 
