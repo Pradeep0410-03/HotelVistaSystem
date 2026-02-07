@@ -13,71 +13,37 @@
 
   <!-- ================= HEADER ================= -->
   <header class="header">
-    <nav class="navbar">
+  <nav class="navbar">
 
-      <!-- Logo -->
+    <!-- LOGO -->
     <div class="logo">
-  <span class="logo-icon"></span>
-  <span class="logo-text">
-    <span class="logo-hotel">Hotel</span><span class="logo-vista">Vista</span>
-  </span>
-</div>
+      <span class="logo-icon"></span>
+      <span>
+        <span class="logo-hotel">Hotel</span>
+        <span class="logo-vista">Vista</span>
+      </span>
+    </div>
 
+    <!-- NAV LINKS -->
+    <ul class="nav-links">
+      <li><a href="#home"><i class="fa-solid fa-house"></i>Home</a></li>
+      <li><a href="#rooms"><i class="fa-solid fa-bed"></i>Rooms</a></li>
+      <li><a href="#gallery"><i class="fa-regular fa-images"></i>Gallery</a></li>
+      <li><a href="#amenities"><i class="fa-solid fa-wifi"></i>Amenities</a></li>
+      <li><a href="#contact"><i class="fa-regular fa-envelope"></i>Contact</a></li>
+    </ul>
 
+    <!-- ACTIONS -->
+    <div class="nav-actions">
+      <a href="login.html" class="btn-login">Login</a>
+      <a href="#" class="btn-book">Book Now</a>
 
-      <!-- Navigation Links -->
-      <ul class="nav-links">
-  <li class="nav-item active">
-    <a href="#home">
-      <i class="fa-solid fa-house"></i>
-      <span>Home</span>
-    </a>
-  </li>
+      <!-- MOBILE TOGGLE -->
+      <button class="nav-toggle" aria-label="Toggle menu">☰</button>
+    </div>
 
-  <li class="nav-item">
-    <a href="#rooms">
-      <i class="fa-solid fa-bed"></i>
-      <span>Rooms</span>
-    </a>
-  </li>
-
-  <li class="nav-item">
-    <a href="#gallery">
-      <i class="fa-regular fa-images"></i>
-      <span>Gallery</span>
-    </a>
-  </li>
-
-  <li class="nav-item">
-    <a href="#amenities">
-      <i class="fa-solid fa-wifi"></i>
-      <span>Amenities</span>
-    </a>
-  </li>
-
-  <li class="nav-item">
-    <a href="#contact">
-      <i class="fa-regular fa-envelope"></i>
-      <span>Contact</span>
-    </a>
-  </li>
-</ul>
-
-
-      <!-- Actions -->
-      <div class="nav-actions">
-       <a href="login.html" class="btn-login">Login</a>
-       <a href="#" class="btn-book">Book Now</a>
-      
-
-        <!-- HAMBURGER (MOBILE ONLY) -->
-      <button class="nav-toggle" aria-label="Toggle menu">
-        ☰
-      </button>
-      </div>
-
-    </nav>
-  </header>
+  </nav>
+</header>
 
   <!-- ================= MAIN ================= -->
   <main>
@@ -210,155 +176,1433 @@
 </section>
 
 
-      <!-- POPULAR DESTINATIONS (NEW) -->
-
-   <section class="destinations" id="destinations">
+  <!-- TRENDING DESTINATIONS -->
+<section class="destinations" id="destinations">
 
   <div class="section-header">
-    <h2>Popular Destinations</h2>
-    <p>Most preferred locations by our guests</p>
+    <h2>Trending destinations</h2>
+    <p>Most popular choices based on guest bookings</p>
   </div>
 
   <div class="destinations-grid">
 
-    <article class="destination-card large">
-      <img src="https://images.unsplash.com/photo-1587474260584-136574528ed5?auto=format&fit=crop&w=1200&q=80" alt="New Delhi">
+    <!-- NEW DELHI -->
+    <a href="#rooms-delhi" class="destination-card large">
+      <span class="destination-badge">Trending</span>
+      <img src="assets/destinations/delhi.jpg" alt="New Delhi">
       <div class="destination-overlay">
-        <h3> 
-            New Delhi <span class="country-flag">🇮🇳</span>
-        </h3>
-
+        <div class="destination-text">
+          <h3>New Delhi <span class="country-flag">🇮🇳</span></h3>
+          <span class="destination-count">3,200+ stays</span>
+        </div>
       </div>
-    </article>
+    </a>
 
-    <article class="destination-card large">
-      <img src="https://images.unsplash.com/photo-1596176530529-78163a4f7af2?auto=format&fit=crop&w=1200&q=80" alt="Bangalore">
+    <!-- BANGALORE -->
+    <a href="#rooms-bangalore" class="destination-card large">
+      <img src="assets/destinations/bangalore.jpg" alt="Bangalore">
       <div class="destination-overlay">
-         <h3> 
-           Bangalore<span class="country-flag">🇮🇳</span>
-        </h3>
+        <div class="destination-text">
+          <h3>Bangalore <span class="country-flag">🇮🇳</span></h3>
+          <span class="destination-count">2,800+ stays</span>
+        </div>
       </div>
-    </article>
+    </a>
 
-    <article class="destination-card">
-      <img src="https://images.unsplash.com/photo-1595658658481-d53d3f999875?auto=format&fit=crop&w=800&q=80" alt="Mumbai">
+    <!-- MUMBAI -->
+    <a href="#rooms-mumbai" class="destination-card">
+      <img src="assets/destinations/mumbai.jpg" alt="Mumbai">
       <div class="destination-overlay">
-       <h3> 
-         Mumbai<span class="country-flag">🇮🇳</span>
-        </h3>
+        <div class="destination-text">
+          <h3>Mumbai <span class="country-flag">🇮🇳</span></h3>
+          <span class="destination-count">2,100+ stays</span>
+        </div>
       </div>
-    </article>
+    </a>
 
-    <article class="destination-card">
-      <img src="https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=800&q=80" alt="Chennai">
+    <!-- CHENNAI -->
+    <a href="#rooms-chennai" class="destination-card">
+      <img src="assets/destinations/chennai.jpg" alt="Chennai">
       <div class="destination-overlay">
-        <h3> 
-         Chennai<span class="country-flag">🇮🇳</span>
-        </h3>
+        <div class="destination-text">
+          <h3>Chennai <span class="country-flag">🇮🇳</span></h3>
+          <span class="destination-count">1,600+ stays</span>
+        </div>
       </div>
-    </article>
+    </a>
 
-  <article class="destination-card">
-  <img 
-  src="https://images.unsplash.com/photo-1592639296346-560c37a0f711?auto=format&fit=crop&w=1200&q=80"
-  alt="Hyderabad">
+    <!-- HYDERABAD -->
+    <a href="#rooms-hyderabad" class="destination-card">
+      <img src="assets/destinations/hyderabad.jpg" alt="Hyderabad">
+      <div class="destination-overlay">
+        <div class="destination-text">
+          <h3>Hyderabad <span class="country-flag">🇮🇳</span></h3>
+          <span class="destination-count">1,900+ stays</span>
+        </div>
+      </div>
+    </a>
 
-  <div class="destination-overlay">
-    <h3>
-      Hyderabad <span class="country-flag">🇮🇳</span>
-    </h3>
+    <!-- JAIPUR -->
+    <a href="#rooms-jaipur" class="destination-card">
+      <img src="assets/destinations/jaipur.jpg" alt="Jaipur">
+      <div class="destination-overlay">
+        <div class="destination-text">
+          <h3>Jaipur <span class="country-flag">🇮🇳</span></h3>
+          <span class="destination-count">1,700+ stays</span>
+        </div>
+      </div>
+    </a>
+
   </div>
-</article>
-
-
-  </div>
-
 </section>
 
+  
+    <!-- ================= ROOMS SECTION ================= -->
+     <section class="rooms" id="rooms">
 
+  <!-- Section Header -->
+  <header class="rooms-header">
+    <h2>Our Rooms</h2>
+    <p class="section-subtitle">
+      Thoughtfully designed rooms for comfort, luxury, and elegance
+    </p>
+  </header>
 
-    <!-- ROOMS SECTION -->
-    <section class="rooms" id="rooms">
-  <div class="rooms-header">
-  <h2>Our Rooms</h2>
-  <p class="section-subtitle">
-    Thoughtfully designed rooms for comfort, luxury, and elegance
-  </p>
-</div>
+ <!-- ================= CITY : DELHI ================= -->
+<section class="city-rooms" data-city="delhi">
+  <div class="city-header">
+    <h3>Rooms in Delhi</h3>
+    <a href="#" class="city-link">View all →</a>
+  </div>
 
   <div class="rooms-container">
 
+    <!-- 1. DELUXE ROOM -->
     <article class="room-card">
-      <img src="https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=800&q=80" alt="Deluxe Room">
+      <div class="room-image">
+        <img src="assets/images/delhi/delhi-1.jpg" alt="Deluxe Room in Delhi">
+        <span class="room-badge">Most Booked</span>
+      </div>
+
       <div class="room-content">
-        <h3>Deluxe Room</h3>
-        <p>Elegant interiors with modern amenities for a relaxing stay.</p>
-        <span>₹4,500 / night</span>
-        <button>View Details</button>
+        <h4 class="room-title">Deluxe Room</h4>
+        <p class="room-desc">Elegant interiors with modern amenities.</p>
+
+        <ul class="room-features">
+          <li>
+            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+            <span>2 Guests</span>
+          </li>
+          <li>
+            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M2 7v10"/><path d="M22 7v10"/>
+              <path d="M2 12h20"/>
+              <path d="M4 7h16a2 2 0 0 1 2 2v3H2V9a2 2 0 0 1 2-2z"/>
+            </svg>
+            <span>King Bed</span>
+          </li>
+          <li>
+            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M21 3h-6"/><path d="M21 3v6"/>
+              <path d="M3 21h6"/><path d="M3 21v-6"/>
+            </svg>
+            <span>320 sq ft</span>
+          </li>
+        </ul>
+
+        <div class="room-footer">
+          <span class="room-price">₹4,500 <small>/ night</small></span>
+          <button class="room-btn">View Room</button>
+        </div>
       </div>
     </article>
 
+    <!-- 2. EXECUTIVE ROOM -->
     <article class="room-card">
-      <img src="https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=800&q=80" alt="Executive Room">
+      <div class="room-image">
+        <img src="assets/images/delhi/delhi-2.jpg" alt="Executive Room in Delhi">
+      </div>
+
       <div class="room-content">
-        <h3>Executive Room</h3>
-        <p>Designed for business travelers seeking comfort and efficiency.</p>
-        <span>₹5,800 / night</span>
-        <button>View Details</button>
+        <h4 class="room-title">Executive Room</h4>
+        <p class="room-desc">Designed for business travellers.</p>
+
+        <ul class="room-features">
+          <li>
+            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+            <span>2 Guests</span>
+          </li>
+          <li>
+            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M2 7v10"/><path d="M22 7v10"/>
+              <path d="M2 12h20"/>
+              <path d="M4 7h16a2 2 0 0 1 2 2v3H2V9a2 2 0 0 1 2-2z"/>
+            </svg>
+            <span>Queen Bed</span>
+          </li>
+          <li>
+            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M21 3h-6"/><path d="M21 3v6"/>
+              <path d="M3 21h6"/><path d="M3 21v-6"/>
+            </svg>
+            <span>300 sq ft</span>
+          </li>
+        </ul>
+
+        <div class="room-footer">
+          <span class="room-price">₹5,800 <small>/ night</small></span>
+          <button class="room-btn">View Room</button>
+        </div>
       </div>
     </article>
 
+    <!-- 3. SUITE ROOM -->
     <article class="room-card">
-      <img src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?auto=format&fit=crop&w=800&q=80" alt="Suite Room">
+      <div class="room-image">
+        <img src="assets/images/delhi/delhi-3.jpg" alt="Suite Room in Delhi">
+      </div>
+
       <div class="room-content">
-        <h3>Suite Room</h3>
-        <p>Spacious suites with premium services and refined décor.</p>
-        <span>₹7,500 / night</span>
-        <button>View Details</button>
+        <h4 class="room-title">Suite Room</h4>
+        <p class="room-desc">Spacious suites with premium comfort.</p>
+
+        <ul class="room-features">
+          <li>
+            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+            <span>3 Guests</span>
+          </li>
+          <li>
+            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M2 7v10"/><path d="M22 7v10"/>
+              <path d="M2 12h20"/>
+              <path d="M4 7h16a2 2 0 0 1 2 2v3H2V9a2 2 0 0 1 2-2z"/>
+            </svg>
+            <span>King Bed</span>
+          </li>
+          <li>
+            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M21 3h-6"/><path d="M21 3v6"/>
+              <path d="M3 21h6"/><path d="M3 21v-6"/>
+            </svg>
+            <span>420 sq ft</span>
+          </li>
+        </ul>
+
+        <div class="room-footer">
+          <span class="room-price">₹7,200 <small>/ night</small></span>
+          <button class="room-btn">View Room</button>
+        </div>
       </div>
     </article>
 
+    <!-- 4. FAMILY ROOM -->
     <article class="room-card">
-      <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=800&q=80" alt="Family Room">
+      <div class="room-image">
+        <img src="assets/images/delhi/delhi-4.jpg" alt="Family Room in Delhi">
+      </div>
+
       <div class="room-content">
-        <h3>Family Room</h3>
-        <p>Perfectly designed for families, offering space and comfort.</p>
-        <span>₹6,200 / night</span>
-        <button>View Details</button>
+        <h4 class="room-title">Family Room</h4>
+        <p class="room-desc">Perfect for families and longer stays.</p>
+
+        <ul class="room-features">
+          <li>
+            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+            <span>4 Guests</span>
+          </li>
+          <li>
+            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M2 7v10"/><path d="M22 7v10"/>
+              <path d="M2 12h20"/>
+              <path d="M4 7h16a2 2 0 0 1 2 2v3H2V9a2 2 0 0 1 2-2z"/>
+            </svg>
+            <span>2 Beds</span>
+          </li>
+          <li>
+            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M21 3h-6"/><path d="M21 3v6"/>
+              <path d="M3 21h6"/><path d="M3 21v-6"/>
+            </svg>
+            <span>480 sq ft</span>
+          </li>
+        </ul>
+
+        <div class="room-footer">
+          <span class="room-price">₹6,500 <small>/ night</small></span>
+          <button class="room-btn">View Room</button>
+        </div>
       </div>
     </article>
 
+    <!-- 5. PREMIUM SUITE -->
     <article class="room-card">
-      <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80" alt="Presidential Suite">
+      <div class="room-image">
+        <img src="assets/images/delhi/delhi-5.jpg" alt="Premium Suite in Delhi">
+      </div>
+
       <div class="room-content">
-        <h3>Presidential Suite</h3>
-        <p>Ultimate luxury with exclusive services and panoramic views.</p>
-        <span>₹12,000 / night</span>
-        <button>View Details</button>
+        <h4 class="room-title">Premium Suite</h4>
+        <p class="room-desc">Luxury living with exclusive services.</p>
+
+        <ul class="room-features">
+          <li>
+            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+            <span>3 Guests</span>
+          </li>
+          <li>
+            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M2 7v10"/><path d="M22 7v10"/>
+              <path d="M2 12h20"/>
+              <path d="M4 7h16a2 2 0 0 1 2 2v3H2V9a2 2 0 0 1 2-2z"/>
+            </svg>
+            <span>King Bed</span>
+          </li>
+          <li>
+            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M21 3h-6"/><path d="M21 3v6"/>
+              <path d="M3 21h6"/><path d="M3 21v-6"/>
+            </svg>
+            <span>520 sq ft</span>
+          </li>
+        </ul>
+
+        <div class="room-footer">
+          <span class="room-price">₹9,800 <small>/ night</small></span>
+          <button class="room-btn">View Room</button>
+        </div>
       </div>
     </article>
 
   </div>
 </section>
 
+     <!-- ================= CITY : BENGALURU ================= -->
+<section class="city-rooms" data-city="bengaluru">
+  <div class="city-header">
+    <h3>Rooms in Bengaluru</h3>
+    <a href="#" class="city-link">View all →</a>
+  </div>
 
-    <!-- GALLERY SECTION -->
-    <section class="gallery" id="gallery">
-      <h2>Gallery</h2>
+  <div class="rooms-container">
 
-      <div class="gallery-grid">
-       <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=800&q=80" alt="Hotel Lobby">
-
-<img src="https://images.unsplash.com/photo-1560347876-aeef00ee58a1?auto=format&fit=crop&w=800&q=80" alt="Hotel Room">
-
-<img src="https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=800&q=80" alt="Swimming Pool">
-
-<img src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?auto=format&fit=crop&w=800&q=80" alt="Hotel Restaurant">
-
+    <!-- 1. DELUXE ROOM -->
+    <article class="room-card">
+      <div class="room-image">
+        <img src="assets/images/bengaluru/bengaluru-1.jpg" alt="Deluxe Room in bengaluru">
+        <span class="room-badge">Most Booked</span>
       </div>
-    </section>
 
-    <!--inspiration-->
+      <div class="room-content">
+        <h4 class="room-title">Deluxe Room</h4>
+        <p class="room-desc">Elegant interiors with modern amenities.</p>
+
+        <ul class="room-features">
+          <li>
+            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+            <span>2 Guests</span>
+          </li>
+          <li>
+            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M2 7v10"/><path d="M22 7v10"/>
+              <path d="M2 12h20"/>
+              <path d="M4 7h16a2 2 0 0 1 2 2v3H2V9a2 2 0 0 1 2-2z"/>
+            </svg>
+            <span>King Bed</span>
+          </li>
+          <li>
+            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M21 3h-6"/><path d="M21 3v6"/>
+              <path d="M3 21h6"/><path d="M3 21v-6"/>
+            </svg>
+            <span>320 sq ft</span>
+          </li>
+        </ul>
+
+        <div class="room-footer">
+          <span class="room-price">₹5,800 <small>/ night</small></span>
+          <button class="room-btn">View Room</button>
+        </div>
+      </div>
+    </article>
+
+    <!-- 2. EXECUTIVE ROOM -->
+    <article class="room-card">
+      <div class="room-image">
+        <img src="assets/images/bengaluru/bengaluru-2.jpg" alt="Executive Room in bengaluru">
+      </div>
+
+      <div class="room-content">
+        <h4 class="room-title">Executive Room</h4>
+        <p class="room-desc">Designed for business travellers.</p>
+
+        <ul class="room-features">
+          <li>
+            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+            <span>2 Guests</span>
+          </li>
+          <li>
+            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M2 7v10"/><path d="M22 7v10"/>
+              <path d="M2 12h20"/>
+              <path d="M4 7h16a2 2 0 0 1 2 2v3H2V9a2 2 0 0 1 2-2z"/>
+            </svg>
+            <span>Queen Bed</span>
+          </li>
+          <li>
+            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M21 3h-6"/><path d="M21 3v6"/>
+              <path d="M3 21h6"/><path d="M3 21v-6"/>
+            </svg>
+            <span>300 sq ft</span>
+          </li>
+        </ul>
+
+        <div class="room-footer">
+          <span class="room-price">₹6,800 <small>/ night</small></span>
+          <button class="room-btn">View Room</button>
+        </div>
+      </div>
+    </article>
+
+    <!-- 3. SUITE ROOM -->
+    <article class="room-card">
+      <div class="room-image">
+        <img src="assets/images/bengaluru/bengaluru-3.jpg" alt="Suite Room in bengaluru">
+      </div>
+
+      <div class="room-content">
+        <h4 class="room-title">Suite Room</h4>
+        <p class="room-desc">Spacious suites with premium comfort.</p>
+
+        <ul class="room-features">
+          <li>
+            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+            <span>3 Guests</span>
+          </li>
+          <li>
+            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M2 7v10"/><path d="M22 7v10"/>
+              <path d="M2 12h20"/>
+              <path d="M4 7h16a2 2 0 0 1 2 2v3H2V9a2 2 0 0 1 2-2z"/>
+            </svg>
+            <span>King Bed</span>
+          </li>
+          <li>
+            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M21 3h-6"/><path d="M21 3v6"/>
+              <path d="M3 21h6"/><path d="M3 21v-6"/>
+            </svg>
+            <span>420 sq ft</span>
+          </li>
+        </ul>
+
+        <div class="room-footer">
+          <span class="room-price">₹8,200 <small>/ night</small></span>
+          <button class="room-btn">View Room</button>
+        </div>
+      </div>
+    </article>
+
+    <!-- 4. FAMILY ROOM -->
+    <article class="room-card">
+      <div class="room-image">
+        <img src="assets/images/bengaluru/bengaluru-4.jpg" alt="Family Room in bengaluru">
+      </div>
+
+      <div class="room-content">
+        <h4 class="room-title">Family Room</h4>
+        <p class="room-desc">Perfect for families and longer stays.</p>
+
+        <ul class="room-features">
+          <li>
+            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+            <span>4 Guests</span>
+          </li>
+          <li>
+            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M2 7v10"/><path d="M22 7v10"/>
+              <path d="M2 12h20"/>
+              <path d="M4 7h16a2 2 0 0 1 2 2v3H2V9a2 2 0 0 1 2-2z"/>
+            </svg>
+            <span>2 Beds</span>
+          </li>
+          <li>
+            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M21 3h-6"/><path d="M21 3v6"/>
+              <path d="M3 21h6"/><path d="M3 21v-6"/>
+            </svg>
+            <span>480 sq ft</span>
+          </li>
+        </ul>
+
+        <div class="room-footer">
+          <span class="room-price">₹7,500 <small>/ night</small></span>
+          <button class="room-btn">View Room</button>
+        </div>
+      </div>
+    </article>
+
+    <!-- 5. PREMIUM SUITE -->
+    <article class="room-card">
+      <div class="room-image">
+        <img src="assets/images/bengaluru/bengaluru-5.jpg" alt="Premium Suite in bengaluru">
+      </div>
+
+      <div class="room-content">
+        <h4 class="room-title">Premium Suite</h4>
+        <p class="room-desc">Luxury living with exclusive services.</p>
+
+        <ul class="room-features">
+          <li>
+            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+            <span>3 Guests</span>
+          </li>
+          <li>
+            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M2 7v10"/><path d="M22 7v10"/>
+              <path d="M2 12h20"/>
+              <path d="M4 7h16a2 2 0 0 1 2 2v3H2V9a2 2 0 0 1 2-2z"/>
+            </svg>
+            <span>King Bed</span>
+          </li>
+          <li>
+            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M21 3h-6"/><path d="M21 3v6"/>
+              <path d="M3 21h6"/><path d="M3 21v-6"/>
+            </svg>
+            <span>520 sq ft</span>
+          </li>
+        </ul>
+
+        <div class="room-footer">
+          <span class="room-price">₹10,800 <small>/ night</small></span>
+          <button class="room-btn">View Room</button>
+        </div>
+      </div>
+    </article>
+
+  </div>
+</section>
+    <!-- ================= CITY : CHENNAI ================= -->
+<section class="city-rooms" data-city="chennai">
+  <div class="city-header">
+    <h3>Rooms in Chennai</h3>
+    <a href="#" class="city-link">View all →</a>
+  </div>
+
+  <div class="rooms-container">
+
+    <!-- 1. DELUXE ROOM -->
+    <article class="room-card">
+      <div class="room-image">
+        <img src="assets/images/chennai/chennai-1.jpg" alt="Deluxe Room in chennai">
+        <span class="room-badge">Most Booked</span>
+      </div>
+
+      <div class="room-content">
+        <h4 class="room-title">Deluxe Room</h4>
+        <p class="room-desc">Elegant interiors with modern amenities.</p>
+
+        <ul class="room-features">
+          <li>
+            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+            <span>2 Guests</span>
+          </li>
+          <li>
+            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M2 7v10"/><path d="M22 7v10"/>
+              <path d="M2 12h20"/>
+              <path d="M4 7h16a2 2 0 0 1 2 2v3H2V9a2 2 0 0 1 2-2z"/>
+            </svg>
+            <span>King Bed</span>
+          </li>
+          <li>
+            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M21 3h-6"/><path d="M21 3v6"/>
+              <path d="M3 21h6"/><path d="M3 21v-6"/>
+            </svg>
+            <span>320 sq ft</span>
+          </li>
+        </ul>
+
+        <div class="room-footer">
+          <span class="room-price">₹3,800 <small>/ night</small></span>
+          <button class="room-btn">View Room</button>
+        </div>
+      </div>
+    </article>
+
+    <!-- 2. EXECUTIVE ROOM -->
+    <article class="room-card">
+      <div class="room-image">
+        <img src="assets/images/chennai/chennai-2.jpg" alt="Executive Room in chennai">
+      </div>
+
+      <div class="room-content">
+        <h4 class="room-title">Executive Room</h4>
+        <p class="room-desc">Designed for business travellers.</p>
+
+        <ul class="room-features">
+          <li>
+            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+            <span>2 Guests</span>
+          </li>
+          <li>
+            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M2 7v10"/><path d="M22 7v10"/>
+              <path d="M2 12h20"/>
+              <path d="M4 7h16a2 2 0 0 1 2 2v3H2V9a2 2 0 0 1 2-2z"/>
+            </svg>
+            <span>Queen Bed</span>
+          </li>
+          <li>
+            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M21 3h-6"/><path d="M21 3v6"/>
+              <path d="M3 21h6"/><path d="M3 21v-6"/>
+            </svg>
+            <span>300 sq ft</span>
+          </li>
+        </ul>
+
+        <div class="room-footer">
+          <span class="room-price">₹5,100 <small>/ night</small></span>
+          <button class="room-btn">View Room</button>
+        </div>
+      </div>
+    </article>
+
+    <!-- 3. SUITE ROOM -->
+    <article class="room-card">
+      <div class="room-image">
+        <img src="assets/images/chennai/chennai-3.jpg" alt="Suite Room in chennai">
+      </div>
+
+      <div class="room-content">
+        <h4 class="room-title">Suite Room</h4>
+        <p class="room-desc">Spacious suites with premium comfort.</p>
+
+        <ul class="room-features">
+          <li>
+            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+            <span>3 Guests</span>
+          </li>
+          <li>
+            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M2 7v10"/><path d="M22 7v10"/>
+              <path d="M2 12h20"/>
+              <path d="M4 7h16a2 2 0 0 1 2 2v3H2V9a2 2 0 0 1 2-2z"/>
+            </svg>
+            <span>King Bed</span>
+          </li>
+          <li>
+            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M21 3h-6"/><path d="M21 3v6"/>
+              <path d="M3 21h6"/><path d="M3 21v-6"/>
+            </svg>
+            <span>420 sq ft</span>
+          </li>
+        </ul>
+
+        <div class="room-footer">
+          <span class="room-price">₹6,800 <small>/ night</small></span>
+          <button class="room-btn">View Room</button>
+        </div>
+      </div>
+    </article>
+
+    <!-- 4. FAMILY ROOM -->
+    <article class="room-card">
+      <div class="room-image">
+        <img src="assets/images/chennai/chennai-4.jpg" alt="Family Room in chennai">
+      </div>
+
+      <div class="room-content">
+        <h4 class="room-title">Family Room</h4>
+        <p class="room-desc">Perfect for families and longer stays.</p>
+
+        <ul class="room-features">
+          <li>
+            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+            <span>4 Guests</span>
+          </li>
+          <li>
+            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M2 7v10"/><path d="M22 7v10"/>
+              <path d="M2 12h20"/>
+              <path d="M4 7h16a2 2 0 0 1 2 2v3H2V9a2 2 0 0 1 2-2z"/>
+            </svg>
+            <span>2 Beds</span>
+          </li>
+          <li>
+            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M21 3h-6"/><path d="M21 3v6"/>
+              <path d="M3 21h6"/><path d="M3 21v-6"/>
+            </svg>
+            <span>480 sq ft</span>
+          </li>
+        </ul>
+
+        <div class="room-footer">
+          <span class="room-price">₹6,300 <small>/ night</small></span>
+          <button class="room-btn">View Room</button>
+        </div>
+      </div>
+    </article>
+
+    <!-- 5. PREMIUM SUITE -->
+    <article class="room-card">
+      <div class="room-image">
+        <img src="assets/images/chennai/chennai-5.jpg" alt="Premium Suite in chennai">
+      </div>
+
+      <div class="room-content">
+        <h4 class="room-title">Premium Suite</h4>
+        <p class="room-desc">Luxury living with exclusive services.</p>
+
+        <ul class="room-features">
+          <li>
+            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+            <span>3 Guests</span>
+          </li>
+          <li>
+            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M2 7v10"/><path d="M22 7v10"/>
+              <path d="M2 12h20"/>
+              <path d="M4 7h16a2 2 0 0 1 2 2v3H2V9a2 2 0 0 1 2-2z"/>
+            </svg>
+            <span>King Bed</span>
+          </li>
+          <li>
+            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M21 3h-6"/><path d="M21 3v6"/>
+              <path d="M3 21h6"/><path d="M3 21v-6"/>
+            </svg>
+            <span>520 sq ft</span>
+          </li>
+        </ul>
+
+        <div class="room-footer">
+          <span class="room-price">₹9,000 <small>/ night</small></span>
+          <button class="room-btn">View Room</button>
+        </div>
+      </div>
+    </article>
+
+  </div>
+</section>
+<!-- ================= CITY : HYDERABAD ================= -->
+<section class="city-rooms" data-city="hyderabad">
+  <div class="city-header">
+    <h3>Rooms in Hyderabad</h3>
+    <a href="#" class="city-link">View all →</a>
+  </div>
+
+  <div class="rooms-container">
+
+    <!-- 1. DELUXE ROOM -->
+    <article class="room-card">
+      <div class="room-image">
+        <img src="assets/images/hyderabad/hyderabad-1.jpg" alt="Deluxe Room in hyderabad">
+        <span class="room-badge">Most Booked</span>
+      </div>
+
+      <div class="room-content">
+        <h4 class="room-title">Deluxe Room</h4>
+        <p class="room-desc">Elegant interiors with modern amenities.</p>
+
+        <ul class="room-features">
+          <li>
+            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+            <span>2 Guests</span>
+          </li>
+          <li>
+            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M2 7v10"/><path d="M22 7v10"/>
+              <path d="M2 12h20"/>
+              <path d="M4 7h16a2 2 0 0 1 2 2v3H2V9a2 2 0 0 1 2-2z"/>
+            </svg>
+            <span>King Bed</span>
+          </li>
+          <li>
+            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M21 3h-6"/><path d="M21 3v6"/>
+              <path d="M3 21h6"/><path d="M3 21v-6"/>
+            </svg>
+            <span>320 sq ft</span>
+          </li>
+        </ul>
+
+        <div class="room-footer">
+          <span class="room-price">₹4,300 <small>/ night</small></span>
+          <button class="room-btn">View Room</button>
+        </div>
+      </div>
+    </article>
+
+    <!-- 2. EXECUTIVE ROOM -->
+    <article class="room-card">
+      <div class="room-image">
+        <img src="assets/images/hyderabad/hyderabad-2.jpg" alt="Executive Room in hyderabad">
+      </div>
+
+      <div class="room-content">
+        <h4 class="room-title">Executive Room</h4>
+        <p class="room-desc">Designed for business travellers.</p>
+
+        <ul class="room-features">
+          <li>
+            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+            <span>2 Guests</span>
+          </li>
+          <li>
+            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M2 7v10"/><path d="M22 7v10"/>
+              <path d="M2 12h20"/>
+              <path d="M4 7h16a2 2 0 0 1 2 2v3H2V9a2 2 0 0 1 2-2z"/>
+            </svg>
+            <span>Queen Bed</span>
+          </li>
+          <li>
+            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M21 3h-6"/><path d="M21 3v6"/>
+              <path d="M3 21h6"/><path d="M3 21v-6"/>
+            </svg>
+            <span>300 sq ft</span>
+          </li>
+        </ul>
+
+        <div class="room-footer">
+          <span class="room-price">₹5,700 <small>/ night</small></span>
+          <button class="room-btn">View Room</button>
+        </div>
+      </div>
+    </article>
+
+    <!-- 3. SUITE ROOM -->
+    <article class="room-card">
+      <div class="room-image">
+        <img src="assets/images/hyderabad/hyderabad-3.jpg" alt="Suite Room in hyderabad">
+      </div>
+
+      <div class="room-content">
+        <h4 class="room-title">Suite Room</h4>
+        <p class="room-desc">Spacious suites with premium comfort.</p>
+
+        <ul class="room-features">
+          <li>
+            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+            <span>3 Guests</span>
+          </li>
+          <li>
+            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M2 7v10"/><path d="M22 7v10"/>
+              <path d="M2 12h20"/>
+              <path d="M4 7h16a2 2 0 0 1 2 2v3H2V9a2 2 0 0 1 2-2z"/>
+            </svg>
+            <span>King Bed</span>
+          </li>
+          <li>
+            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M21 3h-6"/><path d="M21 3v6"/>
+              <path d="M3 21h6"/><path d="M3 21v-6"/>
+            </svg>
+            <span>420 sq ft</span>
+          </li>
+        </ul>
+
+        <div class="room-footer">
+          <span class="room-price">₹7,500 <small>/ night</small></span>
+          <button class="room-btn">View Room</button>
+        </div>
+      </div>
+    </article>
+
+    <!-- 4. FAMILY ROOM -->
+    <article class="room-card">
+      <div class="room-image">
+        <img src="assets/images/hyderabad/hyderabad-4.jpg" alt="Family Room in hyderabad">
+      </div>
+
+      <div class="room-content">
+        <h4 class="room-title">Family Room</h4>
+        <p class="room-desc">Perfect for families and longer stays.</p>
+
+        <ul class="room-features">
+          <li>
+            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+            <span>4 Guests</span>
+          </li>
+          <li>
+            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M2 7v10"/><path d="M22 7v10"/>
+              <path d="M2 12h20"/>
+              <path d="M4 7h16a2 2 0 0 1 2 2v3H2V9a2 2 0 0 1 2-2z"/>
+            </svg>
+            <span>2 Beds</span>
+          </li>
+          <li>
+            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M21 3h-6"/><path d="M21 3v6"/>
+              <path d="M3 21h6"/><path d="M3 21v-6"/>
+            </svg>
+            <span>480 sq ft</span>
+          </li>
+        </ul>
+
+        <div class="room-footer">
+          <span class="room-price">₹6,900 <small>/ night</small></span>
+          <button class="room-btn">View Room</button>
+        </div>
+      </div>
+    </article>
+
+    <!-- 5. PREMIUM SUITE -->
+    <article class="room-card">
+      <div class="room-image">
+        <img src="assets/images/hyderabad/hyderabad-5.jpg" alt="Premium Suite in hyderabad">
+      </div>
+
+      <div class="room-content">
+        <h4 class="room-title">Premium Suite</h4>
+        <p class="room-desc">Luxury living with exclusive services.</p>
+
+        <ul class="room-features">
+          <li>
+            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+            <span>3 Guests</span>
+          </li>
+          <li>
+            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M2 7v10"/><path d="M22 7v10"/>
+              <path d="M2 12h20"/>
+              <path d="M4 7h16a2 2 0 0 1 2 2v3H2V9a2 2 0 0 1 2-2z"/>
+            </svg>
+            <span>King Bed</span>
+          </li>
+          <li>
+            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M21 3h-6"/><path d="M21 3v6"/>
+              <path d="M3 21h6"/><path d="M3 21v-6"/>
+            </svg>
+            <span>520 sq ft</span>
+          </li>
+        </ul>
+
+        <div class="room-footer">
+          <span class="room-price">₹9,500 <small>/ night</small></span>
+          <button class="room-btn">View Room</button>
+        </div>
+      </div>
+    </article>
+
+  </div>
+</section>
+<!-- ================= CITY : JAIPUR ================= -->
+<section class="city-rooms" data-city="jaipur">
+  <div class="city-header">
+    <h3>Rooms in Jaipur</h3>
+    <a href="#" class="city-link">View all →</a>
+  </div>
+
+  <div class="rooms-container">
+
+    <!-- 1. DELUXE ROOM -->
+    <article class="room-card">
+      <div class="room-image">
+        <img src="assets/images/jaipur/jaipur-1.jpg" alt="Deluxe Room in jaipur">
+        <span class="room-badge">Most Booked</span>
+      </div>
+
+      <div class="room-content">
+        <h4 class="room-title">Deluxe Room</h4>
+        <p class="room-desc">Elegant interiors with modern amenities.</p>
+
+        <ul class="room-features">
+          <li>
+            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+            <span>2 Guests</span>
+          </li>
+          <li>
+            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M2 7v10"/><path d="M22 7v10"/>
+              <path d="M2 12h20"/>
+              <path d="M4 7h16a2 2 0 0 1 2 2v3H2V9a2 2 0 0 1 2-2z"/>
+            </svg>
+            <span>King Bed</span>
+          </li>
+          <li>
+            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M21 3h-6"/><path d="M21 3v6"/>
+              <path d="M3 21h6"/><path d="M3 21v-6"/>
+            </svg>
+            <span>320 sq ft</span>
+          </li>
+        </ul>
+
+        <div class="room-footer">
+          <span class="room-price">₹5,400 <small>/ night</small></span>
+          <button class="room-btn">View Room</button>
+        </div>
+      </div>
+    </article>
+
+    <!-- 2. EXECUTIVE ROOM -->
+    <article class="room-card">
+      <div class="room-image">
+        <img src="assets/images/jaipur/jaipur-2.jpg" alt="Executive Room in jaipur">
+      </div>
+
+      <div class="room-content">
+        <h4 class="room-title">Executive Room</h4>
+        <p class="room-desc">Designed for business travellers.</p>
+
+        <ul class="room-features">
+          <li>
+            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+            <span>2 Guests</span>
+          </li>
+          <li>
+            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M2 7v10"/><path d="M22 7v10"/>
+              <path d="M2 12h20"/>
+              <path d="M4 7h16a2 2 0 0 1 2 2v3H2V9a2 2 0 0 1 2-2z"/>
+            </svg>
+            <span>Queen Bed</span>
+          </li>
+          <li>
+            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M21 3h-6"/><path d="M21 3v6"/>
+              <path d="M3 21h6"/><path d="M3 21v-6"/>
+            </svg>
+            <span>300 sq ft</span>
+          </li>
+        </ul>
+
+        <div class="room-footer">
+          <span class="room-price">₹7,100 <small>/ night</small></span>
+          <button class="room-btn">View Room</button>
+        </div>
+      </div>
+    </article>
+
+    <!-- 3. SUITE ROOM -->
+    <article class="room-card">
+      <div class="room-image">
+        <img src="assets/images/jaipur/jaipur-3.jpg" alt="Suite Room in jaipur">
+      </div>
+
+      <div class="room-content">
+        <h4 class="room-title">Suite Room</h4>
+        <p class="room-desc">Spacious suites with premium comfort.</p>
+
+        <ul class="room-features">
+          <li>
+            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+            <span>3 Guests</span>
+          </li>
+          <li>
+            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M2 7v10"/><path d="M22 7v10"/>
+              <path d="M2 12h20"/>
+              <path d="M4 7h16a2 2 0 0 1 2 2v3H2V9a2 2 0 0 1 2-2z"/>
+            </svg>
+            <span>King Bed</span>
+          </li>
+          <li>
+            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M21 3h-6"/><path d="M21 3v6"/>
+              <path d="M3 21h6"/><path d="M3 21v-6"/>
+            </svg>
+            <span>420 sq ft</span>
+          </li>
+        </ul>
+
+        <div class="room-footer">
+          <span class="room-price">₹9,200 <small>/ night</small></span>
+          <button class="room-btn">View Room</button>
+        </div>
+      </div>
+    </article>
+
+    <!-- 4. FAMILY ROOM -->
+    <article class="room-card">
+      <div class="room-image">
+        <img src="assets/images/jaipur/jaipur-4.jpg" alt="Family Room in jaipur">
+      </div>
+
+      <div class="room-content">
+        <h4 class="room-title">Family Room</h4>
+        <p class="room-desc">Perfect for families and longer stays.</p>
+
+        <ul class="room-features">
+          <li>
+            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+            <span>4 Guests</span>
+          </li>
+          <li>
+            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M2 7v10"/><path d="M22 7v10"/>
+              <path d="M2 12h20"/>
+              <path d="M4 7h16a2 2 0 0 1 2 2v3H2V9a2 2 0 0 1 2-2z"/>
+            </svg>
+            <span>2 Beds</span>
+          </li>
+          <li>
+            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M21 3h-6"/><path d="M21 3v6"/>
+              <path d="M3 21h6"/><path d="M3 21v-6"/>
+            </svg>
+            <span>480 sq ft</span>
+          </li>
+        </ul>
+
+        <div class="room-footer">
+          <span class="room-price">₹8,300 <small>/ night</small></span>
+          <button class="room-btn">View Room</button>
+        </div>
+      </div>
+    </article>
+
+    <!-- 5. PREMIUM SUITE -->
+    <article class="room-card">
+      <div class="room-image">
+        <img src="assets/images/jaipur/jaipur-5.jpg" alt="Premium Suite in jaipur">
+      </div>
+
+      <div class="room-content">
+        <h4 class="room-title">Premium Suite</h4>
+        <p class="room-desc">Luxury living with exclusive services.</p>
+
+        <ul class="room-features">
+          <li>
+            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+            <span>3 Guests</span>
+          </li>
+          <li>
+            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M2 7v10"/><path d="M22 7v10"/>
+              <path d="M2 12h20"/>
+              <path d="M4 7h16a2 2 0 0 1 2 2v3H2V9a2 2 0 0 1 2-2z"/>
+            </svg>
+            <span>King Bed</span>
+          </li>
+          <li>
+            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M21 3h-6"/><path d="M21 3v6"/>
+              <path d="M3 21h6"/><path d="M3 21v-6"/>
+            </svg>
+            <span>520 sq ft</span>
+          </li>
+        </ul>
+
+        <div class="room-footer">
+          <span class="room-price">₹13,500 <small>/ night</small></span>
+          <button class="room-btn">View Room</button>
+        </div>
+      </div>
+    </article>
+
+  </div>
+</section>
+<!-- ================= CITY : MUMBAI ================= -->
+ <section class="city-rooms" data-city="mumbai">
+  <div class="city-header">
+    <h3>Rooms in Mumbai</h3>
+    <a href="#" class="city-link">View all →</a>
+  </div>
+
+  <div class="rooms-container">
+
+    <!-- 1. DELUXE ROOM -->
+    <article class="room-card">
+      <div class="room-image">
+        <img src="assets/images/mumbai/mumbai-1.jpg" alt="Deluxe Room in mumbai">
+        <span class="room-badge">Most Booked</span>
+      </div>
+
+      <div class="room-content">
+        <h4 class="room-title">Deluxe Room</h4>
+        <p class="room-desc">Elegant interiors with modern amenities.</p>
+
+        <ul class="room-features">
+          <li>
+            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+            <span>2 Guests</span>
+          </li>
+          <li>
+            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M2 7v10"/><path d="M22 7v10"/>
+              <path d="M2 12h20"/>
+              <path d="M4 7h16a2 2 0 0 1 2 2v3H2V9a2 2 0 0 1 2-2z"/>
+            </svg>
+            <span>King Bed</span>
+          </li>
+          <li>
+            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M21 3h-6"/><path d="M21 3v6"/>
+              <path d="M3 21h6"/><path d="M3 21v-6"/>
+            </svg>
+            <span>320 sq ft</span>
+          </li>
+        </ul>
+
+        <div class="room-footer">
+          <span class="room-price">₹5,800 <small>/ night</small></span>
+          <button class="room-btn">View Room</button>
+        </div>
+      </div>
+    </article>
+
+    <!-- 2. EXECUTIVE ROOM -->
+    <article class="room-card">
+      <div class="room-image">
+        <img src="assets/images/mumbai/mumbai-2.jpg" alt="Executive Room in mumbai">
+      </div>
+
+      <div class="room-content">
+        <h4 class="room-title">Executive Room</h4>
+        <p class="room-desc">Designed for business travellers.</p>
+
+        <ul class="room-features">
+          <li>
+            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+            <span>2 Guests</span>
+          </li>
+          <li>
+            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M2 7v10"/><path d="M22 7v10"/>
+              <path d="M2 12h20"/>
+              <path d="M4 7h16a2 2 0 0 1 2 2v3H2V9a2 2 0 0 1 2-2z"/>
+            </svg>
+            <span>Queen Bed</span>
+          </li>
+          <li>
+            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M21 3h-6"/><path d="M21 3v6"/>
+              <path d="M3 21h6"/><path d="M3 21v-6"/>
+            </svg>
+            <span>300 sq ft</span>
+          </li>
+        </ul>
+
+        <div class="room-footer">
+          <span class="room-price">₹7,200 <small>/ night</small></span>
+          <button class="room-btn">View Room</button>
+        </div>
+      </div>
+    </article>
+
+    <!-- 3. SUITE ROOM -->
+    <article class="room-card">
+      <div class="room-image">
+        <img src="assets/images/mumbai/mumbai-3.jpg" alt="Suite Room in mumbai">
+      </div>
+
+      <div class="room-content">
+        <h4 class="room-title">Suite Room</h4>
+        <p class="room-desc">Spacious suites with premium comfort.</p>
+
+        <ul class="room-features">
+          <li>
+            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+            <span>3 Guests</span>
+          </li>
+          <li>
+            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M2 7v10"/><path d="M22 7v10"/>
+              <path d="M2 12h20"/>
+              <path d="M4 7h16a2 2 0 0 1 2 2v3H2V9a2 2 0 0 1 2-2z"/>
+            </svg>
+            <span>King Bed</span>
+          </li>
+          <li>
+            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M21 3h-6"/><path d="M21 3v6"/>
+              <path d="M3 21h6"/><path d="M3 21v-6"/>
+            </svg>
+            <span>420 sq ft</span>
+          </li>
+        </ul>
+
+        <div class="room-footer">
+          <span class="room-price">₹9,800 <small>/ night</small></span>
+          <button class="room-btn">View Room</button>
+        </div>
+      </div>
+    </article>
+
+    <!-- 4. FAMILY ROOM -->
+    <article class="room-card">
+      <div class="room-image">
+        <img src="assets/images/mumbai/mumbai-4.jpg" alt="Family Room in mumbai">
+      </div>
+
+      <div class="room-content">
+        <h4 class="room-title">Family Room</h4>
+        <p class="room-desc">Perfect for families and longer stays.</p>
+
+        <ul class="room-features">
+          <li>
+            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+            <span>4 Guests</span>
+          </li>
+          <li>
+            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M2 7v10"/><path d="M22 7v10"/>
+              <path d="M2 12h20"/>
+              <path d="M4 7h16a2 2 0 0 1 2 2v3H2V9a2 2 0 0 1 2-2z"/>
+            </svg>
+            <span>2 Beds</span>
+          </li>
+          <li>
+            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M21 3h-6"/><path d="M21 3v6"/>
+              <path d="M3 21h6"/><path d="M3 21v-6"/>
+            </svg>
+            <span>480 sq ft</span>
+          </li>
+        </ul>
+
+        <div class="room-footer">
+           <span class="room-price">₹8,300 <small>/ night</small></span>
+          <button class="room-btn">View Room</button>
+        </div>
+      </div>
+    </article>
+
+    <!-- 5. PREMIUM SUITE -->
+    <article class="room-card">
+      <div class="room-image">
+        <img src="assets/images/mumbai/mumbai-5.jpg" alt="Premium Suite in mumbai">
+      </div>
+
+      <div class="room-content">
+        <h4 class="room-title">Premium Suite</h4>
+        <p class="room-desc">Luxury living with exclusive services.</p>
+
+        <ul class="room-features">
+          <li>
+            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+            <span>3 Guests</span>
+          </li>
+          <li>
+            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M2 7v10"/><path d="M22 7v10"/>
+              <path d="M2 12h20"/>
+              <path d="M4 7h16a2 2 0 0 1 2 2v3H2V9a2 2 0 0 1 2-2z"/>
+            </svg>
+            <span>King Bed</span>
+          </li>
+          <li>
+            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M21 3h-6"/><path d="M21 3v6"/>
+              <path d="M3 21h6"/><path d="M3 21v-6"/>
+            </svg>
+            <span>520 sq ft</span>
+          </li>
+        </ul>
+
+        <div class="room-footer">
+          <span class="room-price">₹13,900 <small>/ night</small></span>
+          <button class="room-btn">View Room</button>
+        </div>
+      </div>
+    </article>
+
+  </div>
+</section>
+<!--  /* ================= INSPIRATION SECTION ================= !-->
+
 <section class="inspiration">
   <div class="inspiration-container">
 
@@ -366,120 +1610,122 @@
       Inspiration for future getaways
     </h2>
 
-    <!-- Tabs -->
-   <ul class="inspiration-tabs">
-  <li class="active" data-category="all">Popular</li>
-  <li data-category="culture">Arts & culture</li>
-  <li data-category="beach">Beach</li>
-  <li data-category="mountains">Mountains</li>
-  <li data-category="things">Things to do</li>
-</ul>
+    <!-- TABS -->
+    <ul class="inspiration-tabs">
+      <li class="active" data-category="all">Popular</li>
+      <li data-category="culture">Arts & culture</li>
+      <li data-category="beach">Beach</li>
+      <li data-category="mountains">Mountains</li>
+      <li data-category="things">Things to do</li>
+      <li data-category="luxury">Luxury</li>
+    </ul>
 
-
+    <!-- DIVIDER -->
     <hr class="inspiration-divider" />
 
-    <!-- Destination lists -->
+    <!-- DESTINATIONS GRID -->
     <div class="inspiration-grid">
 
-  <div class="inspiration-item" data-category="culture">
-    <strong>New Delhi</strong>
-    <span>City stays</span>
-  </div>
-
-  <div class="inspiration-item" data-category="things">
-    <strong>Mumbai</strong>
-    <span>Apartment rentals</span>
-  </div>
-
-  <div class="inspiration-item" data-category="things">
-    <strong>Bengaluru</strong>
-    <span>Business stays</span>
-  </div>
-
-  <div class="inspiration-item" data-category="beach">
-    <strong>Goa</strong>
-    <span>Beach resorts</span>
-  </div>
-
-  <div class="inspiration-item" data-category="culture">
-    <strong>Jaipur</strong>
-    <span>Heritage hotels</span>
-  </div>
-
-  <div class="inspiration-item" data-category="mountains">
-    <strong>Manali</strong>
-    <span>Mountain retreats</span>
-  </div>
-
-  <div class="inspiration-item" data-category="culture">
-    <strong>Udaipur</strong>
-    <span>Luxury stays</span>
-  </div>
-
-  <div class="inspiration-item" data-category="mountains">
-    <strong>Rishikesh</strong>
-    <span>Wellness retreats</span>
-  </div>
-
-  <div class="inspiration-item show-more">
-    <strong>Show more</strong>
-    <span>→</span>
-  </div>
-
-</div>
-
-</section>
-
-
-
-
-
-    <!-- AMENITIES SECTION -->
-    <section class="amenities">
-  <div class="amenities-container">
-    <h2>Our Amenities
-      <i class="fa-solid fa-arrow-right"></i>
-    </h2>
-
-    <div class="amenities-grid">
-
-      <div class="amenity">
-        <i class="fa-solid fa-wifi"></i>
-        <span>Free Wi-Fi</span>
+      <!-- POPULAR / CULTURE -->
+      <div class="inspiration-item" data-category="culture">
+        <strong>New Delhi</strong>
+        <span>City stays</span>
       </div>
 
-      <div class="amenity">
-        <i class="fa-solid fa-person-swimming"></i>
-        <span>Swimming Pool</span>
+      <div class="inspiration-item" data-category="culture">
+        <strong>Jaipur</strong>
+        <span>Heritage hotels</span>
       </div>
 
-      <div class="amenity">
-        <i class="fa-solid fa-bell-concierge"></i>
-        <span>24/7 Room Service</span>
+      <div class="inspiration-item" data-category="culture">
+        <strong>Udaipur</strong>
+        <span>Luxury stays</span>
       </div>
 
-      <div class="amenity">
-        <i class="fa-solid fa-utensils"></i>
-        <span>Restaurant & Café</span>
+      <div class="inspiration-item" data-category="culture">
+        <strong>Agra</strong>
+        <span>Historic stays</span>
       </div>
 
-      <div class="amenity">
-        <i class="fa-solid fa-plane-departure"></i>
-        <span>Airport Pickup</span>
+      <!-- THINGS TO DO -->
+      <div class="inspiration-item" data-category="things">
+        <strong>Mumbai</strong>
+        <span>Apartment rentals</span>
+      </div>
+
+      <div class="inspiration-item" data-category="things">
+        <strong>Bengaluru</strong>
+        <span>Business stays</span>
+      </div>
+
+      <div class="inspiration-item" data-category="things">
+        <strong>Coorg</strong>
+        <span>Nature escapes</span>
+      </div>
+
+      <!-- BEACH -->
+      <div class="inspiration-item" data-category="beach">
+        <strong>Goa</strong>
+        <span>Beach resorts</span>
+      </div>
+
+      <div class="inspiration-item" data-category="beach">
+        <strong>Kovalam</strong>
+        <span>Beach resorts</span>
+      </div>
+
+      <div class="inspiration-item" data-category="beach">
+        <strong>Andaman</strong>
+        <span>Island stays</span>
+      </div>
+
+      <!-- MOUNTAINS -->
+      <div class="inspiration-item" data-category="mountains">
+        <strong>Manali</strong>
+        <span>Mountain retreats</span>
+      </div>
+
+      <div class="inspiration-item" data-category="mountains">
+        <strong>Rishikesh</strong>
+        <span>Wellness retreats</span>
+      </div>
+
+      <div class="inspiration-item" data-category="mountains">
+        <strong>Shimla</strong>
+        <span>Hill stays</span>
+      </div>
+
+      <!-- LUXURY -->
+      <div class="inspiration-item" data-category="luxury">
+        <strong>Jaisalmer</strong>
+        <span>Desert heritage stays</span>
+      </div>
+
+      <div class="inspiration-item" data-category="luxury">
+        <strong>Alibaug</strong>
+        <span>Private villa stays</span>
+      </div>
+
+      <!-- SHOW MORE -->
+      <div class="inspiration-item show-more">
+        <strong>Show more</strong>
+        <span>→</span>
       </div>
 
     </div>
   </div>
 </section>
 
-
-  
-  </main>
-
   <!-- ================= FOOTER ================= -->
   <footer class="footer">
-
+<footer class="footer">
   <div class="footer-container">
+
+    <div class="footer-title">
+      <h2>
+        <span class="brand-blue">Hotel</span><span class="brand-yellow">Vista</span>
+      </h2>
+    </div>
 
     <div class="footer-grid">
 
@@ -548,7 +1794,12 @@
 
 
   </footer>
-<script src="script.js"></script>
+
+<script src="js/navbar.js" defer></script>
+<script src="js/hero.js" defer></script>
+<script src="js/inspiration.js" defer></script>
+<script src="js/rooms.js" defer></script>
+
 
 </body>
 </html>
