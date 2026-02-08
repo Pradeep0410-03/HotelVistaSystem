@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>HotelVista</title>
   <link rel="stylesheet" href="css/style.css">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@400;500&display=swap" rel="stylesheet">
@@ -16,27 +17,52 @@
   <nav class="navbar">
 
     <!-- LOGO -->
-    <div class="logo">
-      <span class="logo-icon"></span>
-      <span>
-        <span class="logo-hotel">Hotel</span>
-        <span class="logo-vista">Vista</span>
-      </span>
-    </div>
+   <div class="logo">
+  <span class="logo-icon"></span>
+  <span>
+    <span class="logo-primary">Vista</span>
+    <span class="logo-secondary">Booking</span>
+  </span>
+</div>
+
 
     <!-- NAV LINKS -->
     <ul class="nav-links">
-      <li><a href="#home"><i class="fa-solid fa-house"></i>Home</a></li>
-      <li><a href="#rooms"><i class="fa-solid fa-bed"></i>Rooms</a></li>
-      <li><a href="#gallery"><i class="fa-regular fa-images"></i>Gallery</a></li>
-      <li><a href="#amenities"><i class="fa-solid fa-wifi"></i>Amenities</a></li>
-      <li><a href="#contact"><i class="fa-regular fa-envelope"></i>Contact</a></li>
-    </ul>
+      <ul class="nav-links">
+  <li>
+    <a href="#home">
+      <i class="fa-solid fa-house"></i>
+      Home
+    </a>
+  </li>
 
+  <li>
+    <a href="#stays">
+      <i class="fa-solid fa-bed"></i>
+      Stays
+    </a>
+  </li>
+
+  <li>
+    <a href="#services">
+      <i class="fa-solid fa-briefcase"></i>
+      Services
+    </a>
+  </li>
+
+  <li>
+    <a href="#attractions">
+      <i class="fa-solid fa-map-location-dot"></i>
+      Attractions
+    </a>
+  </li>
+</ul>
+
+     
     <!-- ACTIONS -->
     <div class="nav-actions">
       <a href="login.html" class="btn-login">Login</a>
-      <a href="#" class="btn-book">Book Now</a>
+      <a href="#" class="btn-book">Register</a>
 
       <!-- MOBILE TOGGLE -->
       <button class="nav-toggle" aria-label="Toggle menu">☰</button>
@@ -50,8 +76,9 @@
 <!-- HERO SECTION -->
 <section class="hero" id="home">
   <div class="hero-content">
-    <h1>Experience Luxury & Comfort</h1>
-    <p>Search deals on hotels, homes, and much more...</p>
+    <h1>Search stays.Book smart.</h1>
+    <p>Compare hotels, homes, and more all in one place....
+</p>
 
     <form class="booking-form">
 
@@ -133,48 +160,11 @@
       </div>
 
       <!-- ACTION -->
-      <button type="submit">Check Availability</button>
+      <button type="submit">Serch</button>
 
     </form>
   </div>
 </section> 
-
-<!-- WHY CHOOSE US SECTION -->
-<section class="why-us">
-  <div class="why-container">
-
-    <h2>Why choose HotelVista?</h2>
-
-    <div class="why-grid">
-
-      <div class="why-card">
-        <div class="why-icon">🏨</div>
-        <h3>Book now, pay at the property</h3>
-        <p>Free cancellation available on most rooms.</p>
-      </div>
-
-      <div class="why-card">
-        <div class="why-icon">⭐</div>
-        <h3>Trusted guest reviews</h3>
-        <p>Real feedback from verified travelers.</p>
-      </div>
-
-      <div class="why-card">
-        <div class="why-icon">🌍</div>
-        <h3>Wide range of stays</h3>
-        <p>Hotels, resorts, apartments, and more.</p>
-      </div>
-
-      <div class="why-card">
-        <div class="why-icon">🕒</div>
-        <h3>24/7 customer support</h3>
-        <p>We’re always here whenever you need help.</p>
-      </div>
-
-    </div>
-  </div>
-</section>
-
 
   <!-- TRENDING DESTINATIONS -->
 <section class="destinations" id="destinations">
@@ -1601,6 +1591,42 @@
 
   </div>
 </section>
+     <!-- WHY CHOOSE US SECTION -->
+<section class="why-us">
+  <div class="why-container">
+
+    <h2>Why choose HotelVista?</h2>
+
+    <div class="why-grid">
+
+      <div class="why-card">
+        <div class="why-icon">🏨</div>
+        <h3>Book now, pay at the property</h3>
+        <p>Free cancellation available on most rooms.</p>
+      </div>
+
+      <div class="why-card">
+        <div class="why-icon">⭐</div>
+        <h3>Trusted guest reviews</h3>
+        <p>Real feedback from verified travelers.</p>
+      </div>
+
+      <div class="why-card">
+        <div class="why-icon">🌍</div>
+        <h3>Wide range of stays</h3>
+        <p>Hotels, resorts, apartments, and more.</p>
+      </div>
+
+      <div class="why-card">
+        <div class="why-icon">🕒</div>
+        <h3>24/7 customer support</h3>
+        <p>We’re always here whenever you need help.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <!--  /* ================= INSPIRATION SECTION ================= !-->
 
 <section class="inspiration">

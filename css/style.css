@@ -24,13 +24,12 @@ body {
 
 
 /* ================= HEADER / NAVBAR ================= */
-/* Fixed top navigation bar */
 
 .header {
   width: 100%;
   position: fixed;
   top: 0;
-  background: #0f1114; /* solid dark */
+  background: #0b1220;
   box-shadow: 0 6px 24px rgba(0,0,0,0.35);
   z-index: 1000;
   transition: transform 0.35s ease;
@@ -47,19 +46,18 @@ body {
 .navbar {
   max-width: 1300px;
   margin: auto;
-  padding: 18px 32px; /* more left/right space */
+  padding: 14px 32px;
 
-  display: flex;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
   align-items: center;
-  justify-content: space-between;
 }
-.nav-links a {
-  font-size: 15px;
-  opacity: 0.9;
+.nav-links {
+  justify-self: center;
+  display: flex;
+  gap: 22px;
 }
 
-
-/* Logo styling */
 
 /* ================= LOGO ================= */
 
@@ -99,22 +97,20 @@ body {
 
 
 /* Text */
-.logo {
-  font-size: 26px;
-  font-weight: 500; /* slightly lighter */
-  letter-spacing: 0.6px;
+.logo-primary {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+               Roboto, Helvetica, Arial, sans-serif;
+  font-weight: 600;
+  color: #ffffff;
 }
 
-.logo-hotel {
-  font-family: 'Poppins', sans-serif;
-  color: #e5e7eb;
+.logo-secondary {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+               Roboto, Helvetica, Arial, sans-serif;
+  font-weight: 600;
+  color: #60a5fa;
 }
 
-.logo-vista {
-  font-family: 'Playfair Display', serif;
-  color: #3b82f6;
-  margin-left: 3px;
-}
 
 
 /* ================= NAV LINKS ================= */
@@ -131,7 +127,7 @@ body {
   align-items: center;
   gap: 8px;
 
-  padding: 8px 14px;
+  padding: 8px 12px;
   border-radius: 999px;
 
   text-decoration: none;
@@ -162,7 +158,7 @@ body {
 .nav-links a:hover {
   color: #1e3a8a;
 }
-/* REMOVE underline from ALL navbar buttons & links */
+
 .nav-actions a,
 .nav-actions a:hover,
 .nav-actions a:focus,
@@ -173,7 +169,6 @@ body {
 
 
 /* ================= NAV ACTIONS ================= */
-/* Login + Book Now buttons */
 
 .nav-actions {
   display: flex;
@@ -181,11 +176,11 @@ body {
   align-items: center;
 }
 .nav-links a {
-  font-size: 15.5px;   /* was 14 */
-  padding: 10px 16px; /* bigger click area */
+  font-size: 15.5px;   
+  padding: 10px 16px; 
   font-weight: 500;
+   color: rgba(255,255,255,0.85);
 }
-
 
 /* LOGIN — secondary */
 .btn-login {
@@ -220,6 +215,7 @@ body {
 .btn-book:hover {
   background: #162d6b;
   transform: translateY(-1px);
+  color: #ffffff;
 }
 /* ================= MOBILE NAVBAR ================= */
 
@@ -271,98 +267,112 @@ body {
 
 
 /* ================= HERO SECTION ================= */
-/* Full-screen landing section with background image */
 
 .hero {
-  min-height: 100vh;
-  height: auto; /* changed from height */
-  background:
-    linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)),
-    url("../assets/images/hero.jpg") center / cover no-repeat;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding-top: 120px;
+   background:#0b1220;
+  padding-top: 80px;     
+  padding-bottom: 72px;
+  position: relative;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .hero-content {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 60px 20px;
+  padding: 0 20px;
+  margin-top: 24px;        
+  margin-bottom: 40px;     
 }
 
 .hero-content h1 {
-  font-size: 50px;
-  font-weight: 700;
-  letter-spacing: -0.4px;
-  line-height: 1.15;
-  margin-bottom: 8px;   /* closer to subtext */
+  font-size: 42px;
+  font-weight: 600;        
+  line-height: 1.2;
+  margin-bottom: 6px;
 }
-
-
 
 .hero-content p {
-  font-size: 20px;              /* 🔑 THIS is the key change */
+  font-size: 18px;
   font-weight: 500;
-  line-height: 1.5;
-  color: rgba(255, 255, 255, 0.9);
-  margin-bottom: 20px;
-  max-width: 520px;
+  color: rgba(255,255,255,0.9);
+  max-width: 600px;
 }
 
+/* ================= BOOKING FORM ================= */
 
-.hero {
-  position: relative;
-}
-
-.hero::before {
-  pointer-events: none;
-}
-.hero-overlay {
-  pointer-events: none;
-}
-
-/* BOOKING FORM */
 .booking-form {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 16px;
   background: rgba(28,31,31,0.92);
-  padding: 6px;
-  border-radius: 10px;
-  max-width: 1150px;
-  position: relative;
+  padding: 14px;
+  border-radius: 16px;
   backdrop-filter: blur(10px);
   margin-top: 26px;
+
+  width: fit-content;       
+  max-width: 100%;
+  position: relative;
 }
 
-.booking-form input,
-.booking-form button {
-  height: 64px;
-  border-radius: 8px;
-  border: 1px solid #3a3f45;
-  background: #2a2e2e;
+/* INPUT BOXES */
+.input-box {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 18px;
+  height: 60px;
+  min-width: 300px;         
+  border-radius: 14px;
+  border-color: rgba(255,255,255,0.18);
+  background: #1a1f20;
+  border: 1px solid #2f3537;
+  flex: 0 0 auto;           
+}
+
+.input-box .icon {
+  width: 20px;
+  height: 20px;
+  fill: rgba(255,255,255,0.7);
+  flex-shrink: 0;
+}
+
+.input-box input {
+  background: transparent;
+  border: none;
+  outline: none;
   color: #fff;
   font-size: 15px;
-  padding: 0 16px;
-}
-
-.booking-form input {
-  flex: 1;
+  font-weight: 500;
   cursor: pointer;
+  white-space: nowrap;
+  width: 100%;
 }
 
+/* SEARCH BUTTON */
 .booking-form button[type="submit"] {
+  height: 60px;
+  padding: 0 32px;
+  border-radius: 999px;
   background: #1e4fd8;
   border: none;
-  padding: 0 28px;
+  color: #fff;
   font-weight: 600;
+  font-size: 15px;
   cursor: pointer;
+  flex-shrink: 0;     
+margin-left: 10px;  
+}     
+.hero {
+  padding-bottom: 64px;
 }
 
-/* GUEST PANEL */
+.section-after-hero {
+  padding-top: 72px;
+}
+/* ================= GUEST PANEL ================= */
+
 .guest-panel {
   position: absolute;
   top: calc(100% + 8px);
@@ -413,22 +423,24 @@ body {
   font-weight: 600;
   cursor: pointer;
 }
+
+/* ================= DATE PANEL ================= */
+
 .date-panel {
   position: absolute;
   top: calc(100% + 8px);
-  left: 300px; /* adjust later */
+  left: 300px;
   background: #1c1f1f;
   padding: 12px;
   border-radius: 10px;
   box-shadow: 0 12px 30px rgba(0,0,0,0.35);
-  z-index: 9999;
+  z-index: 10;
 }
 
 .date-panel input {
-  display: block;
   width: 100%;
-  margin-bottom: 10px;
   height: 40px;
+  margin-bottom: 10px;
   background: #2a2e2e;
   border: 1px solid #3a3f45;
   color: #fff;
@@ -445,192 +457,41 @@ body {
   color: #fff;
   cursor: pointer;
 }
-.input-box {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 0 16px;
-}
 
-.input-box .icon {
-  width: 20px;
-  height: 20px;
-  fill: rgba(255,255,255,0.7);
-  flex-shrink: 0;
-}
+/* ================= MOBILE ================= */
 
-.input-box input {
-  flex: 1;
-  background: transparent;
-  border: none;
-  color: #fff;
-  font-size: 15px;
-}
 @media (max-width: 768px) {
 
   .hero {
-    padding-top: 96px;
-    padding-bottom: 40px;
-    min-height: auto; /* 🔑 key */
+    padding-top: 64px;
+    min-height: auto;
   }
 
   .hero-content h1 {
-    font-size: 34px;
-    line-height: 1.2;
+    font-size: 38px;
   }
 
   .hero-content p {
-    font-size: 16px;
+    font-size: 17px;
   }
 
   .booking-form {
     flex-direction: column;
-    gap: 10px;
+    width: 100%;
   }
 
-  .booking-form input,
+  .input-box,
   .booking-form button {
     width: 100%;
-    height: 56px;
   }
-   .guest-panel,
+
+  .guest-panel,
   .date-panel {
     position: static;
     width: 100%;
     margin-top: 10px;
   }
-
 }
-
-/* ================= WHY CHOOSE US ================= */
-
-.why-us {
-  background: linear-gradient(
-    180deg,
-    #0f1114 0%,
-    #151a20 100%
-  );
-  padding: 80px 20px;
-}
-
-.why-container {
-  max-width: 1200px;
-  margin: auto;
-}
-
-.why-us h2 {
-  font-family: 'Playfair Display', serif;
-  font-size: 36px;
-  color: #ffffff;
-  margin-bottom: 40px;
-}
-
-.why-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 24px;
-}
-
-.why-card {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1); /* more visible */
-  border-radius: 16px;
-
-  padding: 32px 28px;   /* 🔑 increased padding */
-  min-height: 200px;    /* 🔑 taller cards */
-
-  transition: 
-    transform 0.25s ease,
-    box-shadow 0.25s ease,
-    border-color 0.25s ease,
-    background 0.25s ease;
-}
-
-
-
-.why-card:hover {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.35);
-  transform: translateY(-6px);
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
-}
-
-.why-icon {
-  font-size: 34px;
-  margin-bottom: 18px;
-}
-
-
-.why-card h3 {
-  font-size: 18px;
-  margin-bottom: 12px;
-}
-
-.why-card p {
-  font-size: 14px;
-  line-height: 1.65;
-}
-.why-us {
-  background: linear-gradient(
-    180deg,
-    #0f1114 0%,
-    #151a20 100%
-  );
-  padding: 100px 20px;
-}
-
-.why-container {
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.why-us h2 {
-  font-family: 'Playfair Display', serif;
-  font-size: 42px;
-  color: #ffffff;
-  margin-bottom: 60px;
-}
-
-/* ================= WHY CHOOSE US ================= */
-
-.why-us {
-  background:#111417;
-  padding: 100px 20px;
-}
-
-.why-container {
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.why-us h2 {
-  font-family: 'Playfair Display', serif;
-  font-size: 42px;
-  color: #ffffff;
-  margin-bottom: 60px;
-}
-
-/* GRID (THIS WAS MISSING LOGICALLY) */
-.why-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 28px;
-}
-
-/* Tablet */
-@media (max-width: 992px) {
-  .why-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-/* Mobile */
-@media (max-width: 576px) {
-  .why-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
 
 /* ================= DESTINATIONS SECTION ================= */
 
@@ -1075,6 +936,134 @@ body {
   }
 }
 
+/* ================= WHY CHOOSE US ================= */
+
+.why-us {
+  background: linear-gradient(
+    180deg,
+    #0f1114 0%,
+    #151a20 100%
+  );
+  padding: 80px 20px;
+}
+
+.why-container {
+  max-width: 1200px;
+  margin: auto;
+}
+
+.why-us h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 36px;
+  color: #ffffff;
+  margin-bottom: 40px;
+}
+
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.why-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1); /* more visible */
+  border-radius: 16px;
+
+  padding: 32px 28px;   /* 🔑 increased padding */
+  min-height: 200px;    /* 🔑 taller cards */
+
+  transition: 
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease,
+    background 0.25s ease;
+}
+
+
+
+.why-card:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.35);
+  transform: translateY(-6px);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+}
+
+.why-icon {
+  font-size: 34px;
+  margin-bottom: 18px;
+}
+
+
+.why-card h3 {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+
+.why-card p {
+  font-size: 14px;
+  line-height: 1.65;
+}
+.why-us {
+  background: linear-gradient(
+    180deg,
+    #0f1114 0%,
+    #151a20 100%
+  );
+  padding: 100px 20px;
+}
+
+.why-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.why-us h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 42px;
+  color: #ffffff;
+  margin-bottom: 60px;
+}
+
+/* ================= WHY CHOOSE US ================= */
+
+.why-us {
+  background:#111417;
+  padding: 100px 20px;
+}
+
+.why-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.why-us h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 42px;
+  color: #ffffff;
+  margin-bottom: 60px;
+}
+
+/* GRID (THIS WAS MISSING LOGICALLY) */
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 28px;
+}
+
+/* Tablet */
+@media (max-width: 992px) {
+  .why-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobile */
+@media (max-width: 576px) {
+  .why-grid {
+    grid-template-columns: 1fr;
+  }
+}
 
 
 /* ================= INSPIRATION SECTION ================= */
