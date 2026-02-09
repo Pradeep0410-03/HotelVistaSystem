@@ -218,10 +218,9 @@ body {
   color: #ffffff;
 }
 /* ================= MOBILE NAVBAR ================= */
-
 /* Hamburger button */
 .nav-toggle {
-  display: none;              /* hidden on desktop */
+  display: none;             
   background: none;
   border: none;
   font-size: 22px;
@@ -266,8 +265,8 @@ body {
 }
 
 
-/* ================= HERO SECTION ================= */
-
+/*===================HERO SECTION===================*/
+ 
 .hero {
    background:#0b1220;
   padding-top: 80px;     
@@ -310,7 +309,7 @@ body {
   border-radius: 16px;
   backdrop-filter: blur(10px);
   margin-top: 26px;
-
+  
   width: fit-content;       
   max-width: 100%;
   position: relative;
@@ -495,63 +494,236 @@ margin-left: 10px;
 
 /* ================= DESTINATIONS SECTION ================= */
 
-.destinations {
-  padding: 140px 20px;
-  background:
-   #111417
+/* =====================================================
+   GLOBAL RESET
+===================================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-/* Section header */
+body {
+  background: #111417;
+  color: #ffffff;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* =====================================================
+   SECTION SYSTEM 
+===================================================== */
+.section {
+  padding: 40px 0;
+  background: #0f1115;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+/* =====================================================
+   SECTION HEADER
+===================================================== */
 .section-header {
-  max-width: 720px;
-  margin: 0 auto 70px;
-  text-align: center;
+  margin-bottom: 16px;
+  text-align: left;
+   padding-left: 4px;
 }
 
 .section-header h2 {
-  font-family: 'Playfair Display', serif;
-  font-size: 44px;
-  color: #f5f5f5;
-  margin-bottom: 14px;
+  font-size: 20px;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 4px;
 }
 
 .section-header p {
-  font-family: 'Poppins', sans-serif;
-  font-size: 16px;
-  color: #cfcfcf;
+  font-size: 13px;
+  color: #b3b3b3;
 }
 
-.section-header::after {
+/* =====================================================
+   HORIZONTAL SCROLL (shared)
+===================================================== */
+.explore-grid,
+.property-type-grid {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding-bottom: 4px;
+}
+
+.explore-grid::-webkit-scrollbar,
+.property-type-grid::-webkit-scrollbar {
+  display: none;
+}
+
+.explore-grid,
+.property-type-grid {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* =====================================================
+   EXPLORE INDIA
+===================================================== */
+.explore-card {
+  min-width: 200px;
+  text-decoration: none;
+  color: #ffffff;
+  flex-shrink: 0;
+}
+
+.explore-card img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 12px;
+  transition: transform 0.35s ease;
+}
+.explore-card:hover img {
+  transform: scale(1.04);
+}
+
+.explore-card h3 {
+  font-size: 14px;
+  font-weight: 500;
+  margin-top: 8px;
+}
+.explore-card:hover h3 {
+  text-decoration: underline;
+}
+
+
+.explore-card span {
+  font-size: 12px;
+  color: #b3b3b3;
+}
+.scroll-wrapper {
+  position: relative;
+}
+/* ================= SCROLL WRAPPER ================= */
+.scroll-wrapper {
+  position: relative;
+}
+
+/* ================= ARROW BUTTONS ================= */
+.scroll-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  background: #ffffff;
+  color: #000000;
+  font-size: 20px;
+  cursor: pointer;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+}
+
+/* Position */
+.scroll-btn.left {
+  left: -12px;
+}
+
+.scroll-btn.right {
+  right: -12px;
+}
+
+/* Hover */
+.scroll-btn:hover {
+  background: #f2f2f2;
+}
+
+/* Hide arrows on mobile */
+@media (max-width: 640px) {
+  .scroll-btn {
+    display: none;
+  }
+}
+
+/* ================= OPTIONAL EDGE FADE (Booking polish) ================= */
+.scroll-wrapper::before,
+.scroll-wrapper::after {
   content: "";
-  display: block;
-  width: 60px;
-  height: 2px;
-  background: #2563eb;
-  margin: 22px auto 0;
-  opacity: 0.7;
+  position: absolute;
+  top: 0;
+  width: 40px;
+  height: 100%;
+  z-index: 5;
+  pointer-events: none;
 }
 
-/* Grid */
+.scroll-wrapper::before {
+  left: 0;
+  background: linear-gradient(to right, #0f1115, transparent);
+}
+
+.scroll-wrapper::after {
+  right: 0;
+  background: linear-gradient(to left, #0f1115, transparent);
+}
+
+
+/* =====================================================
+   BROWSE BY PROPERTY TYPE
+===================================================== */
+.property-type-card {
+  min-width: 260px;
+  text-decoration: none;
+  color: #ffffff;
+  flex-shrink: 0;
+}
+
+.property-type-card img {
+  width: 100%;
+  height: 170px;
+  object-fit: cover;
+  border-radius: 12px;
+  transition: transform 0.3s ease;
+}
+
+.property-type-card h3 {
+  margin-top: 8px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.property-type-card:hover img {
+  transform: scale(1.03);
+}
+
+/* =====================================================
+   TRENDING DESTINATIONS
+===================================================== */
+.trending-destinations {
+  padding: 48px 0 56px;
+}
+
 .destinations-grid {
-  max-width: 1200px;
-  margin: auto;
   display: grid;
   grid-template-columns: repeat(6, 1fr);
-  grid-auto-rows: 260px;
-  gap: 24px;
+  grid-auto-rows: 240px;
+  gap: 20px;
 }
 
-/* Cards */
 .destination-card {
   grid-column: span 2;
   position: relative;
-  border-radius: 1.25rem;
+  border-radius: 16px;
   overflow: hidden;
-  cursor: pointer;
   text-decoration: none;
-  background: #111;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.25);
-  transition: transform 0.35s ease;
+  color: #fff;
+  min-height: 240px;
 }
 
 .destination-card.large {
@@ -562,129 +734,69 @@ margin-left: 10px;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.6s ease;
+   display: block;
+
+  transition: transform 0.4s ease;
 }
 
 /* Overlay */
 .destination-overlay {
-  position: absolute;
+  position: absolute;  
   inset: 0;
-  background: linear-gradient(
-    180deg,
-    rgba(0,0,0,0.05),
-    rgba(0,0,0,0.75)
-  );
+  z-index: 2;
+ 
   display: flex;
   align-items: flex-end;
-  padding: 22px;
+  justify-content: flex-start;
+  padding: 16px;
 }
-
 .destination-text {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
+  position: relative;
+  z-index: 3;
+  color: #ffffff;
+  
 }
-
 .destination-text h3 {
-  font-family: 'Poppins', sans-serif;
-  font-size: 20px;
-  color: #fff;
+  font-size: 18px;
+  font-weight: 600;
+   margin: 0;
+  color: #ffffff;
 }
 
-.destination-count {
-  font-size: 14px;
+.destination-text span {
+  font-size: 13px;
   color: #d1d5db;
 }
 
 /* Badge */
 .destination-badge {
   position: absolute;
-  top: 14px;
-  left: 14px;
+  top: 12px;
+  left: 12px;
   background: #2563eb;
   color: #fff;
-  font-size: 12px;
+  font-size: 11px;
   padding: 4px 10px;
   border-radius: 999px;
   z-index: 2;
 }
 
 /* Hover */
-.destination-card:hover {
-  transform: translateY(-6px);
-}
-
 .destination-card:hover img {
-  transform: scale(1.06);
+  transform: scale(1.05);
 }
-/* ================= MOBILE FIX : TRENDING DESTINATIONS ================= */
 
+/* ================= MOBILE ================= */
 @media (max-width: 640px) {
-
-  /* Section spacing */
-  .destinations {
-    padding: 80px 16px;
-  }
-
-  /* Header text scaling */
-  .section-header h2 {
-    font-size: 30px;
-    line-height: 1.2;
-  }
-
-  .section-header p {
-    font-size: 14px;
-    line-height: 1.6;
-  }
-
-  /* Grid becomes single column */
   .destinations-grid {
     grid-template-columns: 1fr;
-    grid-auto-rows: auto; 
-    gap: 18px;
+    grid-auto-rows: auto;
   }
 
-  /* Cards: same behavior for large + normal */
   .destination-card,
   .destination-card.large {
     grid-column: span 1;
-    aspect-ratio: 16 / 9; /* Keeps image proportions clean */
-  }
-
-  /* Image behavior */
-  .destination-card img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center center;
-  }
-
-  /* Overlay spacing */
-  .destination-overlay {
-    padding: 16px;
-  }
-
-  .destination-text h3 {
-    font-size: 17px;
-    line-height: 1.2;
-  }
-
-  .destination-count {
-    font-size: 13px;
-    opacity: 0.9;
-  }
-
-  .destination-badge {
-    top: 12px;
-    left: 12px;
-    font-size: 11px;
-    padding: 3px 8px;
-  }
-
-  @media (hover: none) {
-    .destination-card:active {
-      transform: scale(0.97);
-    }
+    aspect-ratio: 16 / 9;
   }
 }
 
@@ -693,27 +805,37 @@ margin-left: 10px;
 ===================================================== */
 
 .rooms {
-  padding: 120px 0;
-  background: #111417
+  padding: 80px 0;
+  background:#0f1115;;
 
 }
 
 /* ---------- SECTION HEADER ---------- */
 
 .rooms-header {
-  max-width: 900px;
-  margin: 0 auto 80px;
-  text-align: center;
+  max-width: 1200px;
+  margin: 0 auto 40px;
+  padding: 0 20px;
+  text-align: left;
 }
 
 .rooms-header h2 {
   font-family: "Playfair Display", serif;
-  font-size: 40px;
+  font-size: 22px;
   letter-spacing: 0.3px;
-  font-weight: 600;
+  font-weight: 800;
+  line-height: 1.3;
   color: #f9fafb;
-  margin-bottom: 14px;
+  margin-bottom: 6px;
 }
+.rooms-header p {
+  font-size: 13px;
+  font-weight: 600;
+  color: #b3b3b3;
+  margin-top: 6px;
+  line-height: 1.4
+}
+
 
 .section-subtitle {
    font-size: 16px;
@@ -724,8 +846,9 @@ margin-left: 10px;
 /* ---------- CITY BLOCK ---------- */
 
 .city-rooms {
-  margin-bottom: 90px;
-  padding: 0 40px;
+  max-width: 1200px;
+  margin: 0 auto 70px; 
+  padding: 0 20px
 }
 
 .city-header {
@@ -736,10 +859,11 @@ margin-left: 10px;
 }
 
 .city-header h3 {
-  font-size: 26px;
+  font-size: 22px;
   font-weight: 600;
   color: #f3f4f6;
 }
+
 
 .city-link {
   font-size: 14px;
@@ -760,6 +884,7 @@ margin-left: 10px;
   overflow-x: auto;
   padding-bottom: 10px;
   scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
 }
 
 .rooms-container::-webkit-scrollbar {
@@ -923,8 +1048,12 @@ margin-left: 10px;
 /* ---------- MOBILE ---------- */
 
 @media (max-width: 768px) {
+   .rooms-header {
+    margin-bottom: 50px;
+  }
   .city-rooms {
-    padding: 0 20px;
+    padding: 0 25px;
+    margin-bottom: 50px;
   }
 
   .room-card {
@@ -939,24 +1068,21 @@ margin-left: 10px;
 /* ================= WHY CHOOSE US ================= */
 
 .why-us {
-  background: linear-gradient(
-    180deg,
-    #0f1114 0%,
-    #151a20 100%
-  );
+ background: #0f1115;
   padding: 80px 20px;
 }
 
 .why-container {
   max-width: 1200px;
-  margin: auto;
+  margin: 0 auto 60px;
+  padding: 0 20px;
 }
 
 .why-us h2 {
-  font-family: 'Playfair Display', serif;
-  font-size: 36px;
-  color: #ffffff;
-  margin-bottom: 40px;
+ font-size: 23px;    
+ font-weight: 500;
+  line-height: 1.3;
+  margin-bottom: 24px;
 }
 
 .why-grid {
@@ -966,13 +1092,10 @@ margin-left: 10px;
 }
 
 .why-card {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1); /* more visible */
-  border-radius: 16px;
-
-  padding: 32px 28px;   /* 🔑 increased padding */
-  min-height: 200px;    /* 🔑 taller cards */
-
+  background: #141a22;
+  border-radius: 14px;
+  padding: 18px;
+  transition: transform 0.25s ease;
   transition: 
     transform 0.25s ease,
     box-shadow 0.25s ease,
@@ -987,6 +1110,7 @@ margin-left: 10px;
   border-color: rgba(255, 255, 255, 0.35);
   transform: translateY(-6px);
   box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+   transform: translateY(-3px);
 }
 
 .why-icon {
@@ -1004,52 +1128,13 @@ margin-left: 10px;
   font-size: 14px;
   line-height: 1.65;
 }
-.why-us {
-  background: linear-gradient(
-    180deg,
-    #0f1114 0%,
-    #151a20 100%
-  );
-  padding: 100px 20px;
-}
 
 .why-container {
   max-width: 1200px;
   margin: 0 auto;
 }
 
-.why-us h2 {
-  font-family: 'Playfair Display', serif;
-  font-size: 42px;
-  color: #ffffff;
-  margin-bottom: 60px;
-}
 
-/* ================= WHY CHOOSE US ================= */
-
-.why-us {
-  background:#111417;
-  padding: 100px 20px;
-}
-
-.why-container {
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.why-us h2 {
-  font-family: 'Playfair Display', serif;
-  font-size: 42px;
-  color: #ffffff;
-  margin-bottom: 60px;
-}
-
-/* GRID (THIS WAS MISSING LOGICALLY) */
-.why-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 28px;
-}
 
 /* Tablet */
 @media (max-width: 992px) {
@@ -1069,18 +1154,18 @@ margin-left: 10px;
 /* ================= INSPIRATION SECTION ================= */
 
 .inspiration {
-  background: #111417;
-  padding: 64px 24px 48px; /* tighter like Airbnb */
+  background: #0f1115;
+  padding: 64px 24px 48px; 
 }
 
 .inspiration-container {
-  max-width: 1200px; /* wider container */
+  max-width: 1200px; 
   margin: 0 auto;
 }
 
 /* TITLE */
 .inspiration-title {
-  font-size: 26px;
+  font-size: 23px;
   font-weight: 500;
   letter-spacing: -0.2px;
   color: #f9fafb;
@@ -1091,14 +1176,14 @@ margin-left: 10px;
 
 .inspiration-tabs {
   display: flex;
-  gap: 22px;
+  gap: 55px;
   list-style: none;
   padding: 0;
   margin: 0 0 16px;
 }
 
 .inspiration-tabs li {
-  font-size: 14.5px;
+  font-size: 16.5px;
   font-weight: 500;
   color: #9ca3af;
   cursor: pointer;
@@ -1218,7 +1303,7 @@ margin-left: 10px;
    ========================= */
 
 .footer {
-  background: #111417;
+  background: #0f1115;
   padding: 60px 20px 28px;
   position: relative;
 }
