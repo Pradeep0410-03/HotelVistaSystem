@@ -4,7 +4,15 @@ A responsive accommodation discovery frontend for a multi-property booking platf
 
 ## Run
 
-Open the root `index.html`, or serve the repository root with a static web server:
+Open the root `index.html`, or use the dependency-free Node preview (Node 20+):
+
+```sh
+npm run dev
+```
+
+Visit http://localhost:5173. The preview serves public frontend assets only, without exposing backend or Git files. No package installation is required.
+
+Alternatively, serve the repository root with Python:
 
 ```sh
 python3 -m http.server 8000
