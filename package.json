@@ -1,0 +1,11 @@
+{
+  "name": "hotel-vista-frontend",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Hotel Vista static frontend and local preview",
+  "scripts": {
+    "dev": "node scripts/dev-server.mjs",
+    "test": "node --test tests/catalogue.test.cjs"
+  },
+  "engines": { "node": ">=20" }
+}
