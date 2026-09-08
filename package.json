@@ -5,7 +5,9 @@
   "description": "Hotel Vista static frontend and local preview",
   "scripts": {
     "dev": "node scripts/dev-server.mjs",
-    "test": "node --test tests/catalogue.test.cjs"
+    "test": "node --test tests/*.test.cjs"
   },
-  "engines": { "node": ">=20" }
+  "engines": {
+    "node": ">=20"
+  }
 }

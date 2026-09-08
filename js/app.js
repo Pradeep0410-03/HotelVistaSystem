@@ -149,9 +149,12 @@ $("property-grid").addEventListener("click",e=>{
 });
 function openProperty(id,trigger) {
   const p=properties.find(item=>item.id===id);if(!p)return;
+  if(!readTrip()) { $("search-error").scrollIntoView({block:"center"}); return; }
+  if(state.guests>p.capacity*state.rooms || state.rooms>p.rooms) { announce("This stay cannot fit your selection. Adjust guests or rooms."); return; }
   previousFocus=trigger;
   const {nights,subtotal}=estimate(p.price,state.checkin,state.checkout,state.rooms);
-  $("detail-content").innerHTML='<img class="detail-hero" src="'+p.image+'" alt="'+escape(p.name)+' — illustrative room photo"><div class="detail-body"><p class="property-location">'+escape(p.area)+' · '+escape(p.city)+' · '+escape(p.type)+'</p><h2 id="detail-title">'+escape(p.name)+'</h2><p>'+escape(p.details)+'</p><div class="detail-meta">'+p.amenities.map(a=>'<span>'+escape(a)+'</span>').join("")+'<span>Up to '+p.capacity+' guests per room</span></div><div class="stay-summary"><span>'+escape(state.checkin)+' → '+escape(state.checkout)+'<br>'+nights+' '+(nights===1?"night":"nights")+' · '+state.rooms+' '+(state.rooms===1?"room":"rooms")+' · '+state.guests+' '+(state.guests===1?"guest":"guests")+'</span><strong>'+money(subtotal)+'</strong><span>'+money(p.price)+' × '+nights+' '+(nights===1?'night':'nights')+' × '+state.rooms+' '+(state.rooms===1?'room':'rooms')+'</span><span>Estimated subtotal</span></div><p class="detail-notice">This is a sample property with illustrative photos and pricing. Taxes and fees are not included. Live availability, final prices and reservations are not connected yet; no booking or payment will be made.</p></div>';
+  $("detail-content").innerHTML='<img class="detail-hero" src="'+p.image+'" alt="'+escape(p.name)+' — illustrative room photo"><div class="detail-body"><p class="property-location">'+escape(p.area)+' · '+escape(p.city)+' · '+escape(p.type)+'</p><h2 id="detail-title">'+escape(p.name)+'</h2><p>'+escape(p.details)+'</p><div class="detail-meta">'+p.amenities.map(a=>'<span>'+escape(a)+'</span>').join("")+'<span>Up to '+p.capacity+' guests per room</span></div><div class="stay-summary"><span>'+escape(state.checkin)+' → '+escape(state.checkout)+'<br>'+nights+' '+(nights===1?"night":"nights")+' · '+state.rooms+' '+(state.rooms===1?"room":"rooms")+' · '+state.guests+' '+(state.guests===1?"guest":"guests")+'</span><strong>'+money(subtotal)+'</strong><span>'+money(p.price)+' × '+nights+' '+(nights===1?'night':'nights')+' × '+state.rooms+' '+(state.rooms===1?'room':'rooms')+'</span><span>Estimated subtotal</span></div><p class="detail-notice">This is a sample property with illustrative photos and pricing. Taxes and fees are not included. Live availability, final prices and reservations are not connected yet; no booking or payment will be made.</p><a class="primary-button" id="reserve-stay">Reserve · sign in</a></div>';
+  $("reserve-stay").href=window.HotelVistaIntent.link("login.html", {property:id,checkin:state.checkin,checkout:state.checkout,guests:state.guests,rooms:state.rooms});
   $("property-dialog").showModal();document.body.classList.add("dialog-open");
 }
 $("close-dialog").addEventListener("click",()=>$("property-dialog").close());
@@ -171,4 +174,6 @@ const guests=Number(params.get("guests")),rooms=Number(params.get("rooms"));
 if(Number.isInteger(guests)&&guests>=1&&guests<=20)draftGuests=guests;
 if(Number.isInteger(rooms)&&rooms>=1&&rooms<=8&&rooms<=draftGuests)draftRooms=rooms;
 updateGuests();readTrip();state.query=$("destination").value.trim();render();
+const returnedTrip=window.HotelVistaIntent.parse(params,properties,today);
+if(returnedTrip)openProperty(returnedTrip.property,document.querySelector('[data-detail="'+returnedTrip.property+'"]'));
 })();
