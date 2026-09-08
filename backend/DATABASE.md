@@ -1,8 +1,10 @@
 # Database phase: PostgreSQL
 
+For the Spring application, start with [backend setup](README.md): Flyway now applies V1 at startup to a fresh database. The manual commands below remain useful for isolated schema exercises.
+
 Start with [the diagram and SQL walkthrough](../docs/database-design.md).
 
-The first migration lives at `src/main/resources/db/migration/V1__create_hotel_vista_schema.sql`. This follows Flyway naming for the future Spring project; Flyway and Spring are not configured yet. There are no real credentials or seed users in the migration. Existing empty JavaScript backend placeholders are left untouched for now.
+The first migration lives at `src/main/resources/db/migration/V1__create_hotel_vista_schema.sql`. This follows Flyway naming for the future Spring project; Flyway is configured by the Spring foundation; the commands below are the alternative manual route for a separate database. There are no real credentials or seed users in the migration. Existing empty JavaScript backend placeholders are left untouched for now.
 
 ## Run locally once PostgreSQL is installed
 
@@ -31,4 +33,4 @@ Checks include duplicate email with changed case, overselling, negative inventor
 
 Executed the migration and SQL checks using PGlite's embedded PostgreSQL engine in a temporary local validation environment. Confirmed six tables and no retained user fixture after rollback. A standalone PostgreSQL server, Flyway integration and multi-connection concurrency tests have not been run here. The commands above are the repeatable standalone PostgreSQL verification step.
 
-No database has been deployed or connected to the frontend. Next phase: Spring Boot foundation and a database-backed API.
+No database has been deployed or connected to the frontend. The Spring foundation now provides a property API; see README.md for its separate verification results and setup.
