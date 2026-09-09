@@ -15,3 +15,16 @@
 .account-nav{display:flex;align-items:center;gap:16px;font-size:14px;white-space:nowrap}.register-link{border:1px solid #7892a7;border-radius:7px;padding:9px 13px}.account-nav a:hover{color:#8edfd5}@media(max-width:1050px){.nav{gap:20px}.nav nav{gap:16px}}@media(max-width:700px){.nav{height:auto;min-height:76px;flex-wrap:wrap;padding-block:14px;gap:12px}.nav nav{order:3;width:100%;height:auto;margin-left:0;justify-content:space-between}.nav .nav-link{display:flex;height:auto;padding:7px 0}.account-nav{margin-left:auto;gap:12px}.register-link{padding:7px 10px}.nav-link.active:after{display:none}}
 
 .account-nav button{font:inherit;background:transparent;color:inherit;cursor:pointer}.account-name{max-width:140px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+/* Database browsing uses actual API fields, without sample prices or imagery. */
+[hidden]{display:none!important}
+.catalogue-switch{display:flex;gap:1rem;flex-wrap:wrap;padding-top:1.5rem;padding-bottom:1.5rem}
+.database-browse{padding-top:2rem;padding-bottom:4rem;min-height:65vh}
+.database-browse h1{font-size:clamp(2rem,5vw,3.5rem);margin:.6rem 0}
+.database-search{display:flex;gap:1rem;align-items:end;flex-wrap:wrap;margin:2rem 0}
+.database-search label{display:grid;gap:.5rem;flex:1;min-width:180px;font-weight:600}
+.database-search input{font:inherit;border:1px solid #8b9ab0;border-radius:8px;padding:.85rem;width:100%}
+.database-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:1rem;margin:1.5rem 0}
+.database-card{padding:1.5rem;border:1px solid #d6deea;border-radius:16px;background:white;overflow-wrap:anywhere}
+.database-card h2{font-size:1.4rem;margin:.75rem 0}.database-card p{margin:.75rem 0;line-height:1.6}
+.database-pagination{display:flex;gap:1.5rem;align-items:center}.database-pagination button:disabled{opacity:.45;cursor:default}
