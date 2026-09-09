@@ -1,6 +1,6 @@
 # Hotel Vista Spring Boot foundation
 
-This phase provides a read-only property API with Spring Boot 3.5.16, Java 17, Spring Data JPA, PostgreSQL and Flyway. It builds on V1 from the database phase. No login, booking or administration API exists yet; the hosted frontend continues to use its sample catalogue.
+This backend provides account authentication and a read-only property API with Spring Boot 3.5.16, Java 17, Spring Data JPA, PostgreSQL and Flyway. It builds on V1 from the database phase. Registration/login/session APIs are described in [authentication](../docs/authentication.md). No booking or administration feature API exists yet; the hosted frontend continues to use its sample catalogue.
 
 ## 1. Install prerequisites
 
@@ -34,7 +34,7 @@ Do not commit passwords or put them into JDBC URLs. For hosted PostgreSQL later,
 From `backend/`:
 
 ```sh
-mvn spring-boot:run
+mvn spring-boot:run -Dspring-boot.run.profiles=local
 ```
 
 Flyway creates the six tables and records V1 in `flyway_schema_history`. Hibernate validates the entity mapping; it does not create or alter the schema. Application startup requires a reachable database. The five-connection pool is a small initial development setting, not a capacity guarantee.
@@ -67,7 +67,7 @@ The generated ID is database-owned and need not be 1. This listing has no room i
 
 `page` is zero-based, limited to 0-10000; `size` is 1-50. Empty/whitespace city means all active properties. City supports up to 100 characters; it does not resolve aliases or perform substring search yet. Bad numbers and out-of-range input return 400. A slice gives `hasNext` without a total count. No price, room availability or booking claim is returned.
 
-Catalogue GET routes are intentionally public. Only these reads are implemented; no credentials or user records are exposed. Spring Security and CSRF-protected state-changing endpoints belong to the next account phase. No permissive cross-origin configuration is added. Visiting the API in the browser works; connecting the hosted frontend needs a deliberate same-origin/proxy or limited CORS setup later.
+Catalogue GET routes are intentionally public. Spring Security now protects account sessions and denies unspecified routes. Registration/login/logout require CSRF; see the authentication guide for the exact request sequence. Use the local profile only for HTTP development, never on a public host. No permissive cross-origin configuration is added. Visiting the API in the browser works; connecting the hosted frontend needs a deliberate same-origin/proxy or limited CORS setup later.
 
 ## Verification
 
@@ -76,13 +76,13 @@ mvn test
 mvn package
 ```
 
-Controller checks run without a database. They verify response shape, validation and refusal of POST requests. To verify the full controller/service/JPA/Flyway path, set DB_URL, DB_USERNAME and DB_PASSWORD to a fresh disposable PostgreSQL database, then run:
+Controller, account-service and security-filter checks run without a database. They verify response shape, validation, hashing, sessions, CSRF and access boundaries. To verify the full controller/service/JPA/Flyway path, set DB_URL, DB_USERNAME and DB_PASSWORD to a fresh disposable PostgreSQL database, then run:
 
 ```sh
 mvn -Pintegration verify
 ```
 
-Integration tests migrate the schema and roll back their test fixtures; schema history and identity sequence increments remain. They require a real reachable PostgreSQL-compatible service, do not silently skip when it is unavailable, and do not use H2. Never point them at a production database.
+Integration tests migrate the schema. Property tests roll back their fixtures; authentication tests delete their uniquely named test user after requests; schema history and identity sequence increments remain. They require a real reachable PostgreSQL-compatible service, do not silently skip when it is unavailable, and do not use H2. Never point them at a production database.
 
 The packaged application is `target/hotel-vista-api-0.1.0-SNAPSHOT.jar`, runnable with `java -jar` and the same environment variables.
 

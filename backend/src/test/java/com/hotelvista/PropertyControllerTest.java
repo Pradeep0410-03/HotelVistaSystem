@@ -1,6 +1,8 @@
 package com.hotelvista;
 
 import com.hotelvista.property.*;
+import com.hotelvista.config.SecurityConfig;
+import org.springframework.context.annotation.Import;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @WebMvcTest(PropertyController.class)
+@Import(SecurityConfig.class)
 class PropertyControllerTest {
     @Autowired MockMvc mvc;
     @MockitoBean PropertyService service;
@@ -37,7 +40,7 @@ class PropertyControllerTest {
 
     @Test void offersNoWriteEndpoint() throws Exception {
         mvc.perform(post("/api/properties").contentType("application/json").content("{}"))
-                .andExpect(status().isMethodNotAllowed());
+                .andExpect(status().isForbidden());
         verifyNoInteractions(service);
     }
 }
