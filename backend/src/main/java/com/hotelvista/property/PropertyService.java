@@ -14,7 +14,13 @@ public class PropertyService {
     public PropertyService(PropertyRepository repository) { this.repository = repository; }
 
     public PropertyPage list(String city, int page, int size) {
-        var result = repository.findActive(city.strip(),
+        var result = repository.findActive(switch(city.strip().toLowerCase(java.util.Locale.ROOT)) {
+            case "new delhi" -> "Delhi";
+            case "bangalore" -> "Bengaluru";
+            case "pondicherry" -> "Puducherry";
+            case "mysore" -> "Mysuru";
+            default -> city.strip();
+        },
                 PageRequest.of(page, size, Sort.by("id").ascending()));
         return new PropertyPage(result.getContent().stream().map(PropertyResponse::from).toList(),
                 page, size, result.hasNext());
