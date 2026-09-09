@@ -11,6 +11,11 @@ import org.springframework.web.server.ResponseStatusException;
 
 @RestControllerAdvice
 public class ApiErrors {
+    @ExceptionHandler(com.hotelvista.booking.BookingFailure.class)
+    public ProblemDetail booking(com.hotelvista.booking.BookingFailure error) {
+        return ProblemDetail.forStatusAndDetail(error.status(),error.getMessage());
+    }
+
     @ExceptionHandler({ConstraintViolationException.class, MethodArgumentTypeMismatchException.class})
     public ProblemDetail invalidInput(Exception ignored) {
         return ProblemDetail.forStatusAndDetail(HttpStatus.BAD_REQUEST,
@@ -20,7 +25,7 @@ public class ApiErrors {
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ProblemDetail invalidAccount(MethodArgumentNotValidException ignored) {
         return ProblemDetail.forStatusAndDetail(HttpStatus.BAD_REQUEST,
-                "Provide a name (1-100 characters), valid email (up to 254), and password (8-128 characters).");
+                "Check the required fields and their permitted lengths, dates and numeric ranges.");
     }
 
     @ExceptionHandler(DataIntegrityViolationException.class)

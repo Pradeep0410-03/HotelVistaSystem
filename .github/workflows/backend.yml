@@ -1,10 +1,10 @@
 name: Backend checks
 on:
   pull_request:
-    paths: ['backend/**', 'index.html', 'login.html', 'register.html', 'js/**', 'css/**', 'assets/optimized/**', 'tests/**', '.github/workflows/backend.yml']
+    paths: ['backend/**', 'index.html', 'login.html', 'register.html', 'bookings.html', 'js/**', 'css/**', 'assets/optimized/**', 'tests/**', '.github/workflows/backend.yml']
   push:
     branches: [master]
-    paths: ['backend/**', 'index.html', 'login.html', 'register.html', 'js/**', 'css/**', 'assets/optimized/**', 'tests/**', '.github/workflows/backend.yml']
+    paths: ['backend/**', 'index.html', 'login.html', 'register.html', 'bookings.html', 'js/**', 'css/**', 'assets/optimized/**', 'tests/**', '.github/workflows/backend.yml']
 permissions:
   contents: read
 jobs:

@@ -32,9 +32,16 @@
         result.options.forEach(option => {
           const row = element('div','', 'room-option');
           row.append(element('h3',option.name),element('p',option.availableRooms + ' rooms available · up to ' + option.capacityPerRoom + ' guests per room'),element('p',money(option.nightlyPrice) + ' per room/night · ' + money(option.subtotal) + ' stay subtotal'));
-          output.append(row);
+          const select = element('button','Review booking','primary-button'); select.type='button';
+          select.addEventListener('click',()=>{
+            try {
+              sessionStorage.setItem('hotelvista-booking-draft',JSON.stringify({propertyId:property.id,roomTypeId:option.roomTypeId,...trip}));
+              location.assign('bookings.html');
+            } catch { output.append(element('p','Allow session storage to preserve your room selection.')); }
+          });
+          row.append(select); output.append(row);
         });
-        output.append(element('p',result.cancellationPolicy), element('p','Free cancellation deadline: ' + new Intl.DateTimeFormat('en-IN',{dateStyle:'medium',timeStyle:'short',timeZone:result.timezone}).format(new Date(result.cancellationDeadline)) + ' (' + result.timezone + ').'),element('p','This check does not hold rooms. Taxes and fees are not included; booking confirmation is not connected yet.'));
+        output.append(element('p',result.cancellationPolicy), element('p','Free cancellation deadline: ' + new Intl.DateTimeFormat('en-IN',{dateStyle:'medium',timeStyle:'short',timeZone:result.timezone}).format(new Date(result.cancellationDeadline)) + ' (' + result.timezone + ').'),element('p','This check does not hold rooms. Review the price and cancellation policy before confirming. No additional taxes or fees are calculated in this project version.'));
       } catch(error) { output.textContent = error.message || 'Availability could not be checked.'; }
       finally { button.disabled = false; }
     });
