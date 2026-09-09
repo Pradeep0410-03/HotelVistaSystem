@@ -39,7 +39,7 @@ mvn spring-boot:run -Dspring-boot.run.profiles=local
 
 Flyway creates the six tables and records V1 in `flyway_schema_history`. Hibernate validates the entity mapping; it does not create or alter the schema. Application startup requires a reachable database. The five-connection pool is a small initial development setting, not a capacity guarantee.
 
-Open `http://localhost:8080/index.html` to use the frontend with real registration and session login. See [frontend integration](../docs/frontend-auth-integration.md) for the walkthrough. The catalogue still uses sample data.
+Open `http://localhost:8080/index.html` to use the frontend with real registration and session login. See [frontend integration](../docs/frontend-auth-integration.md) for the walkthrough. Database browsing and room availability are connected; the sample catalogue remains separately accessible. See [room availability](../docs/room-availability.md).
 
 Open `http://localhost:8080/api/properties` in your browser. A fresh database correctly returns:
 
@@ -88,6 +88,6 @@ Integration tests migrate the schema. Property tests roll back their fixtures; a
 
 The packaged application is `target/hotel-vista-api-0.1.0-SNAPSHOT.jar`, runnable with `java -jar` and the same environment variables.
 
-Read [the request walkthrough](../docs/spring-foundation.md) next. Existing empty JavaScript backend placeholders are historical files, not part of this Maven application.
+Read [the request walkthrough](../docs/spring-foundation.md) next. The application code lives in `src/main/java/com/hotelvista/`; the original empty Node backend scaffolding has been removed.
 
 Reference: [Spring Boot 3.5 requirements](https://docs.spring.io/spring-boot/3.5/system-requirements.html).

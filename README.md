@@ -1,61 +1,57 @@
 # Hotel Vista
 
-A responsive accommodation discovery frontend for a multi-property booking platform, written in HTML, CSS and JavaScript.
+A multi-property accommodation project built in phases using HTML, CSS, JavaScript, Spring Boot and PostgreSQL.
 
-## Run
+## Run the integrated application
 
-Open the root `index.html`, or use the dependency-free Node preview (Node 20+):
-
-```sh
-npm run dev
-```
-
-Visit http://localhost:5173. The preview serves public frontend assets only, without exposing backend or Git files. No package installation is required.
-
-Alternatively, serve the repository root with Python:
+Follow [backend setup](backend/README.md) to configure Java, Maven and PostgreSQL. From `backend/`:
 
 ```sh
-python3 -m http.server 8000
+mvn spring-boot:run -Dspring-boot.run.profiles=local
 ```
 
-Visit http://localhost:8000. There is no frontend dependency installation or build step. The empty `backend/package.json` is a legacy placeholder, not a runnable Node application.
+Open http://localhost:8080/index.html. Use the local profile only for local HTTP development.
 
-## What works
+For a static frontend preview only, run `npm run dev` from the repository root (Node 20+) and open http://localhost:5173. This preview does not run Java or provide account/database APIs.
 
-- Destination/property-name search with Delhi/New Delhi and Bangalore/Bengaluru aliases.
-- Check-in/check-out validation and guest/room controls.
-- Budget, property-type and amenity filters, sorting and empty results.
-- Device-local saved stays (localStorage, with an in-memory fallback).
-- Accessible native property-detail dialog and an estimated trip subtotal.
-- Search parameters in the URL for reopening the same trip.
-- Responsive layouts, reduced-motion support, keyboard focus and optimized WebP assets.
+## Current capabilities
 
-## Demo boundaries
+- Registration, session login and logout through Spring Security.
+- Database property browsing, city search, pagination and details.
+- Date-based room availability and server-calculated INR subtotals.
+- Uniform pay-at-hotel cancellation policy with a property-local deadline.
+- A separate sample booking flow with filters, saved stays and illustrative prices.
 
-All property names, descriptions, capacities, quantities and prices in `js/properties.js` are sample data. Photos are illustrative assets retained from the original repository. No rating or review counts are presented as real.
+Booking confirmation, inventory reservation, My bookings and administration are not implemented yet. Availability checks do not hold rooms. The hosted static preview is separate from the integrated application.
 
-Search filters sample capacity and quantities; it does **not** check date-specific inventory. A property detail shows an estimate, not a guaranteed price. No booking, payment, account or authentication is created. Taxes and fees are excluded from estimates. Saved stays are local to the browser/device, not an account.
+## Project structure
 
-## Structure
+| Path | Purpose |
+|---|---|
+| `index.html`, `login.html`, `register.html` | Frontend pages |
+| `css/` | Styles |
+| `js/` | Frontend UI, API clients and sample catalogue |
+| `assets/optimized/` | Images used by the frontend |
+| `backend/pom.xml` | Java dependencies and Maven build |
+| `backend/src/main/java/com/hotelvista/` | Spring application: auth, property, room, config and common packages |
+| `backend/src/main/resources/` | Application configuration and Flyway migration |
+| `backend/src/test/` | Java tests |
+| `backend/tests/` | Standalone SQL schema checks |
+| `tests/` | Frontend logic and API-client tests |
+| `scripts/` | Static preview server |
+| `docs/` | Phase explanations and design notes |
+| `.github/workflows/` | Automated checks |
 
-- `index.html`: canonical frontend entry.
-- `css/style.css`: shared theme, layout, responsive and interaction states.
-- `js/properties.js`: sample catalogue adapter.
-- `js/catalogue.js`: pure matching, date validation and estimate logic.
-- `js/app.js`: UI state and events.
-- `assets/optimized/`: WebP copies used by the current UI.
-- `frontend/index.html`: redirect to the canonical entry.
-- `docs/frontend-redesign.md`: decisions and backend integration boundaries.
-- `tests/catalogue.test.cjs`: dependency-free logic checks.
-- `backend/`: existing, unimplemented placeholders.
+The original empty Node backend folders have been removed. The working security configuration is in `backend/src/main/java/com/hotelvista/config/`. Root `package.json` runs frontend tooling; `backend/pom.xml` builds the backend.
 
-Older standalone scripts and original JPGs remain for reference; the redesigned page does not load them.
+`frontend/index.html` remains a compatibility redirect. Older standalone frontend scripts and original JPG assets remain as reference material; this cleanup only removes empty backend scaffolding.
 
-## Check
+## Learn and verify
+
+Read [authentication](docs/authentication.md), [frontend integration](docs/frontend-auth-integration.md), [property browsing](docs/property-browsing.md) and [room availability](docs/room-availability.md).
 
 ```sh
-node --test tests/catalogue.test.cjs
-node --check js/app.js
+node --test tests/*.test.cjs
 ```
 
-The next backend phase should replace the sample catalogue with Spring API responses and implement server-owned availability, pricing, authentication and booking authorization.
+From `backend/`, run `mvn test` or `mvn -Pintegration verify` with a disposable PostgreSQL database configured. GitHub Actions runs frontend and PostgreSQL-backed checks.
