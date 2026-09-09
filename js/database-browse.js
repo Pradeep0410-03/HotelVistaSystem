@@ -9,6 +9,37 @@
     if (className) node.className = className;
     return node;
   }
+  function availabilityForm(property) {
+    const form = document.createElement('form'); form.className = 'availability-form';
+    const fields = {};
+    for (const [name,label,type,value] of [['checkin','Check-in','date',''],['checkout','Check-out','date',''],['guests','Guests','number','2'],['rooms','Rooms','number','1']]) {
+      const wrapper = element('label',label); const input = document.createElement('input');
+      input.type = type; input.required = true; input.value = value;
+      if (type === 'number') { input.min = '1'; input.max = name === 'guests' ? '100' : '20'; }
+      wrapper.append(input); form.append(wrapper); fields[name] = input;
+    }
+    const button = element('button','Check room availability','primary-button'); button.type = 'submit';
+    const output = element('div',''); output.setAttribute('role','status');
+    form.append(button,output);
+    form.addEventListener('submit',async event => {
+      event.preventDefault(); if (button.disabled || !form.reportValidity()) return;
+      const trip = {checkin:fields.checkin.value,checkout:fields.checkout.value,guests:Number(fields.guests.value),rooms:Number(fields.rooms.value)};
+      button.disabled = true; output.textContent = 'Checking every night…';
+      try {
+        const result = await api.availability(property.id,trip,AbortSignal.timeout(15000));
+        output.replaceChildren(element('p', result.options.length ? 'Room options for ' + trip.checkin + ' to ' + trip.checkout + ' · ' + trip.rooms + ' room(s) · ' + trip.guests + ' guest(s)' : 'No room type meets this request for every night. Try different dates or fewer rooms.'));
+        const money = value => new Intl.NumberFormat('en-IN',{style:'currency',currency:'INR'}).format(value);
+        result.options.forEach(option => {
+          const row = element('div','', 'room-option');
+          row.append(element('h3',option.name),element('p',option.availableRooms + ' rooms available · up to ' + option.capacityPerRoom + ' guests per room'),element('p',money(option.nightlyPrice) + ' per room/night · ' + money(option.subtotal) + ' stay subtotal'));
+          output.append(row);
+        });
+        output.append(element('p',result.cancellationPolicy), element('p','Free cancellation deadline: ' + new Intl.DateTimeFormat('en-IN',{dateStyle:'medium',timeStyle:'short',timeZone:result.timezone}).format(new Date(result.cancellationDeadline)) + ' (' + result.timezone + ').'),element('p','This check does not hold rooms. Taxes and fees are not included; booking confirmation is not connected yet.'));
+      } catch(error) { output.textContent = error.message || 'Availability could not be checked.'; }
+      finally { button.disabled = false; }
+    });
+    return form;
+  }
   function card(property) {
     const article = element('article', '', 'database-card');
     article.append(element('span', property.propertyType.replaceAll('_',' '), 'eyebrow dark'), element('h2', property.name), element('p', property.city), element('p', property.address));
@@ -19,7 +50,7 @@
       button.disabled = true;
       try {
         const value = await api.detail(property.id, AbortSignal.timeout(15000));
-        detail.replaceChildren(element('p',value.description || 'No description has been added yet.'),element('p','Local timezone: ' + value.timezone),element('p','Rooms and booking are not available yet.'));
+        detail.replaceChildren(element('p',value.description || 'No description has been added yet.'),element('p','Local timezone: ' + value.timezone),availabilityForm(property));
         detail.hidden = false; button.setAttribute('aria-expanded','true'); button.textContent = 'Hide details';
       } catch(error) {
         detail.replaceChildren(element('p',error.message || 'Details could not be loaded.'));

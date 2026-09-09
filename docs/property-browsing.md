@@ -12,7 +12,7 @@ A new database has no listings. The empty state is expected. The optional local 
 
 Explore sample booking flow opens the existing static catalogue, filters, prices, saved stays and trip/login flow. Existing destination and property links open that sample view. Those sample IDs and prices are never merged with database records. Use Browse properties to return to database results.
 
-Database listings currently have no photos, nightly prices, room inventory or availability. The view shows only property type, name, city, address, description and timezone. It does not present a Reserve button or claim the property is available for dates. Room availability and booking are separate phases.
+Database listings show property fields and a date-based room availability form. See [room availability](room-availability.md) for inventory rules and local demo data. Booking confirmation remains a later phase.
 
 An unavailable API shows an error and retry control; it does not silently replace results with samples. The hosted Sites preview still has no Java backend. This PR does not deploy it.
 

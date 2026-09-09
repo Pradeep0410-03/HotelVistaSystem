@@ -30,3 +30,13 @@ test('invalid city and IDs cannot send requests',async () => {
   await assert.rejects(api.list('a'.repeat(101)),/at most 100/);
   await assert.rejects(api.detail('../auth/me'),/Invalid property/);
 });
+test('availability sends only trip fields and handles unavailable rooms',async () => {
+  const trip = {checkin:'2026-10-10',checkout:'2026-10-13',guests:4,rooms:2,price:1};
+  const api = HotelVistaProperties.createClient(async url => {
+    const query = new URL(url,'http://localhost');
+    assert.equal(query.pathname,'/api/properties/7/availability');
+    assert.equal(query.searchParams.get('rooms'),'2'); assert.equal(query.searchParams.has('price'),false);
+    return json({propertyId:7,currency:'INR',timezone:'Asia/Kolkata',cancellationDeadline:'2026-10-09T18:30:00Z',cancellationPolicy:'Free before check-in',options:[]});
+  });
+  assert.deepEqual((await api.availability(7,trip)).options,[]);
+});

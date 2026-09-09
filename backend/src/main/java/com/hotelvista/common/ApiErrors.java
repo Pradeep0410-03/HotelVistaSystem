@@ -14,7 +14,7 @@ public class ApiErrors {
     @ExceptionHandler({ConstraintViolationException.class, MethodArgumentTypeMismatchException.class})
     public ProblemDetail invalidInput(Exception ignored) {
         return ProblemDetail.forStatusAndDetail(HttpStatus.BAD_REQUEST,
-                "Check city (up to 100 characters), page (0-10000), size (1-50), and positive numeric property ID.");
+                "Check city, pagination, positive property ID, ISO dates, guests (1-100), and rooms (1-20).");
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
@@ -34,6 +34,7 @@ public class ApiErrors {
     @ExceptionHandler(ResponseStatusException.class)
     public ProblemDetail status(ResponseStatusException error) {
         String detail = switch (error.getStatusCode().value()) {
+            case 400 -> "Use a stay of 1-30 nights, with no past check-in and check-out within 365 days, and valid guest/room counts";
             case 409 -> "Account already exists";
             case 401 -> "Sign in required";
             default -> "Property not found";

@@ -26,7 +26,7 @@ public class SecurityConfig {
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers(HttpMethod.GET, "/", "/index.html", "/login.html", "/register.html",
                         "/css/**", "/js/**", "/assets/optimized/**").permitAll()
-                .requestMatchers(HttpMethod.GET, "/api/properties", "/api/properties/*", "/api/auth/csrf").permitAll()
+                .requestMatchers(HttpMethod.GET, "/api/properties", "/api/properties/*", "/api/properties/*/availability", "/api/auth/csrf").permitAll()
                 .requestMatchers(HttpMethod.POST, "/api/auth/register", "/api/auth/login").permitAll()
                 .requestMatchers("/api/admin/**").hasRole("ADMIN")
                 .requestMatchers(HttpMethod.GET, "/api/auth/me").authenticated()
