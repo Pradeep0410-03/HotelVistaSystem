@@ -1,10 +1,10 @@
 name: Backend checks
 on:
   pull_request:
-    paths: ['backend/**', '.github/workflows/backend.yml']
+    paths: ['backend/**', 'index.html', 'login.html', 'register.html', 'js/**', 'css/**', 'assets/optimized/**', 'tests/**', '.github/workflows/backend.yml']
   push:
     branches: [master]
-    paths: ['backend/**', '.github/workflows/backend.yml']
+    paths: ['backend/**', 'index.html', 'login.html', 'register.html', 'js/**', 'css/**', 'assets/optimized/**', 'tests/**', '.github/workflows/backend.yml']
 permissions:
   contents: read
 jobs:
@@ -32,6 +32,11 @@ jobs:
           java-version: '17'
           cache: maven
           cache-dependency-path: backend/pom.xml
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check frontend logic and API client
+        run: node --test tests/*.test.cjs
       - name: Compile and verify HTTP, Flyway and JPA behavior
         working-directory: backend
         env:

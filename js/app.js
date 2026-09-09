@@ -11,6 +11,7 @@ const storageKey = "hotelvista:saved:v1";
 let saved = new Set();
 try { const stored = JSON.parse(localStorage.getItem(storageKey) || "[]"); if(Array.isArray(stored)) saved = new Set(stored.filter(id => properties.some(p => p.id===id))); } catch {}
 const state = {query:"",guests:2,rooms:1,checkin:"",checkout:"",budget:15000,types:[],amenities:[],sort:"recommended",savedOnly:false};
+let signedInAccount=null;
 let draftGuests=2, draftRooms=1, toastTimer, previousFocus;
 const today = dateString(new Date());
 $("checkin").min=today;
@@ -147,6 +148,17 @@ $("property-grid").addEventListener("click",e=>{
   }
   if(detail)openProperty(detail.dataset.detail,detail);
 });
+function updateReserveLabel() {
+  const link=$('reserve-stay');
+  if(link) link.textContent=signedInAccount ? 'Signed in · booking coming soon' : 'Reserve · sign in';
+}
+window.addEventListener('hotelvista-session',event=>{signedInAccount=event.detail;updateReserveLabel();});
+window.addEventListener('hotelvista-auth-error',()=>announce('Sign-out could not be confirmed. Please try again.'));
+$('detail-content').addEventListener('click',event=>{
+  if(event.target.closest('#reserve-stay') && signedInAccount) {
+    event.preventDefault();announce('You are signed in. Booking confirmation is not connected yet.');
+  }
+});
 function openProperty(id,trigger) {
   const p=properties.find(item=>item.id===id);if(!p)return;
   if(!readTrip()) { $("search-error").scrollIntoView({block:"center"}); return; }
@@ -155,6 +167,7 @@ function openProperty(id,trigger) {
   const {nights,subtotal}=estimate(p.price,state.checkin,state.checkout,state.rooms);
   $("detail-content").innerHTML='<img class="detail-hero" src="'+p.image+'" alt="'+escape(p.name)+' — illustrative room photo"><div class="detail-body"><p class="property-location">'+escape(p.area)+' · '+escape(p.city)+' · '+escape(p.type)+'</p><h2 id="detail-title">'+escape(p.name)+'</h2><p>'+escape(p.details)+'</p><div class="detail-meta">'+p.amenities.map(a=>'<span>'+escape(a)+'</span>').join("")+'<span>Up to '+p.capacity+' guests per room</span></div><div class="stay-summary"><span>'+escape(state.checkin)+' → '+escape(state.checkout)+'<br>'+nights+' '+(nights===1?"night":"nights")+' · '+state.rooms+' '+(state.rooms===1?"room":"rooms")+' · '+state.guests+' '+(state.guests===1?"guest":"guests")+'</span><strong>'+money(subtotal)+'</strong><span>'+money(p.price)+' × '+nights+' '+(nights===1?'night':'nights')+' × '+state.rooms+' '+(state.rooms===1?'room':'rooms')+'</span><span>Estimated subtotal</span></div><p class="detail-notice">This is a sample property with illustrative photos and pricing. Taxes and fees are not included. Live availability, final prices and reservations are not connected yet; no booking or payment will be made.</p><a class="primary-button" id="reserve-stay">Reserve · sign in</a></div>';
   $("reserve-stay").href=window.HotelVistaIntent.link("login.html", {property:id,checkin:state.checkin,checkout:state.checkout,guests:state.guests,rooms:state.rooms});
+  updateReserveLabel();
   $("property-dialog").showModal();document.body.classList.add("dialog-open");
 }
 $("close-dialog").addEventListener("click",()=>$("property-dialog").close());

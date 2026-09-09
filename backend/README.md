@@ -39,6 +39,8 @@ mvn spring-boot:run -Dspring-boot.run.profiles=local
 
 Flyway creates the six tables and records V1 in `flyway_schema_history`. Hibernate validates the entity mapping; it does not create or alter the schema. Application startup requires a reachable database. The five-connection pool is a small initial development setting, not a capacity guarantee.
 
+Open `http://localhost:8080/index.html` to use the frontend with real registration and session login. See [frontend integration](../docs/frontend-auth-integration.md) for the walkthrough. The catalogue still uses sample data.
+
 Open `http://localhost:8080/api/properties` in your browser. A fresh database correctly returns:
 
 ```json
@@ -67,7 +69,7 @@ The generated ID is database-owned and need not be 1. This listing has no room i
 
 `page` is zero-based, limited to 0-10000; `size` is 1-50. Empty/whitespace city means all active properties. City supports up to 100 characters; it does not resolve aliases or perform substring search yet. Bad numbers and out-of-range input return 400. A slice gives `hasNext` without a total count. No price, room availability or booking claim is returned.
 
-Catalogue GET routes are intentionally public. Spring Security now protects account sessions and denies unspecified routes. Registration/login/logout require CSRF; see the authentication guide for the exact request sequence. Use the local profile only for HTTP development, never on a public host. No permissive cross-origin configuration is added. Visiting the API in the browser works; connecting the hosted frontend needs a deliberate same-origin/proxy or limited CORS setup later.
+Catalogue GET routes are intentionally public. Spring Security now protects account sessions and denies unspecified routes. Registration/login/logout require CSRF; see the authentication guide for the exact request sequence. Use the local profile only for HTTP development, never on a public host. No permissive cross-origin configuration is added. The Maven build packages the public frontend assets so pages and API share the Spring origin. The separately hosted static preview has no Java backend; hosting this integrated application remains a later step.
 
 ## Verification
 

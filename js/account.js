@@ -5,6 +5,8 @@
   const now = new Date();
   const today = [now.getFullYear(), String(now.getMonth()+1).padStart(2,'0'), String(now.getDate()).padStart(2,'0')].join('-');
   const trip = window.HotelVistaIntent.parse(params, window.HOTEL_VISTA.properties, today);
+  const api = window.HotelVistaAuth.createClient(window.fetch.bind(window));
+  let ready = false, busy = false, completed = false;
   const register = document.body.dataset.account === 'register';
   if (trip) {
     const property = window.HOTEL_VISTA.properties.find(p => p.id === trip.property);
@@ -40,21 +42,71 @@
     ['password', 'confirm-password'].forEach(id => $(id).addEventListener('input', validateConfirmation));
     $('full-name').addEventListener('input', () => $('full-name').setCustomValidity($('full-name').value.trim() ? '' : 'Enter your name.'));
   }
-  $('account-form').addEventListener('submit', event => {
-    event.preventDefault();
-    validateConfirmation();
-    if (!$('account-form').reportValidity()) return;
-    // Stop at the preview boundary. Never simulate an authenticated session.
-    $('password').value = '';
-    $('password').type = 'password';
+  $('continue-account').href = $('back-to-stays').href;
+  function message(text) {
+    $('account-status').hidden = false; $('account-status').textContent = text; $('account-status').focus();
+  }
+  function clearPassword() {
+    $('password').value = ''; $('password').type = 'password';
     $('toggle-password').textContent = 'Show';
     $('toggle-password').setAttribute('aria-label', 'Show password');
     $('toggle-password').setAttribute('aria-pressed', 'false');
     if (register) { $('confirm-password').value = ''; validateConfirmation(); }
-    $('account-status').hidden = false;
-    $('account-status').textContent = 'Form checked. ' + (register ? 'No account was created.' : 'You have not been signed in.') + ' Account services are coming in the backend phase.' + (trip ? ' Your stay selection is still here; no rooms are reserved.' : '');
-    $('account-status').focus();
+  }
+  $('account-form').addEventListener('submit', async event => {
+    event.preventDefault();
+    validateConfirmation();
+    if (!$('account-form').reportValidity()) return;
+    if (!ready || busy || completed) return;
+    busy = true;
+    $('account-submit').disabled = true;
+    $('account-form').setAttribute('aria-busy', 'true');
+    const label = $('account-submit').textContent;
+    $('account-submit').textContent = register ? 'Creating account…' : 'Signing in…';
+    try {
+      if (register) {
+        await api.register({fullName:$('full-name').value.trim(), email:$('email').value.trim(), password:$('password').value});
+        clearPassword(); completed = true;
+        message('Your account has been created. Sign in to continue; your stay selection is preserved.');
+        $('switch-account').focus();
+      } else {
+        await api.login($('email').value.trim(), $('password').value);
+        clearPassword(); completed = true;
+        window.location.assign($('back-to-stays').href);
+      }
+    } catch (error) {
+      message(error.status === 0 && register
+        ? 'We could not confirm whether your account was created. Try signing in before registering again.'
+        : error.message);
+    } finally {
+      busy = false; $('account-form').setAttribute('aria-busy', 'false');
+      $('account-submit').disabled = completed || !ready;
+      $('account-submit').textContent = label;
+    }
   });
-  // With JavaScript unavailable the button stays disabled; inputs have no submission names.
-  $('account-submit').disabled = false;
+  async function connect() {
+    ready = false; $('account-submit').disabled = true;
+    $('retry-connection').hidden = true;
+    $('preview-notice').textContent = 'Checking account services…';
+    try {
+      await api.csrf();
+      const account = await api.me();
+      if (account) {
+        completed = true; $('account-form').hidden = true;
+        $('continue-account').hidden = false;
+        $('preview-notice').textContent = 'You are signed in as ' + account.fullName + '. Continue to your stay, or sign out from the homepage.';
+        if (!trip) $('continue-account').textContent = 'Continue to stays';
+      } else {
+        ready = true; $('account-submit').disabled = false;
+        $('preview-notice').textContent = register
+          ? 'Create your Hotel Vista account. No booking or payment is made at this step.'
+          : 'Sign in to continue. Your selected stay is not reserved until booking confirmation is available.';
+      }
+    } catch {
+      $('preview-notice').textContent = 'Account services are unavailable here. You can still explore stays. No details have been submitted.';
+      $('retry-connection').hidden = false;
+    }
+  }
+  $('retry-connection').addEventListener('click', connect);
+  connect();
 })();

@@ -1,6 +1,6 @@
 # Hotel Vista authentication: backend phase
 
-The backend now supports customer registration, email/password login, current-user lookup and logout. The existing hosted forms are still previews: wiring them to a hosted backend is the next integration step. This change does not reserve rooms or deploy the backend.
+The backend now supports customer registration, email/password login, current-user lookup and logout. The frontend forms now call these APIs when served by Spring; see [frontend integration](frontend-auth-integration.md). The separately hosted static preview has no deployed backend. This change does not reserve rooms or deploy the backend.
 
 ## Endpoints
 
@@ -14,13 +14,13 @@ The backend now supports customer registration, email/password login, current-us
 
 Never send credentials in URLs. Login is `application/x-www-form-urlencoded` because Spring Security's standard username/password filter owns that endpoint. Registration uses JSON. There is no JWT or localStorage authentication flag. Keep the session cookie and send the CSRF header name/value returned by the server.
 
-## Browser sequence for the upcoming frontend connection
+## Browser sequence
 
 1. Fetch `/api/auth/csrf` from the same origin, preserving cookies. Retain its token in memory.
 2. To register, send the JSON fields and the returned header. Trim name/email; passwords are exact input. Email is stored lowercase. Registration creates a CUSTOMER and returns a summary; it does not log the user in automatically.
 3. To log in, post URL-encoded email/password with the CSRF header and session cookie. On success the response is 204, not JSON and not a redirect. The session ID changes to prevent fixation.
-4. Fetch `/api/auth/csrf` again after login because the previous token is cleared. Fetch `/api/auth/me` to get the signed-in account.
-5. Continue to the retained trip in the future frontend integration; never auto-confirm a reservation just because login succeeded.
+4. Fetch `/api/auth/me` to confirm the signed-in account. Before the next write, fetch `/api/auth/csrf` again because login clears the previous token.
+5. Continue to the retained sample stay in the frontend; never auto-confirm a reservation just because login succeeded.
 6. Post logout with the current token, discard the displayed account, and fetch a new token before a later signup/login. Logout clears authentication, invalidates the session and deletes JSESSIONID.
 
 CSRF is also required before signup/login, not only after authentication. A token is tied to its session. Do not disable CSRF to work around a missing cookie or stale token.
