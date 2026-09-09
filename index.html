@@ -10,6 +10,7 @@
 <script src="js/properties.js" defer></script>
 <script src="js/catalogue.js" defer></script>
 <script src="js/booking-intent.js" defer></script><script src="js/auth-client.js" defer></script>
+<script src="js/property-client.js" defer></script><script src="js/database-browse.js" defer></script>
 <script src="js/app.js" defer></script><script src="js/session-nav.js" defer></script>
 </head>
 <body>
@@ -17,11 +18,29 @@
 <header class="site-header">
   <div class="container nav">
     <a class="brand" href="index.html" aria-label="Hotel Vista home"><span class="brand-mark" aria-hidden="true">V</span>hotel<span class="brand-serif">vista</span><span class="brand-dot">.</span></a>
-    <nav aria-label="Main navigation"><a href="#stays" class="nav-link active">Find a stay</a><a href="#destinations" class="nav-link">Destinations</a><button class="saved-nav" id="saved-nav" aria-pressed="false">♡ <span>Saved stays</span><span id="saved-count">0</span></button></nav>
+    <nav id="sample-navigation" aria-label="Sample catalogue navigation" hidden><a href="#stays" class="nav-link active">Find a stay</a><a href="#destinations" class="nav-link">Destinations</a><button class="saved-nav" id="saved-nav" aria-pressed="false">♡ <span>Saved stays</span><span id="saved-count">0</span></button></nav>
     <div class="account-nav" id="account-nav"><a href="login.html">Sign in</a><a href="register.html" class="register-link">Register</a></div>
   </div>
 </header>
 <main id="main">
+  <div class="container catalogue-switch" role="group" aria-label="Catalogue source">
+    <button id="show-database" type="button" class="primary-button" aria-pressed="true">Browse properties</button>
+    <button id="show-samples" type="button" class="text-button" aria-pressed="false">Explore sample booking flow</button>
+  </div>
+  <section id="database-browse" class="container database-browse" aria-labelledby="database-title">
+    <span class="eyebrow dark">FIND YOUR NEXT DESTINATION</span><h1 id="database-title">Explore properties</h1>
+    <p>Browse listed properties by city. Room prices and booking will follow in a later phase.</p>
+    <form id="database-search" class="database-search">
+      <label for="database-city">City <input id="database-city" name="city" maxlength="100" placeholder="For example, Goa" autocomplete="address-level2"></label>
+      <button type="submit" class="primary-button">Search properties</button>
+      <button type="button" id="database-clear" class="text-button">All cities</button>
+    </form>
+    <p id="database-status" role="status" aria-live="polite"></p>
+    <button id="database-retry" class="primary-button" type="button" hidden>Try again</button>
+    <div id="database-grid" class="database-grid" aria-busy="false"></div>
+    <div class="database-pagination"><button id="database-prev" type="button" class="text-button" disabled>Previous</button><span id="database-page"></span><button id="database-next" type="button" class="text-button" disabled>Next</button></div>
+  </section>
+  <div id="sample-catalogue" hidden>
   <section class="hero">
     <div class="hero-image" role="img" aria-label="Travel destination in India"></div>
     <div class="container hero-inner"><span class="eyebrow">A LITTLE CLOSER TO YOUR NEXT ESCAPE</span><h1>Find your<br><em>kind of stay.</em></h1><p>City weekends. Quiet retreats.<br>A place that feels just right.</p><a class="hero-link" href="#destinations">Explore India <span aria-hidden="true">↗</span></a></div>
@@ -63,6 +82,7 @@
     </div>
   </section>
   <section class="container section collection-section"><div class="collection-image"></div><div class="collection-copy"><span class="eyebrow dark">MAKE ROOM FOR A SLOWER WEEKEND</span><h2>Less planning.<br>More getting away.</h2><p>Find a poolside afternoon, a quiet corner, or a fresh view. Start with a resort stay.</p><button type="button" class="primary-button" id="explore-resorts">Explore resorts <span aria-hidden="true">↗</span></button></div></section>
+  </div>
 </main>
 <footer><div class="container footer-top"><a class="brand footer-brand" href="index.html">hotel<span class="brand-serif">vista</span><span class="brand-dot">.</span></a><p>A place for every kind of getaway.</p><a href="#main">Back to top ↑</a></div><div class="container footer-bottom"><span>© <span id="year"></span> Hotel Vista</span><span>India · English · INR</span></div></footer>
 <dialog id="property-dialog" aria-labelledby="detail-title"><button type="button" class="dialog-close" id="close-dialog" aria-label="Close property details">×</button><div id="detail-content"></div></dialog>
