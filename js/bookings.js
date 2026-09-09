@@ -14,7 +14,7 @@
     if(draft.accountId && draft.accountId!==account.id){clearDraft();status('The previous selection belonged to another account. Choose your stay again.');return;}
     $('booking-review').hidden=false;$('confirm-booking').disabled=true;
     try{
-      const [property,availability]=await Promise.all([properties.detail(draft.propertyId),properties.availability(draft.propertyId,draft)]);
+      const [property,availability]=await Promise.all([properties.detail(draft.propertyId,AbortSignal.timeout(15000)),properties.availability(draft.propertyId,draft,AbortSignal.timeout(15000))]);
       const room=availability.options.find(r=>r.roomTypeId===draft.roomTypeId);
       if(!room)throw new Error('Your selected room is no longer available. Browse properties to choose again.');
       draft.accountId=account.id;
@@ -59,7 +59,7 @@
     try{
       draft.submitted=true;saveDraft();
       const booking=await api.create(draft);clearDraft();
-      page=0;await list();status('Booking confirmed: '+booking.reference+'. Pay at hotel.');
+      page=0;await list();status(booking.status==='CONFIRMED' ? 'Booking confirmed: '+booking.reference+'. Pay at hotel.' : 'Booking '+booking.reference+' is '+booking.status+'. No new booking was created.');
     }catch(error){
       status(error.message);
       if(error.status===401){$('booking-login').hidden=false;}
