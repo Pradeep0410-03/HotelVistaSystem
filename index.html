@@ -12,6 +12,7 @@
 <script src="js/booking-intent.js" defer></script><script src="js/auth-client.js" defer></script>
 <script src="js/property-client.js" defer></script><script src="js/database-browse.js" defer></script>
 <script src="js/app.js" defer></script><script src="js/session-nav.js" defer></script>
+<link rel="stylesheet" href="css/project-ui.css">
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to stays</a>
@@ -25,16 +26,19 @@
 <main id="main">
   <div class="container catalogue-switch" role="group" aria-label="Catalogue source">
     <button id="show-database" type="button" class="primary-button" aria-pressed="true">Browse properties</button>
-    <button id="show-samples" type="button" class="text-button" aria-pressed="false">Explore sample booking flow</button>
+    <button id="show-samples" type="button" class="text-button" aria-pressed="false">Legacy UI preview (not bookable)</button>
   </div>
   <section id="database-browse" class="container database-browse" aria-labelledby="database-title">
-    <span class="eyebrow dark">FIND YOUR NEXT DESTINATION</span><h1 id="database-title">Explore properties</h1>
-    <p>Browse properties by city, then check rooms and prices for your dates. Review your selection and reserve with pay at hotel.</p>
-    <form id="database-search" class="database-search">
-      <label for="database-city">City <input id="database-city" name="city" maxlength="100" placeholder="For example, Goa" autocomplete="address-level2"></label>
+    <span class="eyebrow dark">STAYS ACROSS INDIA</span><h1 id="database-title">Somewhere new.<br>A stay that fits you.</h1>
+    <p>Find a city, compare room options, and reserve your stay. Pay at the property.</p>
+    <p class="catalogue-notice">Project demonstration · Generated listings marked “Demo” are fictional. No payment is collected.</p><form id="database-search" class="database-search">
+      <label for="database-city">City <input id="database-city" name="city" maxlength="100" placeholder="Where would you like to go?" list="database-cities" autocomplete="address-level2"></label>
       <button type="submit" class="primary-button">Search properties</button>
       <button type="button" id="database-clear" class="text-button">All cities</button>
     </form>
+    <datalist id="database-cities"></datalist>
+    <div class="city-shortcuts" aria-label="Popular cities"><button type="button" data-city="Goa">Goa</button><button type="button" data-city="Delhi">Delhi</button><button type="button" data-city="Mumbai">Mumbai</button><button type="button" data-city="Bengaluru">Bengaluru</button><button type="button" data-city="Jaipur">Jaipur</button><button type="button" data-city="Udaipur">Udaipur</button></div>
+    <div class="catalogue-heading"><h2>Find your kind of stay</h2><span>Choose dates inside a property to check availability</span></div>
     <p id="database-status" role="status" aria-live="polite"></p>
     <button id="database-retry" class="primary-button" type="button" hidden>Try again</button>
     <div id="database-grid" class="database-grid" aria-busy="false"></div>

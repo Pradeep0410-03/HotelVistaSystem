@@ -2,7 +2,8 @@
   'use strict';
   const $ = id => document.getElementById(id);
   const api = window.HotelVistaProperties.createClient(window.fetch.bind(window));
-  let city = new URLSearchParams(location.search).get('city') || '', page = 0, hasNext = false, requestNumber = 0, controller;
+  let requestedPage = 0;
+  let city = new URLSearchParams(location.search).get('city') || new URLSearchParams(location.search).get('destination') || '', page = 0, hasNext = false, requestNumber = 0, controller;
   $('database-city').value = city.slice(0,100); city = $('database-city').value;
   function element(tag, text, className) {
     const node = document.createElement(tag); node.textContent = text;
@@ -49,11 +50,16 @@
   }
   function card(property) {
     const article = element('article', '', 'database-card');
-    article.append(element('span', property.propertyType.replaceAll('_',' '), 'eyebrow dark'), element('h2', property.name), element('p', property.city), element('p', property.address));
+    const figure = element('figure','','listing-photo');
+    const photo = document.createElement('img');
+    const pictures = ['assets/optimized/images-delhi-delhi-1.webp','assets/optimized/images-jaipur-jaipur-1.webp','assets/optimized/images-mumbai-mumbai-1.webp','assets/optimized/images-bengaluru-bengaluru-3.webp','assets/optimized/property-types-resorts.webp'];
+    photo.src=pictures[property.id % pictures.length];photo.alt='Illustrative accommodation photo';photo.loading='lazy';photo.width=640;photo.height=360;
+    figure.append(photo,element('figcaption','Illustrative photo'));article.append(figure);
+    article.append(element('span', property.propertyType.replaceAll('_',' '), 'eyebrow dark'), element('h2', property.name), element('p', property.city, 'listing-city'), element('p', property.address, 'listing-address'));
     const detail = element('div', ''); detail.hidden = true;
-    const button = element('button', 'View details', 'text-button'); button.type = 'button'; button.setAttribute('aria-expanded','false');
+    const button = element('button', 'View rooms & dates', 'primary-button'); button.type = 'button'; button.setAttribute('aria-expanded','false');
     button.addEventListener('click', async () => {
-      if (!detail.hidden) { detail.hidden = true; button.setAttribute('aria-expanded','false'); button.textContent = 'View details'; return; }
+      if (!detail.hidden) { detail.hidden = true; button.setAttribute('aria-expanded','false'); button.textContent = 'View rooms & dates'; return; }
       button.disabled = true;
       try {
         const value = await api.detail(property.id, AbortSignal.timeout(15000));
@@ -67,6 +73,7 @@
     article.append(button,detail); return article;
   }
   async function load(targetPage = 0) {
+    requestedPage = targetPage;
     const number = ++requestNumber;
     if (controller) controller.abort(); controller = new AbortController();
     const activeController = controller;
@@ -101,9 +108,12 @@
   $('show-samples').addEventListener('click', () => mode(true));
   $('database-search').addEventListener('submit', event => { event.preventDefault(); city = $('database-city').value.trim(); load(0); });
   $('database-clear').addEventListener('click', () => { city = ''; $('database-city').value = ''; load(0); });
-  $('database-retry').addEventListener('click', () => load(0));
+  $('database-retry').addEventListener('click', () => load(requestedPage));
   $('database-prev').addEventListener('click', () => { if (page > 0) load(page-1); });
   $('database-next').addEventListener('click', () => { if (hasNext) load(page+1); });
+  const cities=['Goa','Delhi','Mumbai','Bengaluru','Chennai','Hyderabad','Jaipur','Udaipur','Kochi','Shimla','Manali','Rishikesh','Agra','Varanasi','Lucknow','Bhopal','Indore','Pune','Kolkata','Ahmedabad','Chandigarh','Amritsar','Jodhpur','Jaisalmer','Mysuru','Ooty','Coorg','Darjeeling','Gangtok','Puducherry'];
+  cities.forEach(city=>{const option=document.createElement('option');option.value=city;$('database-cities').append(option);});
+  document.querySelectorAll('[data-city]').forEach(button=>button.addEventListener('click',()=>{city=button.dataset.city;$('database-city').value=city;load(0);}));
   const params = new URLSearchParams(location.search);
-  mode(params.has('property') || params.has('destination') || params.get('catalogue') === 'sample');
+  mode(params.get('catalogue') === 'sample');
 })();

@@ -44,7 +44,7 @@ Booking confirmation, inventory reservation, My bookings and eligible cancellati
 
 The original empty Node backend folders have been removed. The working security configuration is in `backend/src/main/java/com/hotelvista/config/`. Root `package.json` runs frontend tooling; `backend/pom.xml` builds the backend.
 
-`frontend/index.html` remains a compatibility redirect. Older standalone frontend scripts and original JPG assets remain as reference material; this cleanup only removes empty backend scaffolding.
+`frontend/index.html` remains a compatibility redirect. Unused standalone frontend scripts and original JPG assets have been removed; optimized images remain.
 
 ## Learn and verify
 
@@ -55,3 +55,13 @@ node --test tests/*.test.cjs
 ```
 
 From `backend/`, run `mvn test` or `mvn -Pintegration verify` with a disposable PostgreSQL database configured. GitHub Actions runs frontend and PostgreSQL-backed checks.
+
+## Demo catalogue and refreshed interface
+
+See [project readiness](docs/project-readiness.md) for the architecture review and remaining deployment requirements. After configuring PostgreSQL, start from `backend/` with:
+
+```sh
+mvn spring-boot:run -Dspring-boot.run.profiles=local,demo
+```
+
+This opt-in profile adds 750 fictional properties across 30 cities, room types and 90 days of inventory. Rerunning preserves existing reservations. Open http://localhost:8080/index.html and use Browse properties. The old sample UI is a separate non-bookable preview. Generated listings are not real businesses.

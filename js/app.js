@@ -188,5 +188,5 @@ if(Number.isInteger(guests)&&guests>=1&&guests<=20)draftGuests=guests;
 if(Number.isInteger(rooms)&&rooms>=1&&rooms<=8&&rooms<=draftGuests)draftRooms=rooms;
 updateGuests();readTrip();state.query=$("destination").value.trim();render();
 const returnedTrip=window.HotelVistaIntent.parse(params,properties,today);
-if(returnedTrip)openProperty(returnedTrip.property,document.querySelector('[data-detail="'+returnedTrip.property+'"]'));
+if(params.get('catalogue')==='sample' && returnedTrip)openProperty(returnedTrip.property,document.querySelector('[data-detail="'+returnedTrip.property+'"]'));
 })();
