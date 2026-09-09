@@ -42,6 +42,10 @@
     ['password', 'confirm-password'].forEach(id => $(id).addEventListener('input', validateConfirmation));
     $('full-name').addEventListener('input', () => $('full-name').setCustomValidity($('full-name').value.trim() ? '' : 'Enter your name.'));
   }
+  if (params.get('return') === 'bookings') {
+    $('back-to-stays').href = 'bookings.html';
+    $('switch-account').href = (register ? 'login.html' : 'register.html') + '?return=bookings';
+  }
   $('continue-account').href = $('back-to-stays').href;
   function message(text) {
     $('account-status').hidden = false; $('account-status').textContent = text; $('account-status').focus();
@@ -95,7 +99,7 @@
         completed = true; $('account-form').hidden = true;
         $('continue-account').hidden = false;
         $('preview-notice').textContent = 'You are signed in as ' + account.fullName + '. Continue to your stay, or sign out from the homepage.';
-        if (!trip) $('continue-account').textContent = 'Continue to stays';
+        if (!trip) $('continue-account').textContent = params.get('return') === 'bookings' ? 'Continue to booking review' : 'Continue to stays';
       } else {
         ready = true; $('account-submit').disabled = false;
         $('preview-notice').textContent = register

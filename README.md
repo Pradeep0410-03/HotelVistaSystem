@@ -22,13 +22,13 @@ For a static frontend preview only, run `npm run dev` from the repository root (
 - Uniform pay-at-hotel cancellation policy with a property-local deadline.
 - A separate sample booking flow with filters, saved stays and illustrative prices.
 
-Booking confirmation, inventory reservation, My bookings and administration are not implemented yet. Availability checks do not hold rooms. The hosted static preview is separate from the integrated application.
+Booking confirmation, inventory reservation, My bookings and eligible cancellation are implemented. Administration remains a later phase. Availability checks alone do not hold rooms. The hosted static preview is separate from the integrated application.
 
 ## Project structure
 
 | Path | Purpose |
 |---|---|
-| `index.html`, `login.html`, `register.html` | Frontend pages |
+| `index.html`, `login.html`, `register.html`, `bookings.html` | Frontend pages |
 | `css/` | Styles |
 | `js/` | Frontend UI, API clients and sample catalogue |
 | `assets/optimized/` | Images used by the frontend |
@@ -48,7 +48,7 @@ The original empty Node backend folders have been removed. The working security 
 
 ## Learn and verify
 
-Read [authentication](docs/authentication.md), [frontend integration](docs/frontend-auth-integration.md), [property browsing](docs/property-browsing.md) and [room availability](docs/room-availability.md).
+Read [authentication](docs/authentication.md), [frontend integration](docs/frontend-auth-integration.md), [property browsing](docs/property-browsing.md) [room availability](docs/room-availability.md) and [booking workflow](docs/booking-workflow.md).
 
 ```sh
 node --test tests/*.test.cjs

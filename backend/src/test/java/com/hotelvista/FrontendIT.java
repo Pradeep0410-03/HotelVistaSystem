@@ -18,6 +18,7 @@ class FrontendIT {
         for(String page : new String[]{"index.html","login.html","register.html"}) {
             mvc.perform(get("/"+page)).andExpect(status().isOk()).andExpect(content().string(containsString("js/auth-client.js")));
         }
+        mvc.perform(get("/bookings.html")).andExpect(status().isOk()).andExpect(content().string(containsString("js/bookings.js")));
         mvc.perform(get("/js/auth-client.js")).andExpect(status().isOk()).andExpect(content().string(containsString("credentials: 'same-origin'")));
         mvc.perform(get("/css/account.css")).andExpect(status().isOk());
         mvc.perform(get("/assets/optimized/destinations-udaipur.webp")).andExpect(status().isOk());

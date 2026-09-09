@@ -20,7 +20,8 @@
       try { await api.logout(); account=null; render(); publish(); }
       catch { logout.disabled=false; window.dispatchEvent(new CustomEvent('hotelvista-auth-error')); }
     });
-    nav.append(name,logout);
+    const bookings=document.createElement('a');bookings.href='bookings.html';bookings.textContent='My bookings';
+    nav.append(name,bookings,logout);
   }
   async function refresh() {
     if(checking)return;

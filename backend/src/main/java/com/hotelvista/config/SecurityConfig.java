@@ -24,10 +24,12 @@ public class SecurityConfig {
             .requestCache(AbstractHttpConfigurer::disable)
             .httpBasic(AbstractHttpConfigurer::disable)
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers(HttpMethod.GET, "/", "/index.html", "/login.html", "/register.html",
+                .requestMatchers(HttpMethod.GET, "/", "/index.html", "/login.html", "/register.html", "/bookings.html",
                         "/css/**", "/js/**", "/assets/optimized/**").permitAll()
                 .requestMatchers(HttpMethod.GET, "/api/properties", "/api/properties/*", "/api/properties/*/availability", "/api/auth/csrf").permitAll()
                 .requestMatchers(HttpMethod.POST, "/api/auth/register", "/api/auth/login").permitAll()
+                .requestMatchers(HttpMethod.GET, "/api/bookings").authenticated()
+                .requestMatchers(HttpMethod.POST, "/api/bookings", "/api/bookings/*/cancel").authenticated()
                 .requestMatchers("/api/admin/**").hasRole("ADMIN")
                 .requestMatchers(HttpMethod.GET, "/api/auth/me").authenticated()
                 .anyRequest().denyAll())
