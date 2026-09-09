@@ -1,0 +1,6 @@
+# Local HTTP development only. Never enable this profile on a public host.
+server:
+  servlet:
+    session:
+      cookie:
+        secure: false

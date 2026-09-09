@@ -17,6 +17,14 @@ spring:
     clean-disabled: true
     baseline-on-migrate: false
 server:
+  servlet:
+    session:
+      timeout: 30m
+      tracking-modes: cookie
+      cookie:
+        http-only: true
+        secure: true
+        same-site: lax
   port: ${PORT:8080}
   error:
     include-message: never
