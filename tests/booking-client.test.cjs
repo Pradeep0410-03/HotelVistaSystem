@@ -1,4 +1,4 @@
-const {test}=require('node:test');const assert=require('node:assert/strict');require('../js/booking-client.js');
+const {test}=require('node:test');const assert=require('node:assert/strict');require('../frontend/js/api/booking-client.js');
 const json=(data,status=200)=>new Response(JSON.stringify(data),{status,headers:{'Content-Type':'application/json'}});
 test('booking uses CSRF and excludes supplied owner and status',async()=>{
   const calls=[];const api=HotelVistaBookings.createClient(async(path,opts)=>{calls.push([path,opts]);return path.endsWith('csrf')?json({headerName:'X-CSRF-TOKEN',token:'t'}):json({id:1});});

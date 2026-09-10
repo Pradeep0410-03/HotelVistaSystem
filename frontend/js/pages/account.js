@@ -17,7 +17,7 @@
     $('trip-guests').textContent = trip.guests + (trip.guests === 1 ? ' guest' : ' guests') + ' · ' + trip.rooms + (trip.rooms === 1 ? ' room' : ' rooms');
     $('trip-price').textContent = new Intl.NumberFormat('en-IN', {style:'currency',currency:'INR',maximumFractionDigits:0}).format(estimate.subtotal) + ' estimated subtotal';
     $('switch-account').href = window.HotelVistaIntent.link(register ? 'login.html' : 'register.html', trip);
-    const back = window.HotelVistaIntent.link('index.html', trip) + '&destination=' + encodeURIComponent(property.city) + '#stays';
+    const back = window.HotelVistaIntent.link('/frontend/pages/hotels.html', trip) + '&destination=' + encodeURIComponent(property.city) + '#stays';
     $('back-to-stays').href = back;
     $('edit-trip').href = back;
   } else if (params.has('property')) {

@@ -1,8 +1,8 @@
 const {test}=require("node:test");
 const assert=require("node:assert/strict");
 global.window=global;
-require("../js/properties.js");
-require("../js/catalogue.js");
+require("../frontend/js/legacy/properties.js");
+require("../frontend/js/legacy/catalogue.js");
 const {filter,validDate,estimate}=global.HotelVistaCatalogue;
 const properties=global.HOTEL_VISTA.properties;
 const base={query:"",guests:2,rooms:1,budget:15000,types:[],amenities:[],sort:"recommended",savedOnly:false};
