@@ -22,7 +22,7 @@ class AuthApiIT {
     @Autowired JdbcTemplate jdbc;
     @Autowired PasswordEncoder encoder;
     private String email;
-    private static final String PASSWORD="test-only-password-123";
+    private static final String PASSWORD="Test-only-password-123!";
     @BeforeEach void identity() { email="auth-test-"+UUID.randomUUID()+"@example.invalid"; }
     @AfterEach void cleanup() { jdbc.update("DELETE FROM users WHERE email=?",email); }
     record Token(MockHttpSession session,String header,String value) { }
