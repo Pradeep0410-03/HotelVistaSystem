@@ -33,6 +33,9 @@
   });
   function validateConfirmation() {
     if (!register) return;
+    const password=$('password').value;
+    const strong=password.length>=12 && password.length<=128 && /[A-Z]/.test(password) && /[a-z]/.test(password) && /[0-9]/.test(password) && /[^A-Za-z0-9\s]/.test(password);
+    $('password').setCustomValidity(strong?'':'Use 12–128 characters with uppercase, lowercase, a number and a symbol.');
     const mismatch = $('confirm-password').value !== $('password').value;
     $('confirm-password').setCustomValidity(mismatch ? 'Passwords must match.' : '');
     $('confirm-password').setAttribute('aria-invalid', String(mismatch && !!$('confirm-password').value));
@@ -104,7 +107,7 @@
         ready = true; $('account-submit').disabled = false;
         $('preview-notice').textContent = register
           ? 'Create your Hotel Vista account. No booking or payment is made at this step.'
-          : 'Sign in to continue. Your selected stay is not reserved until booking confirmation is available.';
+          : 'Sign in to continue. Your selected stay is reserved only after you confirm the booking.';
       }
     } catch {
       $('preview-notice').textContent = 'Account services are unavailable here. You can still explore stays. No details have been submitted.';

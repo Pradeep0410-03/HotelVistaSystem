@@ -20,6 +20,8 @@ class FrontendIT {
         }
         mvc.perform(get("/bookings.html")).andExpect(status().isOk()).andExpect(content().string(containsString("js/bookings.js")));
         mvc.perform(get("/js/auth-client.js")).andExpect(status().isOk()).andExpect(content().string(containsString("credentials: 'same-origin'")));
+        mvc.perform(get("/css/travel.css")).andExpect(status().isOk());
+        mvc.perform(get("/js/stay-presentation.js")).andExpect(status().isOk());
         mvc.perform(get("/css/account.css")).andExpect(status().isOk());
         mvc.perform(get("/assets/optimized/destinations-udaipur.webp")).andExpect(status().isOk());
         mvc.perform(get("/api/auth/csrf")).andExpect(status().isOk()).andExpect(jsonPath("$.token").isNotEmpty());

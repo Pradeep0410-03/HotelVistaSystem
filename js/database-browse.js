@@ -1,6 +1,7 @@
 (() => {
   'use strict';
   const $ = id => document.getElementById(id);
+  const stay=window.HotelVistaStay;
   const api = window.HotelVistaProperties.createClient(window.fetch.bind(window));
   let requestedPage = 0;
   let city = new URLSearchParams(location.search).get('city') || new URLSearchParams(location.search).get('destination') || '', page = 0, hasNext = false, requestNumber = 0, controller;
@@ -10,12 +11,18 @@
     if (className) node.className = className;
     return node;
   }
+  const localDate=d=>[d.getFullYear(),String(d.getMonth()+1).padStart(2,'0'),String(d.getDate()).padStart(2,'0')].join('-');
+  const tomorrow=new Date();tomorrow.setDate(tomorrow.getDate()+1);const departure=new Date(tomorrow);departure.setDate(departure.getDate()+2);
+  $('trip-checkin').min=localDate(new Date());$('trip-checkin').value=localDate(tomorrow);$('trip-checkout').value=localDate(departure);
+  function validateTrip(){const valid=$('trip-checkout').value>$('trip-checkin').value;$('trip-checkout').setCustomValidity(valid?'':'Check-out must be after check-in.');return valid;}
+  ['trip-checkin','trip-checkout'].forEach(id=>$(id).addEventListener('input',validateTrip));
   function availabilityForm(property) {
     const form = document.createElement('form'); form.className = 'availability-form';
     const fields = {};
     for (const [name,label,type,value] of [['checkin','Check-in','date',''],['checkout','Check-out','date',''],['guests','Guests','number','2'],['rooms','Rooms','number','1']]) {
       const wrapper = element('label',label); const input = document.createElement('input');
-      input.type = type; input.required = true; input.value = value;
+      input.type = type; input.required = true; input.value = $('trip-'+name).value || value;
+      if(name==='checkin')input.min=localDate(new Date());
       if (type === 'number') { input.min = '1'; input.max = name === 'guests' ? '100' : '20'; }
       wrapper.append(input); form.append(wrapper); fields[name] = input;
     }
@@ -52,10 +59,11 @@
     const article = element('article', '', 'database-card');
     const figure = element('figure','','listing-photo');
     const photo = document.createElement('img');
-    const pictures = ['assets/optimized/images-delhi-delhi-1.webp','assets/optimized/images-jaipur-jaipur-1.webp','assets/optimized/images-mumbai-mumbai-1.webp','assets/optimized/images-bengaluru-bengaluru-3.webp','assets/optimized/property-types-resorts.webp'];
-    photo.src=pictures[property.id % pictures.length];photo.alt='Illustrative accommodation photo';photo.loading='lazy';photo.width=640;photo.height=360;
-    figure.append(photo,element('figcaption','Illustrative photo'));article.append(figure);
-    article.append(element('span', property.propertyType.replaceAll('_',' '), 'eyebrow dark'), element('h2', property.name), element('p', property.city, 'listing-city'), element('p', property.address, 'listing-address'));
+    photo.src=stay.photo(property.id,property.propertyType);photo.alt=property.propertyType.toLowerCase()+' interior · illustrative photo';photo.loading='lazy';photo.width=640;photo.height=420;
+    figure.append(photo,element('figcaption','Sample stay · Illustrative photo'));article.append(figure);
+    const body=element('div','','listing-body');
+    body.append(element('span',property.propertyType.toLowerCase(),'property-kind'),element('h2',stay.name(property.name)),element('p',property.city,'listing-city'),element('p','Pay at the property','payment-note'),element('p','Choose your room and review the full price before confirming.','listing-summary'));
+    article.append(body);
     const detail = element('div', ''); detail.hidden = true;
     const button = element('button', 'View rooms & dates', 'primary-button'); button.type = 'button'; button.setAttribute('aria-expanded','false');
     button.addEventListener('click', async () => {
@@ -63,14 +71,16 @@
       button.disabled = true;
       try {
         const value = await api.detail(property.id, AbortSignal.timeout(15000));
-        detail.replaceChildren(element('p',value.description || 'No description has been added yet.'),element('p','Local timezone: ' + value.timezone),availabilityForm(property));
+        const gallery=element('div','','room-gallery');
+        for(let n=1;n<=2;n++){const image=document.createElement('img');image.src=stay.photo(property.id,property.propertyType,n);image.alt='Illustrative accommodation interior';image.loading='lazy';gallery.append(image);}
+        detail.replaceChildren(gallery,element('p','Sample accommodation in '+value.city+'. Photos illustrate the experience and are not of a verified property.'),availabilityForm(property));
         detail.hidden = false; button.setAttribute('aria-expanded','true'); button.textContent = 'Hide details';
       } catch(error) {
         detail.replaceChildren(element('p',error.message || 'Details could not be loaded.'));
         detail.hidden = false; button.setAttribute('aria-expanded','true'); button.textContent = 'Hide message';
       } finally { button.disabled = false; }
     });
-    article.append(button,detail); return article;
+    body.append(button);detail.className='listing-details';article.append(detail); return article;
   }
   async function load(targetPage = 0) {
     requestedPage = targetPage;
@@ -85,6 +95,7 @@
       const result = await api.list(city, targetPage, activeController.signal);
       if (number !== requestNumber) return;
       page = targetPage; hasNext = result.hasNext;
+      $('database-title').textContent=city?'Stays in '+city:'Explore stays across India';
       $('database-grid').replaceChildren(...result.items.map(card));
       $('database-status').textContent = result.items.length ? result.items.length + ' listed properties' + (city ? ' in ' + city : '') + '.' : 'No properties found' + (city ? ' in ' + city : '') + '. Try another city or check back later.';
       $('database-page').textContent = 'Page ' + (page+1);
@@ -99,14 +110,7 @@
       if (number === requestNumber) $('database-grid').setAttribute('aria-busy','false');
     }
   }
-  function mode(samples) {
-    $('sample-catalogue').hidden = !samples; $('sample-navigation').hidden = !samples; $('database-browse').hidden = samples;
-    $('show-database').setAttribute('aria-pressed',String(!samples)); $('show-samples').setAttribute('aria-pressed',String(samples));
-    if (!samples) load(0);
-  }
-  $('show-database').addEventListener('click', () => mode(false));
-  $('show-samples').addEventListener('click', () => mode(true));
-  $('database-search').addEventListener('submit', event => { event.preventDefault(); city = $('database-city').value.trim(); load(0); });
+  $('database-search').addEventListener('submit', event => { event.preventDefault(); if(!validateTrip()||!$('database-search').reportValidity())return; city = $('database-city').value.trim(); load(0); });
   $('database-clear').addEventListener('click', () => { city = ''; $('database-city').value = ''; load(0); });
   $('database-retry').addEventListener('click', () => load(requestedPage));
   $('database-prev').addEventListener('click', () => { if (page > 0) load(page-1); });
@@ -114,6 +118,5 @@
   const cities=['Goa','Delhi','Mumbai','Bengaluru','Chennai','Hyderabad','Jaipur','Udaipur','Kochi','Shimla','Manali','Rishikesh','Agra','Varanasi','Lucknow','Bhopal','Indore','Pune','Kolkata','Ahmedabad','Chandigarh','Amritsar','Jodhpur','Jaisalmer','Mysuru','Ooty','Coorg','Darjeeling','Gangtok','Puducherry'];
   cities.forEach(city=>{const option=document.createElement('option');option.value=city;$('database-cities').append(option);});
   document.querySelectorAll('[data-city]').forEach(button=>button.addEventListener('click',()=>{city=button.dataset.city;$('database-city').value=city;load(0);}));
-  const params = new URLSearchParams(location.search);
-  mode(params.get('catalogue') === 'sample');
+  load(0);
 })();

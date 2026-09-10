@@ -1,6 +1,7 @@
 (() => {
   'use strict';
   const $=id=>document.getElementById(id), api=HotelVistaBookings.createClient(fetch.bind(window)), auth=HotelVistaAuth.createClient(fetch.bind(window)), properties=HotelVistaProperties.createClient(fetch.bind(window));
+  const stay=window.HotelVistaStay;
   const key='hotelvista-booking-draft'; let account=null,draft=null,page=0,hasNext=false,busy=false;
   const money=value=>new Intl.NumberFormat('en-IN',{style:'currency',currency:'INR'}).format(value);
   function node(tag,text){const n=document.createElement(tag);n.textContent=text;return n;}
@@ -21,23 +22,32 @@
       // Preserve the key and submitted price when the outcome of a prior POST is uncertain.
       if(!draft.submitted){draft.expectedSubtotal=room.subtotal;draft.requestKey=crypto.randomUUID();}
       saveDraft();
-      $('review-details').replaceChildren(node('h3',property.name+' · '+room.name),node('p',draft.checkin+' → '+draft.checkout+' · '+draft.rooms+' room(s) · '+draft.guests+' guest(s)'),node('p','Total payable at hotel: '+money(draft.expectedSubtotal)+'. No additional taxes or fees are calculated in this project version.'),node('p',availability.cancellationPolicy),node('p','Free cancellation before '+new Intl.DateTimeFormat('en-IN',{dateStyle:'medium',timeStyle:'short',timeZone:availability.timezone}).format(new Date(availability.cancellationDeadline))+' ('+availability.timezone+').'));
+      $('review-details').replaceChildren(node('h3',stay.name(property.name)+' · '+room.name),node('p',draft.checkin+' → '+draft.checkout+' · '+stay.count(draft.rooms,'room')+' · '+stay.count(draft.guests,'guest')),node('p','Total payable at hotel: '+money(draft.expectedSubtotal)+'. No additional taxes or fees are calculated in this project version.'),node('p',availability.cancellationPolicy),node('p','Free cancellation before '+new Intl.DateTimeFormat('en-IN',{dateStyle:'medium',timeStyle:'short',timeZone:availability.timezone}).format(new Date(availability.cancellationDeadline))+' ('+availability.timezone+').'));
       $('confirm-booking').disabled=false;
     }catch(error){$('review-details').textContent=error.message;}
   }
   async function list(){
     const result=await api.list(page);hasNext=result.hasNext;
     $('bookings-list').replaceChildren(...result.items.map(booking=>{
-      const article=node('article','');article.className='database-card';
-      article.append(node('h2',booking.propertyName),node('p',booking.roomName+' · '+booking.rooms+' room(s)'),node('p',booking.checkin+' → '+booking.checkout),node('p',booking.reference),node('p',booking.status+' · '+money(booking.totalAmount)),node('p',booking.acceptedPolicy));
-      if(booking.status==='CONFIRMED'){
+      const article=node('article','');article.className='trip-card';
+      const photo=document.createElement('img');photo.src=stay.photo(booking.propertyId);photo.alt='Illustrative accommodation photo';photo.className='trip-photo';photo.loading='lazy';
+      const body=node('div','');body.className='trip-body';
+      const badge=node('span',booking.status.toLowerCase());badge.className='booking-badge '+booking.status.toLowerCase();
+      const heading=node('h2',stay.name(booking.propertyName));
+      const dates=node('p',stay.date(booking.checkin)+' — '+stay.date(booking.checkout));dates.className='trip-dates';
+      const reference=node('details','');reference.className='booking-reference';reference.append(node('summary','Booking reference'),node('p',booking.reference));
+      const policy=node('details','');policy.append(node('summary','Cancellation policy'),node('p',booking.acceptedPolicy));
+      body.append(badge,heading,dates,node('p',booking.roomName+' · '+stay.count(booking.rooms,'room')+' · '+stay.count(booking.guests,'guest')),reference,policy);
+      const price=node('div','');price.className='trip-price';price.append(node('span','Total for your stay'),node('strong',money(booking.totalAmount)),node('span','Pay at the property'));
+      article.append(photo,body,price);
+      if(booking.status==='CONFIRMED' && new Date(booking.cancellationDeadline)>new Date()){
         const cancel=node('button','Cancel booking');cancel.type='button';cancel.className='text-button';
         cancel.addEventListener('click',async()=>{
           if(!window.confirm('Cancel this booking and release the rooms?'))return;
           cancel.disabled=true;
           try{await api.cancel(booking.id);await list();status('Booking cancelled. The rooms are available again.');}
           catch(error){status(error.message);cancel.disabled=false;}
-        });article.append(cancel);
+        });price.append(cancel);
       }
       return article;
     }));
