@@ -106,7 +106,7 @@
       } else {
         ready = true; $('account-submit').disabled = false;
         $('preview-notice').textContent = register
-          ? 'Create your Hotel Vista account. No booking or payment is made at this step.'
+          ? 'Create your Vista Booking account. No booking or payment is made at this step.'
           : 'Sign in to continue. Your selected stay is reserved only after you confirm the booking.';
       }
     } catch {
@@ -117,3 +117,4 @@
   $('retry-connection').addEventListener('click', connect);
   connect();
 })();
+
