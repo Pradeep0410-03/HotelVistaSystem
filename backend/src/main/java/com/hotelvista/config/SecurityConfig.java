@@ -24,7 +24,7 @@ public class SecurityConfig {
             .requestCache(AbstractHttpConfigurer::disable)
             .httpBasic(AbstractHttpConfigurer::disable)
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers(HttpMethod.GET, "/", "/index.html", "/login.html", "/register.html", "/bookings.html",
+                .requestMatchers(HttpMethod.GET, "/", "/index.html", "/login.html", "/register.html", "/bookings.html", "/admin.html",
                         "/css/**", "/js/**", "/assets/optimized/**").permitAll()
                 .requestMatchers(HttpMethod.GET, "/api/properties", "/api/properties/*", "/api/properties/*/availability", "/api/auth/csrf").permitAll()
                 .requestMatchers(HttpMethod.POST, "/api/auth/register", "/api/auth/login").permitAll()

@@ -22,6 +22,7 @@
     });
     const bookings=document.createElement('a');bookings.href='bookings.html';bookings.textContent='My bookings';
     nav.append(name,bookings,logout);
+    if(account.role==='ADMIN') { const admin=document.createElement('a');admin.href='admin.html';admin.textContent='Administration';nav.append(admin); }
   }
   async function refresh() {
     if(checking)return;

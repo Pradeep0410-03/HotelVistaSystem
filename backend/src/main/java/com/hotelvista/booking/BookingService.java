@@ -99,12 +99,15 @@ public class BookingService {
         return new Page(rows.stream().limit(20).toList(),page,rows.size()>20);
     }
     @Transactional
-    public Booking cancel(String email,long id) {
+    public Booking cancel(String email,long id) { return cancelInternal(email,id,false); }
+    @Transactional
+    public Booking cancelAsAdmin(String email,long id) { return cancelInternal(email,id,true); }
+    private Booking cancelInternal(String email,long id,boolean admin) {
         long uid=user(email,true);
         var booking=get(uid,id);
         if(booking.status().equals("CANCELLED")) return booking;
         room(booking.propertyId(),booking.roomTypeId());
-        if(!booking.status().equals("CONFIRMED") || !Instant.now().isBefore(booking.cancellationDeadline()))
+        if(!booking.status().equals("CONFIRMED") || (!admin && !Instant.now().isBefore(booking.cancellationDeadline())))
             throw fail(HttpStatus.CONFLICT,"Free cancellation has ended. Contact the property for admin review");
         var nights=nights(booking.roomTypeId(),booking.checkin(),booking.checkout());
         if(nights.size()!=ChronoUnit.DAYS.between(booking.checkin(),booking.checkout()) || nights.stream().anyMatch(n->n.reserved()<booking.rooms()))

@@ -55,7 +55,7 @@
         <directory>${project.basedir}/..</directory>
         <targetPath>static</targetPath><filtering>false</filtering>
         <includes>
-          <include>index.html</include><include>login.html</include><include>register.html</include><include>bookings.html</include>
+          <include>index.html</include><include>login.html</include><include>register.html</include><include>bookings.html</include><include>admin.html</include>
           <include>css/**</include><include>js/**</include><include>assets/optimized/**</include>
         </includes>
       </resource>
