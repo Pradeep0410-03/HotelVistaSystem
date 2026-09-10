@@ -1,6 +1,6 @@
 const {test} = require('node:test');
 const assert = require('node:assert/strict');
-require('../js/property-client.js');
+require('../frontend/js/api/property-client.js');
 const property = {id:7,name:'A stay',propertyType:'HOTEL',city:'Goa',address:'A road',description:null,timezone:'Asia/Kolkata'};
 const json = data => new Response(JSON.stringify(data),{headers:{'Content-Type':'application/json'}});
 test('city search encodes input and sends page to public same-origin API', async () => {

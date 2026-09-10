@@ -10,7 +10,7 @@
   <groupId>com.hotelvista</groupId>
   <artifactId>hotel-vista-api</artifactId>
   <version>0.1.0-SNAPSHOT</version>
-  <name>Hotel Vista API</name>
+  <name>Vista Booking API</name>
   <properties>
     <java.version>17</java.version>
   </properties>
@@ -56,7 +56,7 @@
         <targetPath>static</targetPath><filtering>false</filtering>
         <includes>
           <include>index.html</include><include>login.html</include><include>register.html</include><include>bookings.html</include><include>admin.html</include>
-          <include>css/**</include><include>js/**</include><include>assets/optimized/**</include>
+          <include>frontend/pages/**</include><include>frontend/js/**</include><include>frontend/styles/**</include><include>assets/optimized/**</include><include>assets/categories/**</include>
         </includes>
       </resource>
     </resources>

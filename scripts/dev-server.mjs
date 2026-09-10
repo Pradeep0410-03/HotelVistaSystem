@@ -22,7 +22,7 @@ const server = http.createServer(async (req, res) => {
     const url = new URL(req.url, 'http://localhost');
     const name = decodeURIComponent(url.pathname).replace(/^\/+/, '') || 'index.html';
     // Only public frontend files are served; backend, Git and dotfiles stay private.
-    const allowed = ['index.html', 'login.html', 'register.html'].includes(name) || name === 'frontend/index.html' || /^(css|js|assets)\//.test(name);
+    const allowed = ['index.html', 'login.html', 'register.html', 'bookings.html', 'admin.html'].includes(name) || name === 'frontend/index.html' || /^(frontend\/(pages|js|styles)|assets)\//.test(name);
     if (!allowed || name.split('/').some(part => part.startsWith('.'))) throw new Error('Not public');
     const file = await realpath(path.resolve(root, name));
     if (!file.startsWith(root + path.sep) || !types[path.extname(file)]) throw new Error('Not public');
@@ -34,4 +34,4 @@ const server = http.createServer(async (req, res) => {
     res.end('Not found');
   }
 });
-server.listen(port, host, () => console.log(`Hotel Vista preview: http://${host}:${port}`));
+server.listen(port, host, () => console.log(`Vista Booking preview: http://${host}:${port}`));

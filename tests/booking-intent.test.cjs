@@ -1,7 +1,7 @@
 const {test} = require('node:test');
 const assert = require('node:assert/strict');
-require('../js/catalogue.js');
-require('../js/booking-intent.js');
+require('../frontend/js/legacy/catalogue.js');
+require('../frontend/js/legacy/booking-intent.js');
 const {link,parse} = globalThis.HotelVistaIntent;
 const properties = [{id:'goa',capacity:2,rooms:3}];
 const trip = {property:'goa',checkin:'2027-10-10',checkout:'2027-10-13',guests:4,rooms:2};

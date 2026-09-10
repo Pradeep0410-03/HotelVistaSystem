@@ -1,67 +1,50 @@
-# Hotel Vista
+# Vista Booking
 
-A multi-property accommodation project built in phases using HTML, CSS, JavaScript, Spring Boot and PostgreSQL.
+A booking project built with Spring Boot, PostgreSQL and HTML/JavaScript. The Tailwind-styled homepage leads to Hotels, Movies and Sports, each with its own interface.
 
 ## Run the integrated application
 
-Follow [backend setup](backend/README.md) to configure Java, Maven and PostgreSQL. From `backend/`:
-
-```sh
-mvn spring-boot:run -Dspring-boot.run.profiles=local
-```
-
-Open http://localhost:8080/index.html. Use the local profile only for local HTTP development.
-
-For a static frontend preview only, run `npm run dev` from the repository root (Node 20+) and open http://localhost:5173. This preview does not run Java or provide account/database APIs.
-
-## Current capabilities
-
-- Registration, session login and logout through Spring Security.
-- Database property browsing, city search, pagination and details.
-- Date-based room availability and server-calculated INR subtotals.
-- Uniform pay-at-hotel cancellation policy with a property-local deadline.
-- A separate sample booking flow with filters, saved stays and illustrative prices.
-
-Booking confirmation, inventory reservation, My bookings and eligible cancellation are implemented. Administration remains a later phase. Availability checks alone do not hold rooms. The hosted static preview is separate from the integrated application.
-
-## Project structure
-
-| Path | Purpose |
-|---|---|
-| `index.html`, `login.html`, `register.html`, `bookings.html` | Frontend pages |
-| `css/` | Styles |
-| `js/` | Frontend UI, API clients and sample catalogue |
-| `assets/optimized/` | Images used by the frontend |
-| `backend/pom.xml` | Java dependencies and Maven build |
-| `backend/src/main/java/com/hotelvista/` | Spring application: auth, property, room, config and common packages |
-| `backend/src/main/resources/` | Application configuration and Flyway migration |
-| `backend/src/test/` | Java tests |
-| `backend/tests/` | Standalone SQL schema checks |
-| `tests/` | Frontend logic and API-client tests |
-| `scripts/` | Static preview server |
-| `docs/` | Phase explanations and design notes |
-| `.github/workflows/` | Automated checks |
-
-The original empty Node backend folders have been removed. The working security configuration is in `backend/src/main/java/com/hotelvista/config/`. Root `package.json` runs frontend tooling; `backend/pom.xml` builds the backend.
-
-`frontend/index.html` remains a compatibility redirect. Unused standalone frontend scripts and original JPG assets have been removed; optimized images remain.
-
-## Learn and verify
-
-Read [authentication](docs/authentication.md), [frontend integration](docs/frontend-auth-integration.md), [property browsing](docs/property-browsing.md) [room availability](docs/room-availability.md) and [booking workflow](docs/booking-workflow.md).
-
-```sh
-node --test tests/*.test.cjs
-```
-
-From `backend/`, run `mvn test` or `mvn -Pintegration verify` with a disposable PostgreSQL database configured. GitHub Actions runs frontend and PostgreSQL-backed checks.
-
-## Demo catalogue and refreshed interface
-
-See [project readiness](docs/project-readiness.md) for the architecture review and remaining deployment requirements. After configuring PostgreSQL, start from `backend/` with:
+Follow [backend setup](backend/README.md) to configure Java 17, Maven and PostgreSQL. From `backend/`:
 
 ```sh
 mvn spring-boot:run -Dspring-boot.run.profiles=local,demo
 ```
 
-This opt-in profile adds 750 fictional properties across 30 cities, room types and 90 days of inventory. Rerunning preserves existing reservations. Open http://localhost:8080/index.html and use Browse properties. The old sample UI is a separate non-bookable preview. Generated listings are not real businesses.
+Open http://localhost:8080/. The opt-in demo profile seeds 750 fictional hotel properties and inventory while preserving existing reservations. Use `local` without `demo` to skip seeding. No frontend build is needed to run the committed application.
+
+Hotels support accounts, city search, availability, booking confirmation, My bookings and eligible cancellation. The admin API manages properties, room inventory and audited cancellations. Movies and Sports currently have separate introductory pages; tickets, seats and payments are not implemented.
+
+## Frontend development
+
+Node 20+ is required only for frontend tooling:
+
+```sh
+npm ci
+npm run build:css
+npm test
+npm run dev
+```
+
+The static preview at http://localhost:5173/ does not provide authentication or database APIs. Test the complete flow through Spring on port 8080. After changing Tailwind classes, rebuild and commit `frontend/styles/vista.css`; production does not use a Tailwind CDN.
+
+## Structure
+
+| Path | Purpose |
+|---|---|
+| `index.html` | Three-category homepage |
+| `frontend/pages/` | Hotels, movies, sports, accounts, bookings and admin |
+| `frontend/js/api/` | Same-origin API clients |
+| `frontend/js/pages/` | Page controllers |
+| `frontend/js/shared/` | Session navigation and stay presentation |
+| `frontend/js/legacy/` | Compatibility helpers for earlier saved booking intents |
+| `frontend/styles/` | Tailwind source/output and existing hotel/account styles |
+| `assets/` | Local optimized hotel and category images |
+| `backend/` | Spring application, migrations, Maven and Java tests |
+| `tests/`, `scripts/` | Frontend tests and static preview server |
+| `docs/` | Architecture, workflows and project notes |
+
+Root account, bookings and admin HTML files are compatibility redirects. The database name, Java package and browser storage keys retain their existing identifiers so the visual rename does not invalidate existing data.
+
+See [category architecture](docs/vista-booking-structure.md), [authentication](docs/authentication.md), [availability](docs/room-availability.md), [bookings](docs/booking-workflow.md) and [deployment readiness](docs/project-readiness.md).
+
+GitHub Actions builds the frontend styles and runs JavaScript tests plus `mvn -Pintegration verify` against a disposable PostgreSQL database.

@@ -3,7 +3,7 @@
   'use strict';
   const fields = ['property', 'checkin', 'checkout', 'guests', 'rooms'];
   function link(page, trip) {
-    if (!['login.html', 'register.html', 'index.html'].includes(page)) throw new Error('Unsupported destination');
+    if (!['login.html', 'register.html', 'index.html','/frontend/pages/hotels.html'].includes(page)) throw new Error('Unsupported destination');
     const params = new URLSearchParams();
     fields.forEach(key => params.set(key, String(trip[key])));
     return page + '?' + params.toString();

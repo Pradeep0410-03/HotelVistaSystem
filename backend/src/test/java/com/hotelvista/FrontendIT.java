@@ -15,14 +15,17 @@ import static org.hamcrest.Matchers.containsString;
 class FrontendIT {
     @Autowired MockMvc mvc;
     @Test void servesAccountPagesAndClientAlongsideApi() throws Exception {
-        for(String page : new String[]{"index.html","login.html","register.html"}) {
-            mvc.perform(get("/"+page)).andExpect(status().isOk()).andExpect(content().string(containsString("js/auth-client.js")));
+        for(String page : new String[]{"index.html","frontend/pages/login.html","frontend/pages/register.html","frontend/pages/hotels.html","frontend/pages/movies.html","frontend/pages/sports.html"}) {
+            mvc.perform(get("/"+page)).andExpect(status().isOk()).andExpect(content().string(containsString("frontend/js/api/auth-client.js")));
         }
-        mvc.perform(get("/bookings.html")).andExpect(status().isOk()).andExpect(content().string(containsString("js/bookings.js")));
-        mvc.perform(get("/js/auth-client.js")).andExpect(status().isOk()).andExpect(content().string(containsString("credentials: 'same-origin'")));
-        mvc.perform(get("/css/travel.css")).andExpect(status().isOk());
-        mvc.perform(get("/js/stay-presentation.js")).andExpect(status().isOk());
-        mvc.perform(get("/css/account.css")).andExpect(status().isOk());
+        mvc.perform(get("/frontend/pages/bookings.html")).andExpect(status().isOk()).andExpect(content().string(containsString("frontend/js/pages/bookings.js")));
+        mvc.perform(get("/frontend/js/api/auth-client.js")).andExpect(status().isOk()).andExpect(content().string(containsString("credentials: 'same-origin'")));
+        mvc.perform(get("/frontend/styles/vista.css")).andExpect(status().isOk());
+        mvc.perform(get("/assets/categories/cinema.jpg")).andExpect(status().isOk());
+        mvc.perform(get("/assets/categories/stadium.jpg")).andExpect(status().isOk());
+        mvc.perform(get("/frontend/styles/travel.css")).andExpect(status().isOk());
+        mvc.perform(get("/frontend/js/shared/stay-presentation.js")).andExpect(status().isOk());
+        mvc.perform(get("/frontend/styles/account.css")).andExpect(status().isOk());
         mvc.perform(get("/assets/optimized/destinations-udaipur.webp")).andExpect(status().isOk());
         mvc.perform(get("/api/auth/csrf")).andExpect(status().isOk()).andExpect(jsonPath("$.token").isNotEmpty());
     }
