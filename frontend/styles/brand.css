@@ -1,0 +1,11 @@
+/* One wordmark across category and account pages. */
+a.vista-wordmark { display:inline-flex;align-items:center;gap:11px;color:#fff;text-decoration:none;white-space:nowrap;font-family:'Segoe UI',Arial,sans-serif;line-height:1.2;letter-spacing:-.6px;flex-shrink:0; }
+.vista-wordmark .vista-mark { display:grid;place-items:center;width:40px;height:44px;border:1px solid #7292a6;border-radius:11px 11px 3px 11px;color:#72e7d5;font:italic 30px Georgia,serif;letter-spacing:0; }
+.vista-wordmark .vista-name { font-size:26px;font-weight:700; }
+.vista-wordmark .vista-name span { color:#72e7d5;font-weight:400; }
+a.vista-wordmark:focus-visible { outline:3px solid #72e7d5;outline-offset:5px; }
+.account-neutral { display:block;max-width:510px;margin:48px auto;padding:0 20px;min-height:0; }
+.account-neutral .account-card { background:#fff;padding:32px;border:1px solid #d9e3ed;border-radius:18px;box-shadow:0 12px 36px #102c4509; }
+.account-neutral .trip-summary { margin:0 0 24px; }
+.account-neutral .trip-summary[hidden] { display:none; }
+@media(max-width:600px) { .vista-wordmark .vista-name {font-size:22px}.vista-wordmark .vista-mark {width:33px;height:37px;font-size:26px}.account-neutral {margin:28px auto}.account-neutral .account-card {padding:24px} }

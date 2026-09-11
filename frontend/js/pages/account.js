@@ -8,6 +8,8 @@
   const api = window.HotelVistaAuth.createClient(window.fetch.bind(window));
   let ready = false, busy = false, completed = false;
   const register = document.body.dataset.account === 'register';
+  const bookingReturn = params.get('return') === 'bookings';
+  const hasSelection = !!trip || bookingReturn;
   if (trip) {
     const property = window.HOTEL_VISTA.properties.find(p => p.id === trip.property);
     const estimate = window.HotelVistaCatalogue.estimate(property.price, trip.checkin, trip.checkout, trip.rooms);
@@ -19,6 +21,7 @@
     $('switch-account').href = window.HotelVistaIntent.link(register ? 'login.html' : 'register.html', trip);
     const back = window.HotelVistaIntent.link('/frontend/pages/hotels.html', trip) + '&destination=' + encodeURIComponent(property.city) + '#stays';
     $('back-to-stays').href = back;
+    $('back-to-stays').textContent = '← Back to stays';
     $('edit-trip').href = back;
   } else if (params.has('property')) {
     $('account-status').hidden = false;
@@ -47,6 +50,7 @@
   }
   if (params.get('return') === 'bookings') {
     $('back-to-stays').href = 'bookings.html';
+    $('back-to-stays').textContent = '← Back to booking review';
     $('switch-account').href = (register ? 'login.html' : 'register.html') + '?return=bookings';
   }
   $('continue-account').href = $('back-to-stays').href;
@@ -74,7 +78,7 @@
       if (register) {
         await api.register({fullName:$('full-name').value.trim(), email:$('email').value.trim(), password:$('password').value});
         clearPassword(); completed = true;
-        message('Your account has been created. Sign in to continue; your stay selection is preserved.');
+        message(hasSelection ? 'Your account has been created. Sign in to continue; your booking selection is preserved.' : 'Your account has been created. Sign in to continue.');
         $('switch-account').focus();
       } else {
         await api.login($('email').value.trim(), $('password').value);
@@ -101,20 +105,19 @@
       if (account) {
         completed = true; $('account-form').hidden = true;
         $('continue-account').hidden = false;
-        $('preview-notice').textContent = 'You are signed in as ' + account.fullName + '. Continue to your stay, or sign out from the homepage.';
-        if (!trip) $('continue-account').textContent = params.get('return') === 'bookings' ? 'Continue to booking review' : 'Continue to stays';
+        $('preview-notice').textContent = 'You are signed in as ' + account.fullName + '. Continue below, or sign out from the homepage.';
+        $('continue-account').textContent = bookingReturn ? 'Continue to booking review' : trip ? 'Continue to your stay' : 'Continue to home';
       } else {
         ready = true; $('account-submit').disabled = false;
         $('preview-notice').textContent = register
           ? 'Create your Vista Booking account. No booking or payment is made at this step.'
-          : 'Sign in to continue. Your selected stay is reserved only after you confirm the booking.';
+          : hasSelection ? 'Sign in to continue. Your selected stay is reserved only after you confirm the booking.' : 'Sign in to access your account and bookings.';
       }
     } catch {
-      $('preview-notice').textContent = 'Account services are unavailable here. You can still explore stays. No details have been submitted.';
+      $('preview-notice').textContent = 'Account services are unavailable here. You can still browse Vista Booking. No details have been submitted.';
       $('retry-connection').hidden = false;
     }
   }
   $('retry-connection').addEventListener('click', connect);
   connect();
 })();
-
