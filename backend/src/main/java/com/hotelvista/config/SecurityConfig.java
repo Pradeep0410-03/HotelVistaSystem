@@ -27,6 +27,9 @@ public class SecurityConfig {
                 .requestMatchers(HttpMethod.GET, "/", "/index.html", "/login.html", "/register.html", "/bookings.html", "/admin.html",
                         "/frontend/pages/*.html", "/frontend/js/**", "/frontend/styles/**", "/assets/optimized/**", "/assets/categories/**").permitAll()
                 .requestMatchers(HttpMethod.GET, "/api/properties", "/api/properties/*", "/api/properties/*/availability", "/api/auth/csrf").permitAll()
+                .requestMatchers(HttpMethod.GET, "/api/movies", "/api/movies/*/shows", "/api/movie-shows/*/seats").permitAll()
+                .requestMatchers(HttpMethod.GET, "/api/movie-bookings").authenticated()
+                .requestMatchers(HttpMethod.POST, "/api/movie-bookings", "/api/movie-bookings/*/cancel").authenticated()
                 .requestMatchers(HttpMethod.POST, "/api/auth/register", "/api/auth/login").permitAll()
                 .requestMatchers(HttpMethod.GET, "/api/bookings").authenticated()
                 .requestMatchers(HttpMethod.POST, "/api/bookings", "/api/bookings/*/cancel").authenticated()
