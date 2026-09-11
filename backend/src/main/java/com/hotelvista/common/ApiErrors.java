@@ -11,6 +11,11 @@ import org.springframework.web.server.ResponseStatusException;
 
 @RestControllerAdvice
 public class ApiErrors {
+    @ExceptionHandler(com.hotelvista.movie.MovieFailure.class)
+    public ProblemDetail movie(com.hotelvista.movie.MovieFailure error) {
+        return ProblemDetail.forStatusAndDetail(error.status(),error.getMessage());
+    }
+
     @ExceptionHandler(com.hotelvista.booking.BookingFailure.class)
     public ProblemDetail booking(com.hotelvista.booking.BookingFailure error) {
         return ProblemDetail.forStatusAndDetail(error.status(),error.getMessage());
