@@ -34,3 +34,9 @@ test('ordinary registration success does not claim a stay selection',async()=>{
  await s.node('account-form').listeners.submit({preventDefault(){}});
  assert.equal(s.node('account-status').textContent,'Your account has been created. Sign in to continue.');
 });
+test('movie sign-in returns to movies and keeps register context',async()=>{
+ const s=screen('?return=movies');await new Promise(setImmediate);
+ assert.equal(s.node('switch-account').href,'register.html?return=movies');
+ await s.node('account-form').listeners.submit({preventDefault(){}});
+ assert.equal(s.destination,'/frontend/pages/movies.html#movie-reservations');
+});

@@ -21,7 +21,8 @@
       catch { logout.disabled=false; window.dispatchEvent(new CustomEvent('hotelvista-auth-error')); }
     });
     const bookings=document.createElement('a');bookings.href='bookings.html';bookings.textContent='My bookings';
-    nav.append(name,bookings,logout);
+    const movies=document.createElement('a');movies.href='/frontend/pages/movies.html#movie-reservations';movies.textContent='Movie reservations';
+    nav.append(name,bookings,movies,logout);
     if(account.role==='ADMIN') { const admin=document.createElement('a');admin.href='admin.html';admin.textContent='Administration';nav.append(admin); }
   }
   async function refresh() {
