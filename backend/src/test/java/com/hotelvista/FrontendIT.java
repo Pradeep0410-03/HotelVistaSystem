@@ -20,6 +20,9 @@ class FrontendIT {
         }
         mvc.perform(get("/frontend/pages/bookings.html")).andExpect(status().isOk()).andExpect(content().string(containsString("frontend/js/pages/bookings.js")));
         mvc.perform(get("/frontend/js/api/auth-client.js")).andExpect(status().isOk()).andExpect(content().string(containsString("credentials: 'same-origin'")));
+        mvc.perform(get("/frontend/js/api/movie-client.js")).andExpect(status().isOk());
+        mvc.perform(get("/frontend/js/pages/movies.js")).andExpect(status().isOk());
+        mvc.perform(get("/frontend/styles/movies.css")).andExpect(status().isOk());
         mvc.perform(get("/frontend/styles/vista.css")).andExpect(status().isOk());
         mvc.perform(get("/assets/categories/cinema.jpg")).andExpect(status().isOk());
         mvc.perform(get("/assets/categories/stadium.jpg")).andExpect(status().isOk());

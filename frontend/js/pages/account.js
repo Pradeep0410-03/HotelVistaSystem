@@ -9,7 +9,8 @@
   let ready = false, busy = false, completed = false;
   const register = document.body.dataset.account === 'register';
   const bookingReturn = params.get('return') === 'bookings';
-  const hasSelection = !!trip || bookingReturn;
+  const movieReturn = params.get('return') === 'movies';
+  const hasSelection = !!trip || bookingReturn || movieReturn;
   if (trip) {
     const property = window.HOTEL_VISTA.properties.find(p => p.id === trip.property);
     const estimate = window.HotelVistaCatalogue.estimate(property.price, trip.checkin, trip.checkout, trip.rooms);
@@ -52,6 +53,11 @@
     $('back-to-stays').href = 'bookings.html';
     $('back-to-stays').textContent = '← Back to booking review';
     $('switch-account').href = (register ? 'login.html' : 'register.html') + '?return=bookings';
+  }
+  if (movieReturn) {
+    $('back-to-stays').href = '/frontend/pages/movies.html#movie-reservations';
+    $('back-to-stays').textContent = '← Back to movies';
+    $('switch-account').href = (register ? 'login.html' : 'register.html') + '?return=movies';
   }
   $('continue-account').href = $('back-to-stays').href;
   function message(text) {
@@ -106,12 +112,12 @@
         completed = true; $('account-form').hidden = true;
         $('continue-account').hidden = false;
         $('preview-notice').textContent = 'You are signed in as ' + account.fullName + '. Continue below, or sign out from the homepage.';
-        $('continue-account').textContent = bookingReturn ? 'Continue to booking review' : trip ? 'Continue to your stay' : 'Continue to home';
+        $('continue-account').textContent = movieReturn ? 'Continue to movies' : bookingReturn ? 'Continue to booking review' : trip ? 'Continue to your stay' : 'Continue to home';
       } else {
         ready = true; $('account-submit').disabled = false;
         $('preview-notice').textContent = register
           ? 'Create your Vista Booking account. No booking or payment is made at this step.'
-          : hasSelection ? 'Sign in to continue. Your selected stay is reserved only after you confirm the booking.' : 'Sign in to access your account and bookings.';
+          : movieReturn ? 'Sign in to continue to movies and your reservations.' : hasSelection ? 'Sign in to continue. Your selected stay is reserved only after you confirm the booking.' : 'Sign in to access your account and bookings.';
       }
     } catch {
       $('preview-notice').textContent = 'Account services are unavailable here. You can still browse Vista Booking. No details have been submitted.';
